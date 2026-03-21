@@ -1,7 +1,8 @@
+"use client";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, CheckCircle, Shield, DollarSign, Users } from "lucide-react";
+import { Phone, MessageCircle, CheckCircle, Shield, DollarSign, Users } from "lucide-react";
 
 const BecomeEscortPage = () => {
   const handlePhoneCall = () => {
@@ -145,19 +146,18 @@ const BecomeEscortPage = () => {
                 </Button>
                 
                 <Button 
-                  variant="outline" 
-                  className="flex items-center gap-2"
+                  className="bg-[#25D366] hover:bg-[#128C7E] flex items-center gap-2 text-white"
                   size="lg"
-                  onClick={() => window.location.href = "mailto:registration@hexescortsug.com"}
+                  onClick={() => window.open(`whatsapp://send?phone=256707683295&text=${encodeURIComponent("Hi, I'd like to register as an escort on Hex Escorts UG")}`, '_blank')}
                 >
-                  <Mail className="h-5 w-5" />
-                  Email Us
+                  <MessageCircle className="h-5 w-5" />
+                  WhatsApp Us
                 </Button>
               </div>
               
               <div className="text-sm text-muted-foreground">
                 <p><strong>Registration Hotline:</strong> +256 707 683 295</p>
-                <p><strong>Email:</strong> registration@hexescortsug.com</p>
+                <p><strong>WhatsApp:</strong> +256 707 683 295</p>
                 <p><strong>Available:</strong> 24/7 for inquiries</p>
               </div>
             </div>

@@ -1,15 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Star } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProfileDetail } from "@/components/profiles/ProfileDetail";
 import { useAllProfiles } from "@/data/allProfiles";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent } from "@/components/ui/card";
 import { VideoList } from "@/components/videos/VideoList";
 import { PhotoList } from "@/components/photos/PhotoList";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { ProfileType } from "@/types/profile";
 
 interface ProfileDetailPageProps {
@@ -60,6 +59,17 @@ const ProfileDetailPage = ({ profileId, initialProfile }: ProfileDetailPageProps
   }
 
 
+  const handleShare = async () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: profile.name, text: `Check out ${profile.name} on Hex Escorts UG`, url });
+      } catch {}
+    } else {
+      await navigator.clipboard.writeText(url);
+    }
+  };
+
   return (
     <div className="lg:pl-64 relative">
       <div className="lg:hidden h-16"></div>
@@ -79,55 +89,25 @@ const ProfileDetailPage = ({ profileId, initialProfile }: ProfileDetailPageProps
           
         </div>
         
-        <ProfileDetail profile={profile} />
+        <ProfileDetail profile={profile} onShare={handleShare} />
 
         <div className="mt-8">
-          <Tabs defaultValue="videos" className="w-full">
+          <Tabs defaultValue="gallery" className="w-full">
             <TabsList className="w-full">
-              <TabsTrigger value="videos" className="flex-1">Videos</TabsTrigger>
               <TabsTrigger value="gallery" className="flex-1">Gallery</TabsTrigger>
-              <TabsTrigger value="reviews" className="flex-1">Reviews</TabsTrigger>
+              <TabsTrigger value="videos" className="flex-1">Videos</TabsTrigger>
             </TabsList>
-            
-            <TabsContent value="videos" className="p-4">
-              <VideoList 
-                profileId={profile.id} 
-              />
-            </TabsContent>
             
             <TabsContent value="gallery" className="p-4">
               <PhotoList 
                 profileId={profile.id} 
               />
             </TabsContent>
-            
-            <TabsContent value="reviews">
-              <Card>
-                <CardContent className="p-4">
-                  <div className="flex items-center mb-4">
-                    <Star className="h-5 w-5 text-yellow-500 fill-yellow-500 mr-1" />
-                    <Star className="h-5 w-5 text-yellow-500 fill-yellow-500 mr-1" />
-                    <Star className="h-5 w-5 text-yellow-500 fill-yellow-500 mr-1" />
-                    <Star className="h-5 w-5 text-yellow-500 fill-yellow-500 mr-1" />
-                    <Star className="h-5 w-5 text-gray-500 mr-1" />
-                    <span className="ml-2 text-sm">(4 reviews)</span>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div className="pb-4 border-b border-gray-700">
-                      <div className="flex justify-between mb-1">
-                        <h4 className="font-semibold">John D.</h4>
-                        <div className="flex">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} className={`h-4 w-4 ${i < 4 ? 'text-yellow-500 fill-yellow-500' : 'text-gray-500'}`} />
-                          ))}
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-400">Amazing experience, highly recommend!</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+
+            <TabsContent value="videos" className="p-4">
+              <VideoList 
+                profileId={profile.id} 
+              />
             </TabsContent>
           </Tabs>
         </div>

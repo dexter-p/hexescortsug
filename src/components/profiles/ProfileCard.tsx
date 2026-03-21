@@ -85,7 +85,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
               
               {/* Watermark */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                <span className="text-pink-500 text-xs sm:text-sm md:text-base font-bold">HEXDATE</span>
+                <span className="text-pink-500 text-xs sm:text-sm md:text-base font-bold">HEX ESCORTS UG</span>
               </div>
             </Link>
           

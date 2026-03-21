@@ -12,9 +12,10 @@ import Image from "next/image";
 
 interface ProfileDetailProps {
   profile: ProfileType;
+  onShare?: () => void;
 }
 
-export function ProfileDetail({ profile }: ProfileDetailProps) {
+export function ProfileDetail({ profile, onShare }: ProfileDetailProps) {
   const isMobile = useIsMobile();
   const { handlePhoneClick } = usePhoneHandler();
   
@@ -66,7 +67,7 @@ export function ProfileDetail({ profile }: ProfileDetailProps) {
             
             {/* Watermark */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30 group-hover:opacity-50 transition-opacity">
-              <span className="text-gradient-primary text-2xl lg:text-4xl font-bold">HEXDATE</span>
+              <span className="text-gradient-primary text-2xl lg:text-4xl font-bold">HEX ESCORTS UG</span>
             </div>
           </div>
         </div>
@@ -149,7 +150,7 @@ export function ProfileDetail({ profile }: ProfileDetailProps) {
             <Button variant="outline" className="flex-1 border-gray-700 hover:bg-pink-500/10 hover:border-pink-500/50 transition-colors text-xs lg:text-sm h-8 lg:h-10">
               <Heart className="mr-1 lg:mr-2 h-3 w-3 lg:h-4 lg:w-4 text-pink-500" /> Save
             </Button>
-            <Button variant="outline" className="flex-1 border-gray-700 hover:bg-pink-500/10 hover:border-pink-500/50 transition-colors text-xs lg:text-sm h-8 lg:h-10">
+            <Button variant="outline" className="flex-1 border-gray-700 hover:bg-pink-500/10 hover:border-pink-500/50 transition-colors text-xs lg:text-sm h-8 lg:h-10" onClick={onShare}>
               <Share2 className="mr-1 lg:mr-2 h-3 w-3 lg:h-4 lg:w-4 text-pink-500" /> Share
             </Button>
           </div>

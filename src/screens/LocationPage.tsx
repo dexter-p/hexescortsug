@@ -40,6 +40,18 @@ const cityMeta: Record<string, { title: string; description: string; heading: st
     heading: "Escorts in Gulu",
     body: "Gulu has transformed into the major economic and social hub of Northern Uganda, attracting NGO workers, business executives, and travelers from across the globe. To meet the needs of this diverse and dynamic population, Escorts UG offers a trusted directory of verified Gulu escorts. Our platform brings safety, privacy, and absolute reliability to finding a companion in the north. Whether you're seeking a gorgeous local to guide you through the city's nightlife, or a discreet partner to help you unwind in your hotel room after a demanding week of work, our verified profiles are the standard for quality. We understand that privacy is paramount, especially for visiting professionals, which is why our service emphasizes 100% discretion and authentic representation. Review detailed biographies, high-resolution galleries, and explicit service lists to make an informed choice. Connect directly with the finest companions in Northern Uganda and experience a new level of passion and professionalism in Gulu.",
   },
+  "fort-portal": {
+    title: "Fort Portal Escorts – Verified Profiles | Escorts UG",
+    description: "Find verified escorts in Fort Portal, western Uganda. Browse authentic companion profiles near the Rwenzori Mountains.",
+    heading: "Escorts in Fort Portal",
+    body: "Fort Portal, nestled at the foot of the Rwenzori Mountains and surrounded by stunning crater lakes, is one of Uganda's most picturesque cities. Whether you are visiting for eco-tourism, a business trip, or a mountain retreat, Escorts UG connects you with verified, discreet companions in this serene western Ugandan city. Our Fort Portal directory features elegant, professional escorts who understand the unique pace of this beautiful destination. From quiet evenings by the crater lakes to sophisticated dinner companionship in the city's growing hospitality scene, our listed companions deliver premium, personalized experiences. Browse verified profiles with genuine photos and detailed bios to find your perfect match in the Pearl of the Mountains.",
+  },
+  mbale: {
+    title: "Mbale Escorts – Verified Profiles | Escorts UG",
+    description: "Find verified escorts in Mbale, eastern Uganda. Browse authentic companion profiles near Mount Elgon.",
+    heading: "Escorts in Mbale",
+    body: "Mbale, sitting at the gateway to the magnificent Mount Elgon National Park, is the commercial heart of eastern Uganda. As the city grows and attracts increasing business investment, so does the demand for quality, discreet companionship. Escorts UG's Mbale directory provides residents and visiting professionals with direct access to beautiful, verified companions who cater to sophisticated tastes. Whether you need an engaging companion for a corporate dinner, a relaxing partner after a long trek on Mount Elgon, or a discreet meetup in the city centre, our platform ensures you connect with genuine, authentic escorts. Every profile is reviewed for accuracy, giving you complete confidence in who you contact. Explore verified Mbale listings and find your perfect companion in eastern Uganda's most dynamic city.",
+  },
 };
 
 interface LocationPageProps {
@@ -120,7 +132,7 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
   const featuredIds = locationProfiles.slice(0, 2).map(p => p.id);
 
   const categories = [
-    "Escorts", "Blog", "Contact Us"
+    "Escorts"
   ];
 
   const NoEscortsMessage = () => (
