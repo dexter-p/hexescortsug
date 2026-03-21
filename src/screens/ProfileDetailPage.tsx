@@ -20,13 +20,31 @@ interface ProfileDetailPageProps {
 const ProfileDetailPage = ({ profileId, initialProfile }: ProfileDetailPageProps) => {
   const id = profileId;
   
-  const { data: allProfiles = [] } = useAllProfiles();
-  const profile = allProfiles.find(p => p.id === id) || initialProfile;
+  const { data: allProfiles = [], isLoading } = useAllProfiles();
+  // Use initialProfile immediately (server-rendered data) while client query loads
+  const profile = (allProfiles.length > 0 ? allProfiles.find(p => p.id === id) : undefined) ?? initialProfile;
 
   // Scroll to top when component mounts or profile ID changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+  
+  // While loading, show skeleton to avoid premature 404
+  if (isLoading && !profile) {
+    return (
+      <div className="lg:pl-64 relative">
+        <div className="lg:hidden h-16"></div>
+        <div className="container mx-auto px-4 py-8">
+          <div className="animate-pulse space-y-4">
+            <div className="h-8 bg-gray-700 rounded w-1/4"></div>
+            <div className="h-64 bg-gray-700 rounded"></div>
+            <div className="h-4 bg-gray-700 rounded w-3/4"></div>
+            <div className="h-4 bg-gray-700 rounded w-1/2"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
   
   if (!profile) {
     return (
