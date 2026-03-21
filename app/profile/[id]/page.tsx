@@ -2,6 +2,9 @@ import ProfileDetailPageClient from "@/screens/ProfileDetailPage";
 import { fetchAllProfiles } from "@/data/allProfiles";
 import type { Metadata, ResolvingMetadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
 type Props = {
   params: Promise<{ id: string }>
 }
