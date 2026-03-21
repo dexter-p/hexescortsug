@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { VideoList } from "@/components/videos/VideoList";
 import { PhotoList } from "@/components/photos/PhotoList";
 import { useState, useEffect } from "react";
+import { ProfileType } from "@/types/profile";
 
 interface ProfileDetailPageProps {
   profileId: string;

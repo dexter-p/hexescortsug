@@ -6,14 +6,14 @@ export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
 
 type Props = {
-  params: Promise<{ id: string }>
+  params: { id: string }
 }
 
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const id = (await params).id;
+  const id = params.id;
   
   const profiles = await fetchAllProfiles();
   const profile = profiles.find(p => p.id === id) || profiles.find(p => p.id.includes(id));
@@ -34,7 +34,7 @@ export async function generateMetadata(
 }
 
 export default async function Page({ params }: Props) {
-  const { id } = await params;
+  const { id } = params;
   
   const profiles = await fetchAllProfiles();
   const profile = profiles.find(p => p.id === id) || profiles.find(p => p.id.includes(id));
