@@ -27,6 +27,11 @@ function mapDbProfile(p: any): ProfileType {
 }
 
 export async function fetchAllProfiles() {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    console.warn("Skipping Supabase fetch during build since credentials are missing.");
+    return mockProfiles;
+  }
+  
   const { data, error } = await supabase
     .from("profiles")
     .select("*")
@@ -45,6 +50,8 @@ export async function fetchProfileById(id: string) {
   // If it's a mock profile
   const mock = mockProfiles.find(p => p.id === id);
   if (mock) return mock;
+
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return null;
 
   // Otherwise check DB
   const { data, error } = await supabase
