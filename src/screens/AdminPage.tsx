@@ -9,7 +9,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trash2, Plus, LogOut, Video } from "lucide-react";
+import { Trash2, Plus, LogOut, Video, User } from "lucide-react";
+import Image from "next/image";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { mockProfiles } from "@/data/mockProfiles";
@@ -70,7 +71,6 @@ const AdminPage = () => {
   const galleryInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
 
-  // Always require fresh login for admin page
   useEffect(() => {
     let isMounted = true;
 
@@ -91,27 +91,14 @@ const AdminPage = () => {
       }
     };
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (!isMounted) return;
-        setIsAuthenticated(!!session?.user);
-        if (session?.user) {
-          setCheckingRole(true);
-          setTimeout(() => checkAdminRole(session.user.id), 0);
-        } else {
-          setIsAdmin(false);
-          setCheckingRole(false);
-        }
-      }
-    );
-
-    // Sign out first so admin always sees login form
     const initializeAuth = async () => {
       try {
-        await supabase.auth.signOut();
-        if (isMounted) {
-          setIsAuthenticated(false);
-          setIsAdmin(false);
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!isMounted) return;
+        
+        setIsAuthenticated(!!session?.user);
+        if (session?.user) {
+          await checkAdminRole(session.user.id);
         }
       } finally {
         if (isMounted) setAuthLoading(false);
@@ -119,6 +106,19 @@ const AdminPage = () => {
     };
 
     initializeAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (!isMounted) return;
+        setIsAuthenticated(!!session?.user);
+        if (session?.user) {
+          checkAdminRole(session.user.id);
+        } else {
+          setIsAdmin(false);
+          setCheckingRole(false);
+        }
+      }
+    );
 
     return () => {
       isMounted = false;
@@ -388,7 +388,14 @@ const AdminPage = () => {
           <div className="space-y-2">
             <Label>Profile Image</Label>
             {editingProfile.profileImage && (
-              <img src={editingProfile.profileImage} alt="Profile" className="w-24 h-24 rounded-full object-cover" />
+              <div className="relative w-24 h-24">
+                <Image 
+                  src={editingProfile.profileImage} 
+                  alt="Profile" 
+                  fill
+                  className="rounded-full object-cover" 
+                />
+              </div>
             )}
             <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => handleImageUpload(e, "profile")} />
             <Button variant="outline" size="sm" onClick={() => fileInputRef.current?.click()} disabled={uploading}>
@@ -400,9 +407,14 @@ const AdminPage = () => {
             <Label>Gallery Images</Label>
             <div className="flex flex-wrap gap-2">
               {editingProfile.images.map((img, i) => (
-                <div key={i} className="relative">
-                  <img src={img} alt="" className="w-16 h-16 rounded object-cover" />
-                  <button onClick={() => removeGalleryImage(i)} className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">×</button>
+                <div key={i} className="relative w-16 h-16">
+                  <Image 
+                    src={img} 
+                    alt="" 
+                    fill
+                    className="rounded object-cover" 
+                  />
+                  <button onClick={() => removeGalleryImage(i)} className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs z-10">×</button>
                 </div>
               ))}
             </div>
@@ -529,14 +541,23 @@ const AdminPage = () => {
               <Card key={p.id}>
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3 mb-3">
-                    {p.profile_image ? (
-                      <img src={p.profile_image} alt={p.name} className="w-12 h-12 rounded-full object-cover" />
-                    ) : (
-                      <div className="w-12 h-12 rounded-full bg-muted" />
-                    )}
+                    <div className="relative w-12 h-12 flex-shrink-0">
+                      {p.profile_image ? (
+                        <Image 
+                          src={p.profile_image} 
+                          alt={p.name} 
+                          fill
+                          className="rounded-full object-cover" 
+                        />
+                      ) : (
+                        <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
+                          <User className="w-6 h-6 text-muted-foreground" />
+                        </div>
+                      )}
+                    </div>
                     <div>
                       <p className="font-semibold">{p.name}</p>
-                      <p className="text-sm text-muted-foreground">{p.age} • {p.location}</p>
+                      <p className="text-sm text-muted-foreground">{p.age || 'N/A'} • {p.location}</p>
                     </div>
                   </div>
                   <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{p.short_bio}</p>
@@ -560,13 +581,20 @@ const AdminPage = () => {
           <Card key={p.id} className="opacity-80 border-dashed">
             <CardContent className="p-4">
               <div className="flex items-center gap-3 mb-3">
-                <img src={p.profileImage} alt={p.name} className="w-12 h-12 rounded-full object-cover" />
+                <div className="relative w-12 h-12 flex-shrink-0">
+                  <Image 
+                    src={p.profileImage} 
+                    alt={p.name} 
+                    fill
+                    className="rounded-full object-cover" 
+                  />
+                </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <p className="font-semibold truncate">{p.name}</p>
                     <span className="text-xs bg-muted text-muted-foreground px-1.5 py-0.5 rounded shrink-0">Static</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">{p.age} • {p.location}</p>
+                  <p className="text-sm text-muted-foreground">{(p.age) || 'N/A'} • {p.location}</p>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{p.shortBio}</p>

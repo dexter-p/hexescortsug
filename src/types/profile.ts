@@ -24,4 +24,6 @@ export interface ProfileType {
   instagram?: string;
   services?: string[];
   reviews?: ReviewType[];
+  isVip?: boolean;
+  isPremium?: boolean;
 }

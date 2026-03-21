@@ -32,11 +32,9 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
   };
   const waNumber = toWhatsAppNumber(phoneNumber);
 
-  // All profiles show VIP badge
-  const isVip = true;
-  
-  // Determine premium deterministically from profile id (no flicker)
-  const isPremium = profile.id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) % 2 === 0;
+  // Stable badges based on data or deterministic ID-based logic
+  const isVip = profile.isVip ?? true; // All are VIP by default for now
+  const isPremium = profile.isPremium ?? (profile.id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) % 3 === 0);
 
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();

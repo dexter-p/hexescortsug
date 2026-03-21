@@ -24,14 +24,8 @@ interface HomePageProps {
 }
 
 const HomePage = ({ initialProfiles }: HomePageProps) => {
-  const [isMounted, setIsMounted] = useState(false);
   const { data: queryProfiles } = useAllProfiles(initialProfiles);
-  
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const allProfiles = (isMounted && queryProfiles?.length) ? queryProfiles : (initialProfiles || []);
+  const allProfiles = queryProfiles || initialProfiles || [];
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const featuredIds = ["1", "5", "7", "9"];
