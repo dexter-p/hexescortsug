@@ -105,7 +105,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
             {showContact ? phoneNumber : "Contact Me"}
           </Button>
           <a 
-            href={`https://wa.me/${phoneNumber.replace(/[\s\(\)\-+]/g, "")}`}
+            href={`https://wa.me/${phoneNumber.replace(/[\s\(\)\-+]/g, "")}?text=${encodeURIComponent("hi there , I got your profile from hex escorts ug ")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-none flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-7 h-7 sm:w-9 sm:h-9 transition-colors shadow-sm overflow-hidden"

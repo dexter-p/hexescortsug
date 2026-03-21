@@ -13,13 +13,14 @@ import { useState, useEffect } from "react";
 
 interface ProfileDetailPageProps {
   profileId: string;
+  initialProfile?: ProfileType;
 }
 
-const ProfileDetailPage = ({ profileId }: ProfileDetailPageProps) => {
+const ProfileDetailPage = ({ profileId, initialProfile }: ProfileDetailPageProps) => {
   const id = profileId;
   
   const { data: allProfiles = [] } = useAllProfiles();
-  const profile = allProfiles.find(p => p.id === id);
+  const profile = allProfiles.find(p => p.id === id) || initialProfile;
 
   // Scroll to top when component mounts or profile ID changes
   useEffect(() => {

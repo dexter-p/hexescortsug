@@ -61,7 +61,7 @@ export default async function Page({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       )}
-      <ProfileDetailPageClient profileId={id} />
+      <ProfileDetailPageClient profileId={id} initialProfile={profile} />
     </>
   );
 }

@@ -118,7 +118,7 @@ export function ProfileDetail({ profile }: ProfileDetailProps) {
                   Contact
                 </Button>
                 <a 
-                  href={`https://wa.me/${phoneNumber.replace(/[\s\(\)\-+]/g, "")}`}
+                  href={`https://wa.me/${phoneNumber.replace(/[\s\(\)\-+]/g, "")}?text=${encodeURIComponent("hi there , I got your profile from hex escorts ug ")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white rounded-md h-9 lg:h-11 transition-all hover:scale-105 shadow-lg shadow-green-500/20 overflow-hidden font-medium text-xs lg:text-sm gap-2"
