@@ -23,7 +23,15 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
   
   // Use the phone number from the profile data
   const phoneNumber = profile.phone || "0706089641";
-  
+  // Convert to international format for WhatsApp: 07XXXXXXXX → 256XXXXXXXX
+  const toWhatsAppNumber = (num: string) => {
+    const cleaned = num.replace(/[\s\(\)\-+]/g, "");
+    if (cleaned.startsWith("256")) return cleaned;
+    if (cleaned.startsWith("0")) return "256" + cleaned.slice(1);
+    return "256" + cleaned;
+  };
+  const waNumber = toWhatsAppNumber(phoneNumber);
+
   // All profiles show VIP badge
   const isVip = true;
   
@@ -105,7 +113,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
             {showContact ? phoneNumber : "Contact Me"}
           </Button>
           <a 
-            href={`whatsapp://send?phone=${phoneNumber.replace(/[\s\(\)\-+]/g, "")}&text=${encodeURIComponent("hi there , I got your profile from hex escorts ug ")}`}
+            href={`whatsapp://send?phone=${waNumber}&text=${encodeURIComponent("hi there , I got your profile from hex escorts ug ")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-none flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-7 h-7 sm:w-9 sm:h-9 transition-colors shadow-sm overflow-hidden"

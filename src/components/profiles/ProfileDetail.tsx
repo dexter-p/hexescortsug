@@ -20,7 +20,15 @@ export function ProfileDetail({ profile }: ProfileDetailProps) {
   
   // Use the phone number from the profile data
   const phoneNumber = profile.phone || "0706089641";
-  
+  // Convert to international format for WhatsApp: 07XXXXXXXX → 256XXXXXXXX
+  const toWhatsAppNumber = (num: string) => {
+    const cleaned = num.replace(/[\s\(\)\-+]/g, "");
+    if (cleaned.startsWith("256")) return cleaned;
+    if (cleaned.startsWith("0")) return "256" + cleaned.slice(1);
+    return "256" + cleaned;
+  };
+  const waNumber = toWhatsAppNumber(phoneNumber);
+
   // Deterministic VIP/Premium status based on profile id
   const profileIdNum = parseInt(profile.id) || 0;
   const isVip = profileIdNum % 3 === 0;
@@ -118,7 +126,7 @@ export function ProfileDetail({ profile }: ProfileDetailProps) {
                   Contact
                 </Button>
                 <a 
-                  href={`whatsapp://send?phone=${phoneNumber.replace(/[\s\(\)\-+]/g, "")}&text=${encodeURIComponent("hi there , I got your profile from hex escorts ug ")}`}
+                  href={`whatsapp://send?phone=${waNumber}&text=${encodeURIComponent("hi there , I got your profile from hex escorts ug ")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white rounded-md h-9 lg:h-11 transition-all hover:scale-105 shadow-lg shadow-green-500/20 overflow-hidden font-medium text-xs lg:text-sm gap-2"
