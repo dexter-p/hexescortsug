@@ -60,10 +60,11 @@ export function ProfileDetail({ profile, onShare }: ProfileDetailProps) {
             
             <Image 
               src={profile.profileImage} 
-              alt={profile.name} 
+              alt={`${profile.name} - verified high class sexy escort in ${profile.location} - Hex Escorts UG`} 
               fill
               priority
               className="object-cover transition-transform duration-700"
+              sizes="(max-width: 1024px) 100vw, 66vw"
             />
             
             {/* Watermark */}

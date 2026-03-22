@@ -4,7 +4,7 @@ import Providers from "./providers";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Hex Escorts UG – Verified Escorts in Uganda | Kampala, Entebbe, Jinja",
+  title: "Hex Escorts UG - Verified Escorts in Kampala & Uganda",
   description:
     "Find premium verified escorts, sexy girls, and companions in Uganda. Browse genuine profiles from Kampala, Entebbe, Jinja, Mbarara and more at Hex Escorts UG.",
   keywords: "escorts Uganda, Kampala escorts, verified escorts, Uganda escort directory, hex escorts, sexy girls Kampala, hot girls Uganda, erotics Uganda, companions Uganda, high class escorts Kampala, call girls Uganda, independent escorts Kampala, Munyonyo escorts, Nakasero girls, adult services Uganda, genuine hookups Uganda",
@@ -31,7 +31,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://www.hexescortsug.xyz" />
+        {/* Google Analytics - Replace G-XXXXXXXXXX with your actual ID */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `,
+          }}
+        />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script
