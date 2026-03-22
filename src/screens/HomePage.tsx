@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ProfileGrid } from "@/components/profiles/ProfileGrid";
-import { useAllProfiles } from "@/data/allProfiles";
 import { ProfileType } from "@/types/profile";
 import { Button } from "@/components/ui/button";
 
@@ -24,10 +23,9 @@ interface HomePageProps {
 }
 
 const HomePage = ({ initialProfiles }: HomePageProps) => {
-  const { data: queryProfiles } = useAllProfiles(initialProfiles);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  const allProfiles = queryProfiles || initialProfiles || [];
+  const allProfiles = initialProfiles || [];
   const featuredIds = allProfiles.slice(0, 4).map(p => p.id);
   const visibleProfiles = allProfiles.slice(0, visibleCount);
   const hasMore = visibleCount < allProfiles.length;

@@ -1,7 +1,6 @@
 "use client";
 
 import { ProfileGrid } from "@/components/profiles/ProfileGrid";
-import { useAllProfiles } from "@/data/allProfiles";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
@@ -78,7 +77,7 @@ const LocationPage = ({ cityParam, suburbParam, initialProfiles }: LocationPageP
     return `${suburbName}, ${cityName}`;
   };
   
-  const { data: allProfiles = [] } = useAllProfiles(initialProfiles);
+  const allProfiles = initialProfiles || [];
   const getLocationProfiles = () => {
     if (!city) return allProfiles;
 
