@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Hex Escorts UG – Verified Escorts in Uganda | Kampala, Entebbe, Jinja",
   description:
     "Find premium verified escorts, sexy girls, and companions in Uganda. Browse genuine profiles from Kampala, Entebbe, Jinja, Mbarara and more at Hex Escorts UG.",
-  keywords: "escorts Uganda, Kampala escorts, verified escorts, Uganda escort directory, hex escorts, sexy girls Kampala, hot girls Uganda, erotics Uganda, companions Uganda, high class escorts Kampala",
+  keywords: "escorts Uganda, Kampala escorts, verified escorts, Uganda escort directory, hex escorts, sexy girls Kampala, hot girls Uganda, erotics Uganda, companions Uganda, high class escorts Kampala, call girls Uganda, independent escorts Kampala, Munyonyo escorts, Nakasero girls, adult services Uganda, genuine hookups Uganda",
   metadataBase: new URL('https://www.hexescortsug.xyz'),
   alternates: {
     canonical: '/',
