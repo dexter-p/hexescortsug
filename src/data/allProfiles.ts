@@ -73,8 +73,9 @@ export function useAllProfiles(initialData?: ProfileType[]) {
     queryKey: ["all-profiles"],
     queryFn: fetchAllProfiles,
     initialData,
-    staleTime: 1000 * 30, // 30 seconds instead of 5 minutes
-    refetchOnWindowFocus: false, // keep this off to avoid unnecessary background re-fetches
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 }
 

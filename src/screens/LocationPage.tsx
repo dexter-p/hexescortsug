@@ -58,9 +58,10 @@ const cityMeta: Record<string, { title: string; description: string; heading: st
 interface LocationPageProps {
   cityParam?: string;
   suburbParam?: string;
+  initialProfiles?: ProfileType[];
 }
 
-const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
+const LocationPage = ({ cityParam, suburbParam, initialProfiles }: LocationPageProps = {}) => {
   const city = cityParam;
   const suburb = suburbParam;
   const isMobile = useIsMobile();
@@ -77,7 +78,7 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
     return `${suburbName}, ${cityName}`;
   };
   
-  const { data: allProfiles = [] } = useAllProfiles();
+  const { data: allProfiles = [] } = useAllProfiles(initialProfiles);
   const getLocationProfiles = () => {
     if (!city) return allProfiles;
 
@@ -129,23 +130,7 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const [shuffledProfiles, setShuffledProfiles] = useState<ProfileType[]>([]);
-
-  // Shuffle all profiles randomly on every refresh
-  useEffect(() => {
-    const raw = getLocationProfiles();
-    if (raw.length > 0) {
-      const shuffledAll = [...raw];
-      for (let i = shuffledAll.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledAll[i], shuffledAll[j]] = [shuffledAll[j], shuffledAll[i]];
-      }
-      
-      setShuffledProfiles(shuffledAll);
-    }
-  }, [allProfiles, city, suburb]);
-
-  const locationProfiles = shuffledProfiles.length > 0 ? shuffledProfiles : getLocationProfiles();
+  const locationProfiles = getLocationProfiles();
   const featuredIds = locationProfiles.slice(0, 2).map(p => p.id);
 
   const categories = [

@@ -25,9 +25,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+import { fetchAllProfiles } from "@/data/allProfiles";
+
 export default async function Page({ params }: Props) {
   const { slug } = params;
   const city = slug?.[0];
   const suburb = slug?.[1];
-  return <LocationPageClient cityParam={city} suburbParam={suburb} />;
+
+  const rawProfiles = await fetchAllProfiles();
+  const initialProfiles = [...rawProfiles];
+  for (let i = initialProfiles.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [initialProfiles[i], initialProfiles[j]] = [initialProfiles[j], initialProfiles[i]];
+  }
+
+  return <LocationPageClient cityParam={city} suburbParam={suburb} initialProfiles={initialProfiles} />;
 }

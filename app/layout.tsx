@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "./providers";
 import Footer from "@/components/Footer";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Hex Escorts UG - Verified Escorts in Kampala & Uganda",
@@ -62,6 +63,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <ScrollToTop />
         <Providers>
           <div className="flex flex-col min-h-screen">
             <main className="flex-grow">{children}</main>

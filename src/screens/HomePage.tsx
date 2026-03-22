@@ -25,24 +25,9 @@ interface HomePageProps {
 
 const HomePage = ({ initialProfiles }: HomePageProps) => {
   const { data: queryProfiles } = useAllProfiles(initialProfiles);
-  const [shuffledProfiles, setShuffledProfiles] = useState<ProfileType[]>([]);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  useEffect(() => {
-    const raw = queryProfiles || initialProfiles || [];
-    if (raw.length > 0) {
-      // Shuffle all profiles randomly on every refresh
-      const shuffledAll = [...raw];
-      for (let i = shuffledAll.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledAll[i], shuffledAll[j]] = [shuffledAll[j], shuffledAll[i]];
-      }
-      
-      setShuffledProfiles(shuffledAll);
-    }
-  }, [queryProfiles, initialProfiles]);
-
-  const allProfiles = shuffledProfiles.length > 0 ? shuffledProfiles : (queryProfiles || initialProfiles || []);
+  const allProfiles = queryProfiles || initialProfiles || [];
   const featuredIds = allProfiles.slice(0, 4).map(p => p.id);
   const visibleProfiles = allProfiles.slice(0, visibleCount);
   const hasMore = visibleCount < allProfiles.length;
