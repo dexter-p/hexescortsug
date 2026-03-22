@@ -4,16 +4,21 @@ import Providers from "./providers";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Escorts UG – Verified Escorts in Uganda",
+  title: "Hex Escorts UG – Verified Escorts in Uganda | Kampala, Entebbe, Jinja",
   description:
-    "Browse verified escort profiles from across Uganda's major cities including Kampala, Entebbe, Jinja, Mbarara and more.",
-  keywords: "escorts Uganda, Kampala escorts, verified escorts, Uganda escort directory",
+    "Find premium verified escorts, sexy girls, and companions in Uganda. Browse genuine profiles from Kampala, Entebbe, Jinja, Mbarara and more at Hex Escorts UG.",
+  keywords: "escorts Uganda, Kampala escorts, verified escorts, Uganda escort directory, hex escorts, sexy girls Kampala, hot girls Uganda, erotics Uganda, companions Uganda, high class escorts Kampala",
+  metadataBase: new URL('https://www.hexescortsug.xyz'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: "Escorts UG – Verified Escorts in Uganda",
+    title: "Hex Escorts UG – Verified Escorts in Uganda",
     description:
-      "Browse verified escort profiles from across Uganda's major cities.",
+      "Find premium verified escorts and companions in Uganda. Browse genuine profiles from Kampala, Entebbe, Jinja and more.",
     url: "https://www.hexescortsug.xyz",
     siteName: "Hex Escorts UG",
+    locale: "en_UG",
     type: "website",
   },
 };
