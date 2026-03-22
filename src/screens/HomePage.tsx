@@ -28,21 +28,22 @@ const HomePage = ({ initialProfiles }: HomePageProps) => {
   const [shuffledProfiles, setShuffledProfiles] = useState<ProfileType[]>([]);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  // Truly random shuffle on mount (every refresh)
   useEffect(() => {
     const raw = queryProfiles || initialProfiles || [];
     if (raw.length > 0) {
-      const array = [...raw];
-      for (let i = array.length - 1; i > 0; i--) {
+      // Shuffle all profiles randomly on every refresh
+      const shuffledAll = [...raw];
+      for (let i = shuffledAll.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+        [shuffledAll[i], shuffledAll[j]] = [shuffledAll[j], shuffledAll[i]];
       }
-      setShuffledProfiles(array);
+      
+      setShuffledProfiles(shuffledAll);
     }
   }, [queryProfiles, initialProfiles]);
 
   const allProfiles = shuffledProfiles.length > 0 ? shuffledProfiles : (queryProfiles || initialProfiles || []);
-  const featuredIds = ["1", "5", "7", "9"];
+  const featuredIds = allProfiles.slice(0, 4).map(p => p.id);
   const visibleProfiles = allProfiles.slice(0, visibleCount);
   const hasMore = visibleCount < allProfiles.length;
   const isInitialLoading = allProfiles.length === 0;

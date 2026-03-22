@@ -131,17 +131,19 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
 
   const [shuffledProfiles, setShuffledProfiles] = useState<ProfileType[]>([]);
 
+  // Shuffle all profiles randomly on every refresh
   useEffect(() => {
     const raw = getLocationProfiles();
     if (raw.length > 0) {
-      const array = [...raw];
-      for (let i = array.length - 1; i > 0; i--) {
+      const shuffledAll = [...raw];
+      for (let i = shuffledAll.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+        [shuffledAll[i], shuffledAll[j]] = [shuffledAll[j], shuffledAll[i]];
       }
-      setShuffledProfiles(array);
+      
+      setShuffledProfiles(shuffledAll);
     }
-  }, [allProfiles, city, suburb]); // Re-shuffle when data or location changes
+  }, [allProfiles, city, suburb]);
 
   const locationProfiles = shuffledProfiles.length > 0 ? shuffledProfiles : getLocationProfiles();
   const featuredIds = locationProfiles.slice(0, 2).map(p => p.id);
