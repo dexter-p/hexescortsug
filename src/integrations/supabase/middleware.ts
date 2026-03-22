@@ -63,12 +63,5 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // Protect the admin route
-  if (request.nextUrl.pathname.startsWith('/hx-ctrl-7k9') && !user) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/'
-    return NextResponse.redirect(url)
-  }
-
   return response
 }
