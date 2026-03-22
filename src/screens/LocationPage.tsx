@@ -8,6 +8,7 @@ import { Logo } from "@/components/ui/logo";
 import { useState, useEffect } from "react";
 import { Menu, ChevronDown, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ProfileType } from "@/types/profile";
 
 const cityMeta: Record<string, { title: string; description: string; heading: string; body: string }> = {
   kampala: {
@@ -128,7 +129,21 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const locationProfiles = getLocationProfiles();
+  const [shuffledProfiles, setShuffledProfiles] = useState<ProfileType[]>([]);
+
+  useEffect(() => {
+    const raw = getLocationProfiles();
+    if (raw.length > 0) {
+      const array = [...raw];
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      setShuffledProfiles(array);
+    }
+  }, [allProfiles, city, suburb]); // Re-shuffle when data or location changes
+
+  const locationProfiles = shuffledProfiles.length > 0 ? shuffledProfiles : getLocationProfiles();
   const featuredIds = locationProfiles.slice(0, 2).map(p => p.id);
 
   const categories = [

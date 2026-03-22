@@ -15,8 +15,9 @@ export function Logo({ size = 40, className, textSize = "2xl" }: LogoProps) {
         <img 
           src="/new-logo.jpg" 
           alt="Hex Escorts ug Logo" 
+          width={size}
+          height={size}
           className="mr-2 object-cover rounded-full shadow-[0_0_10px_rgba(255,20,147,0.5)] border-2 border-primary"
-          style={{ width: `${size}px`, height: `${size}px` }}
         />
         <div className="text-white">
           <span className={cn(`font-bold italic text-${textSize}`)}>

@@ -43,26 +43,7 @@ export async function fetchAllProfiles() {
   }
 
   const dbProfiles: ProfileType[] = (data || []).map(mapDbProfile);
-  const combined = [...dbProfiles, ...mockProfiles];
-
-  // Seeded shuffle that changes twice a day (at 00:00 and 12:00)
-  const now = new Date();
-  const dayOfYear = Math.floor((now.getTime() - new Date(now.getFullYear(), 0, 0).getTime()) / 86400000);
-  const period = now.getHours() < 12 ? 0 : 1;
-  const seed = (now.getFullYear() * 1000) + (dayOfYear * 2) + period;
-
-  const seededRandom = (s: number) => {
-    const x = Math.sin(s) * 10000;
-    return x - Math.floor(x);
-  };
-
-  // Seeded Fisher-Yates shuffle
-  for (let i = combined.length - 1; i > 0; i--) {
-    const j = Math.floor(seededRandom(seed + i) * (i + 1));
-    [combined[i], combined[j]] = [combined[j], combined[i]];
-  }
-
-  return combined;
+  return [...dbProfiles, ...mockProfiles];
 }
 
 export async function fetchProfileById(id: string) {
