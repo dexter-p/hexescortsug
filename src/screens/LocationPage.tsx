@@ -288,9 +288,6 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
                   : `Browse available escorts in ${getLocationTitle()}`
                 }
               </p>
-              {meta && (
-                <p className="text-sm text-muted-foreground mt-2 max-w-2xl">{meta.body}</p>
-              )}
             </div>
 
             {locationProfiles.length > 0 ? (
