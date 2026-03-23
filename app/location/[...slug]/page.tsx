@@ -15,9 +15,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locationName = city ? city.charAt(0).toUpperCase() + city.slice(1).toLowerCase() : 'Uganda';
   
   return {
-    title: `Verified Sexy Escorts in ${locationName} - Hot Girls & Companions | Hex Escorts UG`,
-    description: `Browse verified sexy escorts, hot girls, and erotics available in ${locationName}, Uganda. Discover genuine companion profiles and premium services on Hex Escorts UG.`,
-    keywords: `escorts ${locationName}, sexy girls ${locationName}, hot girls Uganda, ${locationName} erotics, hex escorts, companions ${locationName}`,
+    title: `${locationName} Escorts - Verified Sexy Call Girls & Companions | Hex Escorts UG`,
+    description: `Browse verified sexy escorts, hot girls, and call girls available in ${locationName}, Uganda. Discover genuine hookups and premium companions on Hex Escorts UG.`,
+    keywords: `escorts ${locationName}, call girls ${locationName}, sexy girls ${locationName}, hookups ${locationName}, hot girls ${locationName}, ${locationName} escorts, hex escorts`,
     openGraph: {
       title: `Escorts in ${locationName} - Verified Sexy Companions`,
       description: `Browse verified sexy escorts and hot girls available in ${locationName}, Uganda. Browse Hex Escorts UG.`
