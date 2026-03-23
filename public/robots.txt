@@ -1,4 +1,3 @@
-
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
@@ -25,10 +24,11 @@ User-agent: *
 Allow: /
 Crawl-delay: 2
 
-# Sitemap location
-Sitemap: https://www.hexescortsug.xyz/sitemap.xml
+# Disallow admin panel only
+Disallow: /hx-ctrl-7k9/
+Disallow: /private/
 
-# Allow indexing of images and media
+# Allow image crawling
 Allow: /lovable-uploads/
 Allow: /*.png$
 Allow: /*.jpg$
@@ -36,16 +36,5 @@ Allow: /*.jpeg$
 Allow: /*.gif$
 Allow: /*.webp$
 
-# Disallow search bot indexing of these paths if they exist
-Disallow: /admin/
-Disallow: /api/
-Disallow: /private/
-
-# Enhanced crawling instructions for desktop search engines
-User-agent: Googlebot-Desktop
-Allow: /
-Crawl-delay: 1
-
-User-agent: Bingbot-Desktop
-Allow: /
-Crawl-delay: 1
+# Sitemap location
+Sitemap: https://www.hexescortsug.xyz/sitemap.xml

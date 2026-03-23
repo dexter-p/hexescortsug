@@ -89,39 +89,51 @@ const HomePage = ({ initialProfiles }: HomePageProps) => {
       <div className="container mx-auto px-2 lg:px-4 mt-12 mb-8">
         <div className="text-center mb-6">
           <h2 className="text-2xl lg:text-3xl font-bold text-primary mb-4">
-            Uganda's Premier Escort Directory
+            Escorts in Uganda – Verified &amp; Real Profiles
           </h2>
           <h3 className="text-lg lg:text-xl text-pink-400 mb-4">
-            Verified Companion Profiles Across Kampala, Entebbe, Jinja &amp; More
+            #1 Escort Directory in Uganda | Kampala, Entebbe, Jinja, Mbarara &amp; More
           </h3>
           <div className="max-w-4xl mx-auto text-muted-foreground space-y-3">
-            <div className="text-lg">
-              Browse verified companion profiles from across Uganda's major cities. Every profile on our platform is reviewed for authenticity so you can connect with confidence.
-            </div>
-            <div>
-              Whether you're in{" "}
-              <Link href="/location/kampala" className="text-primary hover:underline font-semibold">Kampala</Link>,{" "}
-              <Link href="/location/entebbe" className="text-primary hover:underline font-semibold">Entebbe</Link>,{" "}
-              <Link href="/location/jinja" className="text-primary hover:underline font-semibold">Jinja</Link>, or{" "}
-              <Link href="/location/mbarara" className="text-primary hover:underline font-semibold">Mbarara</Link>,
-              our directory gives you access to professional companions for events, social occasions, and more.
-            </div>
+            <p className="text-base">
+              Welcome to <strong className="text-primary">Escorts UG</strong> — Uganda's number one verified escort directory.
+              Whether you are searching for <strong>escorts in Uganda</strong>, <strong>UG escorts</strong>,{" "}
+              <strong>call girls in Kampala</strong>, or simply <strong>girls in Uganda</strong> to meet and spend time with,
+              you have found the right place. Every profile on our platform is manually reviewed for authenticity,
+              so you always connect with real people.
+            </p>
+            <p className="text-sm">
+              Our directory covers all major Uganda cities:{" "}
+              <Link href="/location/kampala" className="text-primary hover:underline font-semibold">Kampala escorts</Link>,{" "}
+              <Link href="/location/entebbe" className="text-primary hover:underline font-semibold">Entebbe escorts</Link>,{" "}
+              <Link href="/location/jinja" className="text-primary hover:underline font-semibold">Jinja escorts</Link>,{" "}
+              <Link href="/location/mbarara" className="text-primary hover:underline font-semibold">Mbarara escorts</Link>,{" "}
+              <Link href="/location/gulu" className="text-primary hover:underline font-semibold">Gulu escorts</Link>,{" "}
+              <Link href="/location/fort-portal" className="text-primary hover:underline font-semibold">Fort Portal escorts</Link>,{" "}
+              and <Link href="/location/mbale" className="text-primary hover:underline font-semibold">Mbale escorts</Link>.
+            </p>
           </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 text-center mb-8">
           <div className="bg-muted/30 border border-border p-4 rounded-lg">
-            <h3 className="font-semibold text-primary mb-2">🏆 Uganda's #1 Directory</h3>
-            <p className="text-sm text-muted-foreground">The most trusted and comprehensive companion directory in Uganda, with profiles from all major cities.</p>
+            <h3 className="font-semibold text-primary mb-2">🏆 Uganda's #1 Escort Directory</h3>
+            <p className="text-sm text-muted-foreground">
+              The most trusted escort directory in Uganda. Find <strong>escorts in Uganda</strong>,{" "}
+              <strong>UG escorts</strong>, and <strong>companions in Kampala</strong> — all verified and real.
+            </p>
           </div>
           <div className="bg-muted/30 border border-border p-4 rounded-lg">
-            <h3 className="font-semibold text-primary mb-2">✅ Verified Profiles</h3>
-            <p className="text-sm text-muted-foreground">All profiles go through a verification process to ensure authenticity and quality for your peace of mind.</p>
+            <h3 className="font-semibold text-primary mb-2">✅ Verified, Real Profiles</h3>
+            <p className="text-sm text-muted-foreground">
+              All escorts listed here are reviewed for authenticity. No fake profiles — only genuine{" "}
+              <strong>girls in Uganda</strong> looking to meet you.
+            </p>
           </div>
           <div className="bg-muted/30 border border-border p-4 rounded-lg">
-            <h3 className="font-semibold text-primary mb-2">🌍 Nationwide Coverage</h3>
+            <h3 className="font-semibold text-primary mb-2">🌍 All Uganda Locations</h3>
             <div className="text-sm text-muted-foreground">
-              Find companions in{" "}
+              <strong>Escorts in Uganda</strong> from{" "}
               <Link href="/location/kampala" className="text-primary hover:underline">Kampala</Link>,{" "}
               <Link href="/location/entebbe" className="text-primary hover:underline">Entebbe</Link>,{" "}
               <Link href="/location/jinja" className="text-primary hover:underline">Jinja</Link>,{" "}
@@ -131,30 +143,67 @@ const HomePage = ({ initialProfiles }: HomePageProps) => {
           </div>
         </div>
 
+        {/* Keyword-rich SEO paragraph — targets all the missing search terms */}
+        <div className="max-w-4xl mx-auto bg-muted/20 border border-border rounded-xl p-6 mb-8">
+          <h3 className="text-lg font-bold text-primary mb-3">Find Escorts &amp; Girls in Uganda</h3>
+          <div className="text-sm text-muted-foreground space-y-2">
+            <p>
+              Looking for <strong>escorts in Uganda</strong>? Escorts UG is the most comprehensive and
+              trusted directory for finding <strong>verified escorts in Uganda</strong>. Unlike other sites,
+              every profile is reviewed before going live. Whether you want{" "}
+              <strong>Kampala escorts</strong>, <strong>Entebbe escorts</strong>, or escorts anywhere across Uganda,
+              browse real profiles with genuine photos right here.
+            </p>
+            <p>
+              We are Uganda's answer to finding <strong>UG escorts</strong> safely. Our platform is the best
+              alternative to searching random classifieds for <strong>call girls in Uganda</strong> or{" "}
+              <strong>girls in Uganda</strong> — you get clean, verified, authentic profiles in one place.
+              Find your match for a date, companionship, or social event across all Uganda cities.
+            </p>
+            <p>
+              Escorts UG is the most complete <strong>escort directory in Uganda</strong> — covering Kampala,
+              Entebbe, Jinja, Mbarara, Gulu, Fort Portal and Mbale. We are the go-to platform for anyone
+              looking to meet <strong>hot girls in Uganda</strong>, book a companion, or find{" "}
+              <strong>independent escorts in Uganda</strong>. Browse now — it's free, discreet, and safe.
+            </p>
+          </div>
+        </div>
+
         <div className="mb-8 text-center">
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-xl font-bold text-primary mb-4">What We Offer</h3>
+            <h3 className="text-xl font-bold text-primary mb-4">Why Choose Escorts UG?</h3>
             <div className="grid md:grid-cols-2 gap-6 text-left">
               <div>
-                <h4 className="font-semibold text-pink-400 mb-2">Premium Companion Profiles</h4>
-                <p className="text-muted-foreground text-sm">Access professional companions from across Uganda, available for social events, travel, and more.</p>
+                <h4 className="font-semibold text-pink-400 mb-2">Premium Escort Profiles</h4>
+                <p className="text-muted-foreground text-sm">
+                  Access professional <strong>escorts across Uganda</strong>, available for social events, travel companionship, and more.
+                  Find <strong>Kampala escorts</strong>, <strong>Entebbe escorts</strong> and more.
+                </p>
               </div>
               <div>
                 <h4 className="font-semibold text-pink-400 mb-2">Safe &amp; Verified Listings</h4>
-                <p className="text-muted-foreground text-sm">Every listing is reviewed before going live, so you can browse knowing the profiles you see are genuine.</p>
+                <p className="text-muted-foreground text-sm">
+                  Every listing is reviewed before going live. Whether you're searching for{" "}
+                  <strong>escorts in Uganda</strong> or <strong>call girls in Kampala</strong>,
+                  all profiles are genuine and verified.
+                </p>
               </div>
               <div>
-                <h4 className="font-semibold text-pink-400 mb-2">City-by-City Search</h4>
+                <h4 className="font-semibold text-pink-400 mb-2">City-by-City Escort Search</h4>
                 <div className="text-muted-foreground text-sm">
-                  Filter by location — find companions in{" "}
+                  Find <strong>escorts in Uganda</strong> by city —{" "}
                   <Link href="/location/kampala" className="text-primary hover:underline">Kampala</Link>,{" "}
                   <Link href="/location/entebbe" className="text-primary hover:underline">Entebbe</Link>,{" "}
-                  <Link href="/location/jinja" className="text-primary hover:underline">Jinja</Link> and more.
+                  <Link href="/location/jinja" className="text-primary hover:underline">Jinja</Link>,{" "}
+                  <Link href="/location/mbarara" className="text-primary hover:underline">Mbarara</Link> and more.
                 </div>
               </div>
               <div>
-                <h4 className="font-semibold text-pink-400 mb-2">Available 24/7</h4>
-                <p className="text-muted-foreground text-sm">Browse profiles any time of day. Many companions are available around the clock for bookings and inquiries.</p>
+                <h4 className="font-semibold text-pink-400 mb-2">Available 24/7 Across Uganda</h4>
+                <p className="text-muted-foreground text-sm">
+                  Browse <strong>UG escorts</strong> any time of day. Many companions across Uganda are available
+                  around the clock for bookings and inquiries.
+                </p>
               </div>
             </div>
           </div>
