@@ -7,7 +7,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 export const metadata: Metadata = {
   title: "Hex Escorts UG - Verified Escorts in Kampala & Uganda",
   description:
-    "Find premium verified escorts, sexy call girls, and independent companions in Uganda. Browse genuine profiles from Kampala, Entebbe, Jinja and more. High class erotics and hookups at Hex Escorts UG.",
+    "Verified escorts, call girls, and companions in Uganda. Browse profiles from Kampala, Entebbe, and Jinja. Premium erotics and hookups at Hex Escorts UG.",
   keywords: "escorts, escorts in ug, escorts in uganda, escorts ug, uganda escorts, uganda call girls, ugandan hot girls, girls to fuck in uganda, sexy girls in uganda, hook ups in uganda, hook up girls, call girls in kampala, hot girls in kampala, girls to fuck in kampala, sexy girls in kampala, porno ug, erotics uganda, erotic escorts kampala, independent escorts uganda, hex escorts",
   metadataBase: new URL('https://www.hexescortsug.xyz'),
   alternates: {
@@ -64,16 +64,49 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Escorts UG",
-              "url": "https://www.hexescortsug.xyz",
-              "sameAs": [
-                "https://x.com/vickywiz60",
-                "https://t.me/+1R927eT3ccg5N2Zk"
-              ]
-            })
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Hex Escorts UG",
+                "url": "https://www.hexescortsug.xyz",
+                "logo": "https://www.hexescortsug.xyz/favicon.ico",
+                "sameAs": [
+                  "https://x.com/vickywiz60",
+                  "https://t.me/+1R927eT3ccg5N2Zk"
+                ]
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Hex Escorts UG",
+                "image": "https://www.hexescortsug.xyz/favicon.ico",
+                "@id": "https://www.hexescortsug.xyz",
+                "url": "https://www.hexescortsug.xyz",
+                "telephone": "+2560706089641",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Kampala Road",
+                  "addressLocality": "Kampala",
+                  "addressRegion": "Central",
+                  "postalCode": "0000",
+                  "addressCountry": "UG"
+                },
+                "geo": {
+                  "@type": "GeoCoordinates",
+                  "latitude": 0.3476,
+                  "longitude": 32.5825
+                },
+                "openingHoursSpecification": {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+                  ],
+                  "opens": "00:00",
+                  "closes": "23:59"
+                }
+              }
+            ])
           }}
         />
       </head>

@@ -125,30 +125,37 @@ const HomePage = ({ initialProfiles }: HomePageProps) => {
 
         <div className="mb-8 text-center">
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-xl font-bold text-primary mb-4">What We Offer</h3>
+            <h3 className="text-xl font-bold text-primary mb-4">Why Choose Hex Escorts Uganda?</h3>
             <div className="grid md:grid-cols-2 gap-6 text-left">
               <div>
-                <h4 className="font-semibold text-pink-400 mb-2">Premium Companion Profiles</h4>
-                <p className="text-muted-foreground text-sm">Access professional companions from across Uganda, available for social events, travel, and more.</p>
+                <h4 className="font-semibold text-pink-400 mb-2">Independent & Verified Companions</h4>
+                <p className="text-muted-foreground text-sm">We provide a premium directory for independent escorts and call girls across Uganda. Our platform is built on trust, with every profile manually verified to ensure you are meeting genuine, beautiful companions in your area.</p>
               </div>
               <div>
-                <h4 className="font-semibold text-pink-400 mb-2">Safe &amp; Verified Listings</h4>
-                <p className="text-muted-foreground text-sm">Every listing is reviewed before going live, so you can browse knowing the profiles you see are genuine.</p>
+                <h4 className="font-semibold text-pink-400 mb-2">Luxury & Discretion</h4>
+                <p className="text-muted-foreground text-sm">Whether you are looking for a dinner date in Kololo or a weekend companion in Entebbe, our girls offer the highest level of professionalism and discretion. Hex Escorts is the preferred choice for high-class erotics in Kampala.</p>
               </div>
               <div>
-                <h4 className="font-semibold text-pink-400 mb-2">City-by-City Search</h4>
+                <h4 className="font-semibold text-pink-400 mb-2">Explore Uganda's Nightlife</h4>
                 <div className="text-muted-foreground text-sm">
-                  Filter by location — find companions in{" "}
-                  <Link href="/location/kampala" className="text-primary hover:underline">Kampala</Link>,{" "}
-                  <Link href="/location/entebbe" className="text-primary hover:underline">Entebbe</Link>,{" "}
-                  <Link href="/location/jinja" className="text-primary hover:underline">Jinja</Link> and more.
+                  From the vibrant bars of Kabalagala to the luxury hotels in Nakasero, our escorts know the best spots in the city. Find your perfect match in 
+                  <Link href="/location/kampala" className="text-primary hover:underline ml-1">Kampala</Link>, 
+                  <Link href="/location/jinja" className="text-primary hover:underline ml-1">Jinja</Link>, or 
+                  <Link href="/location/gulu" className="text-primary hover:underline ml-1">Gulu</Link>.
                 </div>
               </div>
               <div>
-                <h4 className="font-semibold text-pink-400 mb-2">Available 24/7</h4>
-                <p className="text-muted-foreground text-sm">Browse profiles any time of day. Many companions are available around the clock for bookings and inquiries.</p>
+                <h4 className="font-semibold text-pink-400 mb-2">Available for Bookings 24/7</h4>
+                <p className="text-muted-foreground text-sm">Our directory is updated daily with fresh profiles of sexy girls for hookups and long-term companionship. Contact them directly via WhatsApp or Phone for immediate bookings in Kampala and beyond.</p>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-12 text-center border-t border-gray-800 pt-8">
+          <h2 className="text-xl font-bold text-gray-400 mb-4 uppercase tracking-widest">Premium Uganda Call Girls & Hookups</h2>
+          <div className="max-w-3xl mx-auto text-gray-500 text-xs leading-relaxed">
+            Hex Escorts UG is the leading independent escort directory in Uganda, serving Kampala, Entebbe, Jinja, MBale, and Mbarara. We feature only the most beautiful and verified sexy girls ready for companionship, dating, and erotic services. Our mission is to connect you with the best independent call girls in Uganda with 100% discretion and safety. Explore our profiles today and find the hottest girls to fuck in Uganda or simply beautiful companions for your social events. All profiles are genuine and reviewed by our team.
           </div>
         </div>
       </div>

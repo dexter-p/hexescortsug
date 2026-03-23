@@ -23,7 +23,7 @@ export async function generateMetadata(
 
   return {
     title: `${profile.name} - Verified Sexy Escort in ${profile.location} | Hex Escorts UG`,
-    description: `Book ${profile.name}, a hot and verified sexy companion located in ${profile.location}, Uganda. Browse ${profile.name}'s pictures, erotics, and services on Hex Escorts UG.`,
+    description: `Book ${profile.name}, a verified companion in ${profile.location}, Uganda. View pictures and services on Hex Escorts UG.`,
     keywords: `${profile.name}, escorts ${profile.location}, sexy girls ${profile.location}, hot girls Uganda, hex escorts, companions Uganda`,
     openGraph: {
       title: `${profile.name} - Verified Escort in ${profile.location}`,
