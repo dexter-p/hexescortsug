@@ -30,14 +30,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
 
   const locationUrls = cities.map((city) => ({
-    url: `${baseUrl}/location/${city}`,
+    url: `${baseUrl}/location/${city}/`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }))
 
   const suburbUrls = kampalaSuburbs.map((suburb) => ({
-    url: `${baseUrl}/location/kampala/${suburb}`,
+    url: `${baseUrl}/location/kampala/${suburb}/`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
@@ -45,9 +45,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: baseUrl,
+      url: `${baseUrl}/`,
       lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: 'daily' as const,
       priority: 1,
     },
     ...locationUrls,

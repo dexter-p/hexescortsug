@@ -25,6 +25,18 @@ export const metadata: Metadata = {
   verification: {
     google: "GPTdzpbCAZkm2ngY85XrfQc-iNDolN3mBsRrbfzUDGY",
   },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
