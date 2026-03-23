@@ -92,16 +92,12 @@ const AdminPage = () => {
     };
 
     const initializeAuth = async () => {
-      try {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (!isMounted) return;
-        
-        setIsAuthenticated(!!session?.user);
-        if (session?.user) {
-          await checkAdminRole(session.user.id);
-        }
-      } finally {
-        if (isMounted) setAuthLoading(false);
+      // Force sign-out on entry for maximum security
+      await supabase.auth.signOut();
+      if (isMounted) {
+        setIsAuthenticated(false);
+        setIsAdmin(false);
+        setAuthLoading(false);
       }
     };
 
