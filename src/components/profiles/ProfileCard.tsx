@@ -73,7 +73,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
               <div className="w-full h-full overflow-hidden">
                 <Image 
                   src={profile.profileImage} 
-                  alt={`${profile.name} - verified sexy escort in ${profile.location}`}
+                  alt={`${profile.name} - verified sexy call girl and erotic companion in ${profile.location} - Hex Escorts UG`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   priority={priority}
                   width={300}

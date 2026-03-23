@@ -216,7 +216,7 @@ const AdminPage = () => {
           if (type === "profile") {
             return { ...prev, profileImage: url, images: [url, ...prev.images.filter(i => i !== prev.profileImage)] };
           }
-          return { ...prev, images: [...prev.images, url] };
+          return { ...prev, profileImage: prev.profileImage || url, images: [...prev.images, url] };
         });
       }
     } catch (err) {
@@ -393,6 +393,7 @@ const AdminPage = () => {
                   src={editingProfile.profileImage} 
                   alt="Profile" 
                   fill
+                  unoptimized
                   className="rounded-full object-cover" 
                 />
               </div>
@@ -412,6 +413,7 @@ const AdminPage = () => {
                     src={img} 
                     alt="" 
                     fill
+                    unoptimized
                     className="rounded object-cover" 
                   />
                   <button onClick={() => removeGalleryImage(i)} className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs z-10">×</button>
@@ -547,6 +549,7 @@ const AdminPage = () => {
                           src={p.profile_image} 
                           alt={p.name} 
                           fill
+                          unoptimized
                           className="rounded-full object-cover" 
                         />
                       ) : (
@@ -586,6 +589,7 @@ const AdminPage = () => {
                     src={p.profileImage} 
                     alt={p.name} 
                     fill
+                    unoptimized
                     className="rounded-full object-cover" 
                   />
                 </div>
