@@ -117,7 +117,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
         <div className="mt-1 sm:mt-2 w-full flex items-center gap-1.5 sm:gap-2">
           <Button 
             variant="default" 
-            className="flex-1 bg-gradient-to-r from-pink-600 to-pink-500 hover:from-pink-700 hover:to-pink-600 text-white text-[10px] sm:text-xs py-0.5 h-7 sm:h-9"
+            className="flex-1 bg-primary hover:bg-primary/90 text-white text-[10px] sm:text-xs py-0.5 h-7 sm:h-9 shadow-[0_0_15px_rgba(235,0,115,0.4)] transition-all duration-300"
             onMouseEnter={() => setShowContact(true)}
             onMouseLeave={() => setShowContact(false)}
             onClick={handleContactClick}

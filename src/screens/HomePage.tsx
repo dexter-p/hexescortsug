@@ -68,7 +68,7 @@ const HomePage = ({ initialProfiles }: HomePageProps) => {
             <div className="flex justify-center pt-2 pb-4">
               <Button
                 onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                className="bg-gradient-to-r from-pink-600 to-pink-500 hover:from-pink-700 hover:to-pink-600 text-white px-8 py-2 rounded-full font-semibold shadow-[0_0_18px_4px_rgba(236,72,153,0.55)] hover:shadow-[0_0_28px_8px_rgba(236,72,153,0.75)] transition-shadow duration-300 animate-pulse"
+                className="bg-primary hover:bg-primary/90 text-white px-8 py-2 rounded-full font-semibold shadow-[0_0_22px_6px_rgba(235,0,115,0.6)] hover:shadow-[0_0_32px_10px_rgba(235,0,115,0.8)] transition-all duration-300 animate-pulse"
               >
                 Load More Profiles
               </Button>
