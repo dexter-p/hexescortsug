@@ -59,6 +59,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <meta name="google-site-verification" content="a4cIerGGQNrp6mGtzm10LrttBGPE8lo6J3K2AAqHvho" />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script
