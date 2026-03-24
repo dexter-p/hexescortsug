@@ -5,10 +5,10 @@ import Footer from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
-  title: "Hex Escorts UG - Verified Escorts in Kampala & Uganda",
+  title: "Best Escorts in Uganda & Kampala Call Girls | Hex Escorts UG",
   description:
-    "Verified escorts, call girls, and companions in Uganda. Browse profiles from Kampala, Entebbe, and Jinja. Premium erotics and hookups at Hex Escorts UG.",
-  keywords: "escorts, escorts in ug, escorts in uganda, escorts ug, uganda escorts, uganda call girls, ugandan hot girls, girls to fuck in uganda, sexy girls in uganda, hook ups in uganda, hook up girls, call girls in kampala, hot girls in kampala, girls to fuck in kampala, sexy girls in kampala, porno ug, erotics uganda, erotic escorts kampala, independent escorts uganda, hex escorts",
+    "Top-rated Uganda escorts and hookup girls in Kampala. Browse verified profiles of independent call girls, erotic companions, and sexy girls in Uganda for 100% discreet bookings.",
+  keywords: "escorts, uganda escorts, escorts in uganda, hookup girls, kampala escorts, escorts in kampala, call girls in kampala, hot girls in uganda, sexy girls kampala, hook ups ug",
   metadataBase: new URL('https://www.hexescortsug.xyz'),
   alternates: {
     canonical: '/',
