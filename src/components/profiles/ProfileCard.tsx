@@ -59,6 +59,19 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
                 </div>
               </div>
             )}
+
+            {/* PINNED Badge */}
+            {profile.isPinned && (
+              <div className={cn(
+                "absolute left-1 sm:left-2 z-10",
+                isVip ? "top-5 sm:top-7" : "top-1 sm:top-2"
+              )}>
+                <div className="bg-primary text-primary-foreground px-1 py-0.5 text-[8px] sm:text-[10px] md:text-xs font-bold rounded shadow-sm flex items-center gap-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="w-2 h-2 sm:w-3 sm:h-3"><path d="M16 3a1 1 0 0 1 .117 1.993L16 5v4.764l1.894 3.789a1 1 0 0 1 .1.331L18 14v2a1 1 0 0 1-.883.993L17 17h-4v4a1 1 0 0 1-1.993.117L11 21v-4H7a1 1 0 0 1-.993-.883L6 16v-2a1 1 0 0 1 .058-.331L6.106 13.553 8 9.764V5a1 1 0 0 1-.117-1.993L8 3h8z"/></svg>
+                  PINNED
+                </div>
+              </div>
+            )}
             
             {/* PREMIUM Badge */}
             {isPremium && (

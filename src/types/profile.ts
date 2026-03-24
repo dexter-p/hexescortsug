@@ -26,4 +26,5 @@ export interface ProfileType {
   reviews?: ReviewType[];
   isVip?: boolean;
   isPremium?: boolean;
+  isPinned?: boolean;
 }

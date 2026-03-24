@@ -23,6 +23,7 @@ function mapDbProfile(p: any): ProfileType {
     services: p.services || [],
     videos: p.videos || [],
     reviews: [],
+    isPinned: p.is_pinned || false,
   };
 }
 
@@ -35,6 +36,7 @@ export async function fetchAllProfiles() {
   const { data, error } = await supabase
     .from("profiles")
     .select("*")
+    .order("is_pinned", { ascending: false })
     .order("created_at", { ascending: false });
 
   if (error) {

@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trash2, Plus, LogOut, Video, User } from "lucide-react";
+import { Trash2, Plus, LogOut, Video, User, Pin, PinOff } from "lucide-react";
 import Image from "next/image";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
@@ -32,6 +32,7 @@ interface DbProfile {
   profile_image: string | null;
   images: string[];
   videos: string[];
+  is_pinned: boolean | null;
 }
 
 interface EditProfile {
@@ -51,6 +52,7 @@ interface EditProfile {
   profileImage: string;
   images: string[];
   videos: string[];
+  isPinned: boolean;
 }
 
 const AdminPage = () => {
@@ -123,7 +125,11 @@ const AdminPage = () => {
   }, []);
 
   const fetchProfiles = async () => {
-    const { data, error } = await supabase.from("profiles").select("*").order("created_at", { ascending: false });
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("*")
+      .order("is_pinned", { ascending: false })
+      .order("created_at", { ascending: false });
     if (!error && data) setProfiles(data as DbProfile[]);
   };
 
@@ -166,6 +172,7 @@ const AdminPage = () => {
     profileImage: "",
     images: [],
     videos: [],
+    isPinned: false,
   });
 
   const dbToEdit = (p: DbProfile): EditProfile => ({
@@ -185,6 +192,7 @@ const AdminPage = () => {
     profileImage: p.profile_image || "",
     images: p.images || [],
     videos: p.videos || [],
+    isPinned: p.is_pinned || false,
   });
 
   const uploadFile = async (file: File, bucket: string): Promise<string> => {
@@ -284,6 +292,7 @@ const AdminPage = () => {
       profile_image: editingProfile.profileImage,
       images: editingProfile.images,
       videos: editingProfile.videos,
+      is_pinned: editingProfile.isPinned,
     };
     let error;
     if (editingProfile.id) {
@@ -307,6 +316,21 @@ const AdminPage = () => {
     const { error } = await supabase.from("profiles").delete().eq("id", id);
     if (!error) {
       toast({ title: "Profile deleted" });
+      await fetchProfiles();
+      queryClient.invalidateQueries({ queryKey: ["all-profiles"] });
+    }
+  };
+
+  const togglePin = async (id: string, currentPin: boolean) => {
+    const { error } = await supabase
+      .from("profiles")
+      .update({ is_pinned: !currentPin })
+      .eq("id", id);
+    
+    if (error) {
+      toast({ title: "Action failed", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: !currentPin ? "Profile Pinned!" : "Profile Unpinned!" });
       await fetchProfiles();
       queryClient.invalidateQueries({ queryKey: ["all-profiles"] });
     }
@@ -562,6 +586,14 @@ const AdminPage = () => {
                   <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{p.short_bio}</p>
                   <div className="flex gap-2">
                     <Button size="sm" variant="outline" className="flex-1" onClick={() => setEditingProfile(dbToEdit(p))}>Edit</Button>
+                    <Button 
+                      size="sm" 
+                      variant="ghost" 
+                      className={p.is_pinned ? "text-primary" : "text-muted-foreground"}
+                      onClick={() => togglePin(p.id, p.is_pinned)}
+                    >
+                      {p.is_pinned ? <PinOff className="w-3 h-3" /> : <Pin className="w-3 h-3" />}
+                    </Button>
                     <Button size="sm" variant="destructive" onClick={() => handleDelete(p.id)}>
                       <Trash2 className="w-3 h-3" />
                     </Button>

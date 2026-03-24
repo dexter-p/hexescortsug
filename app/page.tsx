@@ -32,9 +32,14 @@ export default async function Page() {
   };
   const rand = createSeededRand(seed);
 
-  for (let i = initialProfiles.length - 1; i > 0; i--) {
+  const pinnedProfiles = initialProfiles.filter(p => p.isPinned);
+  const otherProfiles = initialProfiles.filter(p => !p.isPinned);
+
+  for (let i = otherProfiles.length - 1; i > 0; i--) {
     const j = Math.floor(rand() * (i + 1));
-    [initialProfiles[i], initialProfiles[j]] = [initialProfiles[j], initialProfiles[i]];
+    [otherProfiles[i], otherProfiles[j]] = [otherProfiles[j], otherProfiles[i]];
   }
-  return <HomePage initialProfiles={initialProfiles} />;
+
+  const sortedProfiles = [...pinnedProfiles, ...otherProfiles];
+  return <HomePage initialProfiles={sortedProfiles} />;
 }
