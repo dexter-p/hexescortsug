@@ -2,11 +2,18 @@ import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/hx-ctrl-7k9/', '/admin-panel/'],
-    },
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/_next/', '/api/', '/admin/', '/hx-ctrl-7k9/'],
+      },
+      {
+        userAgent: 'Googlebot',
+        allow: '/',
+      }
+    ],
     sitemap: 'https://www.hexescortsug.xyz/sitemap.xml',
+    host: 'https://www.hexescortsug.xyz',
   }
 }

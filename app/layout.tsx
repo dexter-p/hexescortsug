@@ -10,9 +10,6 @@ export const metadata: Metadata = {
     "Top-rated Uganda escorts and hookup girls in Kampala. Browse verified profiles of independent call girls, erotic companions, and sexy girls in Uganda for 100% discreet bookings.",
   keywords: "escorts, uganda escorts, escorts in uganda, hookup girls, kampala escorts, escorts in kampala, call girls in kampala, hot girls in uganda, sexy girls kampala, hook ups ug",
   metadataBase: new URL('https://www.hexescortsug.xyz'),
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     title: "Hex Escorts UG – Verified Escorts in Uganda",
     description:
