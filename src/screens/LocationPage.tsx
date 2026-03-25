@@ -1,14 +1,12 @@
 "use client";
 
 import { ProfileGrid } from "@/components/profiles/ProfileGrid";
-import { useAllProfiles } from "@/data/allProfiles";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
 import { useState, useEffect } from "react";
 import { Menu, ChevronDown, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FEATURED_PROFILE_IDS } from "@/lib/constants";
 
 const cityMeta: Record<string, { title: string; description: string; heading: string; body: string }> = {
   kampala: {
@@ -58,9 +56,10 @@ const cityMeta: Record<string, { title: string; description: string; heading: st
 interface LocationPageProps {
   cityParam?: string;
   suburbParam?: string;
+  initialProfiles?: ProfileType[];
 }
 
-const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
+const LocationPage = ({ cityParam, suburbParam, initialProfiles }: LocationPageProps = {}) => {
   const city = cityParam;
   const suburb = suburbParam;
   const isMobile = useIsMobile();
@@ -68,7 +67,7 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
   const [selectedCategory, setSelectedCategory] = useState("Escorts");
 
   const meta = city ? cityMeta[city.toLowerCase()] : null;
-  
+
   const getLocationTitle = () => {
     if (!city) return "All Locations";
     const cityName = city.charAt(0).toUpperCase() + city.slice(1);
@@ -76,24 +75,24 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
     const suburbName = suburb.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
     return `${suburbName}, ${cityName}`;
   };
-  
-  const { data: allProfiles = [] } = useAllProfiles();
+
+  const allProfiles = initialProfiles || [];
   const getLocationProfiles = () => {
     if (!city) return allProfiles;
 
     // Hardcoded array of common suburbs ensuring all are included in district searches
     const kampalaSuburbs = [
-      "banda", "bugolobi", "bukesa", "bukoto", "bunamwaya", "bunga", 
-      "busega", "buwate", "buziga", "bwaise", "central", "ggaba", "kabalagala", "kabowa", 
-      "kampala town", "kamwokya", "kansanga", "kanyanya", "kasubi", "katooke", 
-      "kawempe", "kazo", "kibuli", "kireka", "kirinnya", "kisaasi", "kisugu", 
-      "kitintale", "kiwatule", "kololo", "komamboga", "kulambiro", "kyaliwajjala", 
-      "kyambogo", "kyanja", "kyebando", "lubaga", "lugala", "lugogo", "lungujja", 
-      "luzira", "makerere", "makindye", "masajja", "masanafu", "mawanda road", 
-      "mbuya", "mengo", "mpererwe", "mulago", "munyonyo", "mutundwe", "mutungo", 
-      "muyenga", "naalya", "nabulagala", "nabweru", "naguru", "najjanankumbi", 
-      "najjera", "nakasero", "nakawa", "nakulabye", "namasuba", "namirembe", 
-      "namungoona", "namuwongo", "nateete", "nkuba", "nsambya", "ntinda", 
+      "banda", "bugolobi", "bukesa", "bukoto", "bunamwaya", "bunga",
+      "busega", "buwate", "buziga", "bwaise", "central", "ggaba", "kabalagala", "kabowa",
+      "kampala town", "kamwokya", "kansanga", "kanyanya", "kasubi", "katooke",
+      "kawempe", "kazo", "kibuli", "kireka", "kirinnya", "kisaasi", "kisugu",
+      "kitintale", "kiwatule", "kololo", "komamboga", "kulambiro", "kyaliwajjala",
+      "kyambogo", "kyanja", "kyebando", "lubaga", "lugala", "lugogo", "lungujja",
+      "luzira", "makerere", "makindye", "masajja", "masanafu", "mawanda road",
+      "mbuya", "mengo", "mpererwe", "mulago", "munyonyo", "mutundwe", "mutungo",
+      "muyenga", "naalya", "nabulagala", "nabweru", "naguru", "najjanankumbi",
+      "najjera", "nakasero", "nakawa", "nakulabye", "namasuba", "namirembe",
+      "namungoona", "namuwongo", "nateete", "nkuba", "nsambya", "ntinda",
       "rubaga", "salaama rd", "sir apollo kagwa", "wandegeya"
     ];
 
@@ -141,14 +140,14 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
       <div className="max-w-2xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
           <div className="relative rounded-lg overflow-hidden">
-            <img 
+            <img
               src="/lovable-uploads/8406e35d-f51f-416d-92d1-35e8afd6657c.png"
               alt="Beautiful escort"
               className="w-full h-64 object-cover"
             />
           </div>
           <div className="relative rounded-lg overflow-hidden">
-            <img 
+            <img
               src="/lovable-uploads/f42f3c58-40f8-4d5e-8a35-2a1be91bdd32.png"
               alt="Beautiful escort"
               className="w-full h-64 object-cover"
@@ -182,9 +181,9 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
               Become an escort
             </Link>
           </Button>
-          <Button 
-            variant="ghost" 
-            size="icon" 
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={() => setShowSidebar(!showSidebar)}
             className="text-white h-7 w-7"
           >
@@ -192,13 +191,13 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
           </Button>
         </div>
       </div>
-      
+
       {/* Main navigation */}
       <div className="nav-menu px-1 py-2 mt-10 lg:mt-0 sticky top-10 lg:top-0 z-20 overflow-x-auto no-scrollbar">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center">
             {categories.map((category) => (
-              <button 
+              <button
                 key={category}
                 className={`nav-item text-xs sm:text-sm ${selectedCategory === category ? 'active' : ''} whitespace-nowrap`}
                 onClick={() => setSelectedCategory(category)}
@@ -207,7 +206,7 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
               </button>
             ))}
           </div>
-          
+
           {/* Become an escort button for desktop */}
           <div className="hidden lg:block">
             <Button asChild className="bg-red-600 hover:bg-red-700">
@@ -219,7 +218,7 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
           </div>
         </div>
       </div>
-      
+
       <div className="flex">
         {/* Sidebar - Shown on larger screens or when toggled */}
         <div className={`${showSidebar ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 fixed top-0 left-0 h-full w-64 bg-sidebar pt-12 lg:pt-4 z-20 transition-transform duration-300 overflow-y-auto`}>
@@ -227,11 +226,11 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
             <div className="hidden lg:block mb-6">
               <Logo textSize="xl" />
             </div>
-            
+
             <h3 className="text-base lg:text-lg font-bold mb-2 text-white">Find your match</h3>
             <ul className="space-y-1 text-sm">
               {[
-                "Kampala", "Entebbe", "Jinja", "Mbarara", "Gulu", 
+                "Kampala", "Entebbe", "Jinja", "Mbarara", "Gulu",
                 "Fort Portal", "Mbale", "Masaka", "Arua", "Mityana",
                 "Hoima", "Kabale", "Soroti", "Moroto", "Kasese"
               ].map((location) => (
@@ -263,8 +262,8 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
                       </ul>
                     </div>
                   ) : (
-                    <Link 
-                      href={`/location/${location.toLowerCase()}`} 
+                    <Link
+                      href={`/location/${location.toLowerCase()}`}
                       className={`flex items-center ${city?.toLowerCase() === location.toLowerCase() ? "text-red-500" : "text-white"} hover:text-red-400`}
                     >
                       {location}
@@ -275,7 +274,7 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
             </ul>
           </div>
         </div>
-        
+
         {/* Main content */}
         <div className="flex-1 pl-0 lg:pl-64 pt-1 pb-4 lg:pb-6">
           <div className="container mx-auto px-2 lg:px-4">
@@ -284,13 +283,13 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
                 {meta ? meta.heading : `Escorts in ${getLocationTitle()}`}
               </h1>
               <p className="text-sm lg:text-base text-muted-foreground">
-                {locationProfiles.length > 0 
+                {locationProfiles.length > 0
                   ? `Discover ${locationProfiles.length} verified profiles in ${getLocationTitle()}`
                   : `Browse available escorts in ${getLocationTitle()}`
                 }
               </p>
               {meta && (
-                <p className="text-sm text-muted-foreground mt-2 max-w-2xl">{meta.description}</p>
+                <p className="text-sm text-muted-foreground mt-2 max-w-2xl">{meta.body}</p>
               )}
             </div>
 
@@ -309,7 +308,7 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
                 <p className="text-sm text-muted-foreground max-w-3xl mb-4">{meta.body}</p>
                 <p className="text-sm text-muted-foreground max-w-3xl">
                   All profiles on Escorts UG are reviewed for authenticity before going live. Browse other cities:{" "}
-                  {["Kampala","Entebbe","Jinja","Mbarara","Gulu"].filter(c => c.toLowerCase() !== city?.toLowerCase()).map((c, i, arr) => (
+                  {["Kampala", "Entebbe", "Jinja", "Mbarara", "Gulu"].filter(c => c.toLowerCase() !== city?.toLowerCase()).map((c, i, arr) => (
                     <span key={c}>
                       <Link href={`/location/${c.toLowerCase()}`} className="text-primary hover:underline">{c}</Link>
                       {i < arr.length - 1 ? ", " : ""}
@@ -325,7 +324,7 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
 
       {/* Overlay when sidebar is open on mobile */}
       {showSidebar && isMobile && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-10 lg:hidden"
           onClick={() => setShowSidebar(false)}
         ></div>

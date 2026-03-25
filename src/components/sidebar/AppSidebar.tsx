@@ -117,14 +117,14 @@ export function AppSidebar() {
                           {child.hasSubmenu ? (
                             <div className="space-y-1">
                               <div 
-                                className="flex items-center cursor-pointer text-sm py-1 hover:text-pink-500"
+                               className="flex items-center cursor-pointer text-sm py-1 hover:text-primary"
                                 onClick={() => toggleLocationExpansion(child.name)}
                               >
                                 {expandedLocation === child.name ? 
-                                  <ChevronDown className="h-3 w-3 mr-1 text-pink-500" /> : 
+                                  <ChevronDown className="h-3 w-3 mr-1 text-primary" /> : 
                                   <ChevronRight className="h-3 w-3 mr-1" />
                                 }
-                                <span className={expandedLocation === child.name ? "text-pink-500" : ""}>{child.name}</span>
+                                <span className={expandedLocation === child.name ? "text-primary" : ""}>{child.name}</span>
                               </div>
                               
                               {expandedLocation === child.name && child.submenu && (
@@ -133,7 +133,7 @@ export function AppSidebar() {
                                     <Link 
                                       key={area} 
                                       href={`/location/kampala/${area.toLowerCase().replace(/ /g, '-')}`}
-                                      className="block text-xs py-1 hover:text-pink-500"
+                                      className="block text-xs py-1 hover:text-primary"
                                     >
                                       {area}
                                     </Link>
@@ -183,7 +183,7 @@ export function AppSidebar() {
                           onClick={() => setIsLocationExpanded(!isLocationExpanded)}
                           className={cn(
                             "flex items-center w-full p-2 rounded-md",
-                            isPathActive(item.path) ? "bg-pink-500 text-primary-foreground" : "hover:bg-muted"
+                            isPathActive(item.path) ? "bg-primary text-primary-foreground" : "hover:bg-muted"
                           )}
                         >
                           <item.icon className="mr-2 h-5 w-5" />
@@ -200,10 +200,10 @@ export function AppSidebar() {
                                       onClick={() => toggleLocationExpansion(city.name)}
                                     >
                                       {expandedLocation === city.name ? 
-                                        <ChevronDown className="h-4 w-4 mr-1 text-pink-500" /> : 
+                                        <ChevronDown className="h-4 w-4 mr-1 text-primary" /> : 
                                         <ChevronRight className="h-4 w-4 mr-1" />
                                       }
-                                      <span className={expandedLocation === city.name ? "text-pink-500" : ""}>
+                                      <span className={expandedLocation === city.name ? "text-primary" : ""}>
                                         {city.name}
                                       </span>
                                     </div>
@@ -214,7 +214,7 @@ export function AppSidebar() {
                                           <Link
                                             key={area}
                                             href={`/location/kampala/${area.toLowerCase().replace(/ /g, '-')}`}
-                                            className="block p-1 text-sm hover:text-pink-500"
+                                            className="block p-1 text-sm hover:text-primary"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                           >
                                             {area}
@@ -228,7 +228,7 @@ export function AppSidebar() {
                                     href={city.path}
                                     className={cn(
                                       "flex items-center p-2 rounded-md",
-                                      isPathActive(city.path) ? "bg-pink-500/80 text-primary-foreground" : "hover:bg-muted"
+                                      isPathActive(city.path) ? "bg-primary/80 text-primary-foreground" : "hover:bg-muted"
                                     )}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                   >
@@ -245,7 +245,7 @@ export function AppSidebar() {
                         href={item.path}
                         className={cn(
                           "flex items-center p-2 rounded-md",
-                          isPathActive(item.path) ? "bg-pink-500 text-primary-foreground" : "hover:bg-muted"
+                          isPathActive(item.path) ? "bg-primary text-primary-foreground" : "hover:bg-muted"
                         )}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >

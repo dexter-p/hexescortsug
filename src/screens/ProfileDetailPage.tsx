@@ -111,6 +111,34 @@ const ProfileDetailPage = ({ profileId, initialProfile }: ProfileDetailPageProps
             </TabsContent>
           </Tabs>
         </div>
+
+        {/* Similar Profiles Section for SEO Internal Linking */}
+        <div className="mt-12 pt-8 border-t border-gray-800">
+          <h2 className="text-xl font-bold mb-6 text-pink-500">More Similar Sexy Girls in {profile.location}</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {allProfiles
+              .filter(p => p.id !== profile.id && (p.location === profile.location || Math.random() > 0.7))
+              .slice(0, 4)
+              .map(p => (
+                <Link key={p.id} href={`/profile/${p.id}`} className="group hover:opacity-90">
+                  <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-2 shadow-lg">
+                    <img src={p.profileImage} alt={p.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-2 sm:p-3">
+                      <p className="font-bold text-white text-xs sm:text-sm">{p.name}</p>
+                      <p className="text-[10px] sm:text-xs text-pink-400">{p.location}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+          </div>
+          <div className="mt-6 text-center">
+            <Button variant="outline" asChild size="sm">
+              <Link href={`/location/${profile.location.toLowerCase()}`}>
+                See all {profile.location} Escorts
+              </Link>
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );

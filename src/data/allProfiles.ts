@@ -3,19 +3,9 @@ import { mockProfiles } from "@/data/mockProfiles";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 
-export async function fetchAllProfiles() {
-  const { data, error } = await supabase
-    .from("profiles")
-    .select("*")
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    console.error("Error fetching profiles:", error);
-    return mockProfiles;
-  }
-
-  const dbProfiles: ProfileType[] = (data || []).map((p) => ({
-    id: `db-${p.id}`,
+function mapDbProfile(p: any): ProfileType {
+  return {
+    id: String(p.id),
     name: p.name,
     age: p.age ?? undefined,
     height: p.height ?? undefined,
@@ -33,15 +23,51 @@ export async function fetchAllProfiles() {
     services: p.services || [],
     videos: p.videos || [],
     reviews: [],
-  }));
+    isPinned: p.is_pinned || false,
+  };
+}
 
-  const combined = [...dbProfiles, ...mockProfiles];
-  // Fisher-Yates shuffle for a fresh random order on every page load
-  for (let i = combined.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [combined[i], combined[j]] = [combined[j], combined[i]];
+export async function fetchAllProfiles() {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    console.warn("Skipping Supabase fetch during build since credentials are missing.");
+    return mockProfiles;
   }
-  return combined;
+  
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("*")
+    .order("is_pinned", { ascending: false })
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Error fetching profiles:", error);
+    return mockProfiles;
+  }
+
+  const dbProfiles: ProfileType[] = (data || []).map(mapDbProfile);
+  return [...dbProfiles, ...mockProfiles];
+}
+
+export async function fetchProfileById(id: string) {
+  // If it's a mock profile
+  const mock = mockProfiles.find(p => p.id === id);
+  if (mock) return mock;
+
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return null;
+
+  // Otherwise check DB
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error fetching profile by id:", error);
+    return null;
+  }
+
+  return data ? mapDbProfile(data) : null;
 }
 
 export function useAllProfiles(initialData?: ProfileType[]) {
@@ -49,13 +75,12 @@ export function useAllProfiles(initialData?: ProfileType[]) {
     queryKey: ["all-profiles"],
     queryFn: fetchAllProfiles,
     initialData,
-    staleTime: 1000 * 60 * 5, // Prevent immediate refetch for 5 mins
-    refetchOnMount: false, // Don't refetch when component mounts if we have initialData
-    refetchOnWindowFocus: false, // Don't reshuffle when switching tabs
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 }
 
-// Sync fallback for non-hook contexts
 export function getAllProfiles(): ProfileType[] {
   return mockProfiles;
 }

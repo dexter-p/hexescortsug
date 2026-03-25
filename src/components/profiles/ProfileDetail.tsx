@@ -30,10 +30,9 @@ export function ProfileDetail({ profile, onShare }: ProfileDetailProps) {
   };
   const waNumber = toWhatsAppNumber(phoneNumber);
 
-  // Deterministic VIP/Premium status based on profile id
-  const profileIdNum = parseInt(profile.id) || 0;
-  const isVip = profileIdNum % 3 === 0;
-  const isPremium = profileIdNum % 5 === 0;
+  // Stable badges based on data or deterministic ID-based logic
+  const isVip = profile.isVip ?? true; 
+  const isPremium = profile.isPremium ?? (profile.id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) % 3 === 0);
 
   const handleContactClick = () => {
     handlePhoneClick(phoneNumber);
@@ -44,7 +43,7 @@ export function ProfileDetail({ profile, onShare }: ProfileDetailProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-6">
         {/* Profile Images */}
         <div className="lg:col-span-2">
-          <div className="relative rounded-lg lg:rounded-xl overflow-hidden mb-2 lg:mb-4 group">
+          <div className="relative rounded-lg lg:rounded-xl overflow-hidden mb-2 lg:mb-4 group aspect-[4/3]">
             {isPremium && (
               <div className="absolute top-0 right-0 z-10">
                 <div className="bg-gradient-to-r from-yellow-500 to-yellow-400 text-black text-[10px] sm:text-xs font-bold py-0.5 px-2 lg:py-1 lg:px-3 rotate-45 translate-x-[30%] translate-y-[10%] shadow-md">
@@ -59,15 +58,18 @@ export function ProfileDetail({ profile, onShare }: ProfileDetailProps) {
               </div>
             )}
             
-            <img 
+            <Image 
               src={profile.profileImage} 
-              alt={profile.name} 
-              className="w-full aspect-[4/3] object-cover transition-transform duration-700"
+              alt={`${profile.name} - verified high class sexy escort in ${profile.location} - Hex Escorts UG`} 
+              fill
+              priority
+              className="object-cover transition-transform duration-700"
+              sizes="(max-width: 1024px) 100vw, 66vw"
             />
             
             {/* Watermark */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30 group-hover:opacity-50 transition-opacity">
-              <span className="text-gradient-primary text-2xl lg:text-4xl font-bold">HEX ESCORTS UG</span>
+              <span className="text-pink-500 text-2xl lg:text-4xl font-bold">HEX ESCORTS UG</span>
             </div>
           </div>
         </div>

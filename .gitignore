@@ -34,5 +34,6 @@ out/
 .env.test.local
 .env.production.local
 
-# Build output
+# Build outputs
 build_output.txt
+new_build_output.txt

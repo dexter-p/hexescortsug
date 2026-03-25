@@ -2,15 +2,20 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://zdiosdkoxcimlovewroz.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpkaW9zZGtveGNpbWxvdmV3cm96Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAwNDYyNjYsImV4cCI6MjA4NTYyMjI2Nn0.YwJqsPmFPlCpCvd2V1ElJscRWkNMeepRb98p4rTqTes";
+// Default dummy values for build-time safety
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9";
 
-// Import the supabase client like this:
-// import { supabase } from "@/integrations/supabase/client";
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+  console.warn("Supabase credentials are missing. Using placeholder URL for builds.");
+}
 
 export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   auth: {
     persistSession: true,
     autoRefreshToken: true,
+  },
+  global: {
+    fetch: (url, options) => fetch(url, { ...options, cache: 'no-store' }),
   }
 });

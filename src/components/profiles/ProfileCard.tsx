@@ -32,11 +32,9 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
   };
   const waNumber = toWhatsAppNumber(phoneNumber);
 
-  // All profiles show VIP badge
-  const isVip = true;
-  
-  // Determine premium deterministically from profile id (no flicker)
-  const isPremium = profile.id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) % 2 === 0;
+  // Stable badges based on data or deterministic ID-based logic
+  const isVip = profile.isVip ?? true; // All are VIP by default for now
+  const isPremium = profile.isPremium ?? (profile.id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) % 3 === 0);
 
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -61,6 +59,19 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
                 </div>
               </div>
             )}
+
+            {/* PINNED Badge */}
+            {profile.isPinned && (
+              <div className={cn(
+                "absolute left-1 sm:left-2 z-10",
+                isVip ? "top-5 sm:top-7" : "top-1 sm:top-2"
+              )}>
+                <div className="bg-primary text-primary-foreground px-1 py-0.5 text-[8px] sm:text-[10px] md:text-xs font-bold rounded shadow-sm flex items-center gap-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="w-2 h-2 sm:w-3 sm:h-3"><path d="M16 3a1 1 0 0 1 .117 1.993L16 5v4.764l1.894 3.789a1 1 0 0 1 .1.331L18 14v2a1 1 0 0 1-.883.993L17 17h-4v4a1 1 0 0 1-1.993.117L11 21v-4H7a1 1 0 0 1-.993-.883L6 16v-2a1 1 0 0 1 .058-.331L6.106 13.553 8 9.764V5a1 1 0 0 1-.117-1.993L8 3h8z"/></svg>
+                  PINNED
+                </div>
+              </div>
+            )}
             
             {/* PREMIUM Badge */}
             {isPremium && (
@@ -75,11 +86,12 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
               <div className="w-full h-full overflow-hidden">
                 <Image 
                   src={profile.profileImage} 
-                  alt={`${profile.name} - escort in ${profile.location}`}
+                  alt={`${profile.name} - verified sexy call girl and erotic companion in ${profile.location} - Hex Escorts UG`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   priority={priority}
                   width={300}
                   height={400}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
               
@@ -105,7 +117,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
         <div className="mt-1 sm:mt-2 w-full flex items-center gap-1.5 sm:gap-2">
           <Button 
             variant="default" 
-            className="flex-1 bg-gradient-to-r from-pink-600 to-pink-500 hover:from-pink-700 hover:to-pink-600 text-white text-[10px] sm:text-xs py-0.5 h-7 sm:h-9"
+            className="flex-1 bg-primary hover:bg-primary/90 text-white text-[10px] sm:text-xs py-0.5 h-7 sm:h-9 shadow-[0_0_15px_rgba(235,0,115,0.4)] transition-all duration-300"
             onMouseEnter={() => setShowContact(true)}
             onMouseLeave={() => setShowContact(false)}
             onClick={handleContactClick}

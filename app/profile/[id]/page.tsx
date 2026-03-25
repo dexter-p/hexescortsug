@@ -1,5 +1,5 @@
 import ProfileDetailPageClient from "@/screens/ProfileDetailPage";
-import { fetchAllProfiles } from "@/data/allProfiles";
+import { fetchAllProfiles, fetchProfileById } from "@/data/allProfiles";
 import type { Metadata, ResolvingMetadata } from 'next';
 
 export const dynamic = 'force-dynamic';
@@ -15,19 +15,19 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const id = params.id;
   
-  const profiles = await fetchAllProfiles();
-  const profile = profiles.find(p => p.id === id) || profiles.find(p => p.id.includes(id));
+  const profile = await fetchProfileById(id);
 
   if (!profile) {
     return { title: 'Profile Not Found | Escorts UG' };
   }
 
   return {
-    title: `${profile.name} - Verified Escort in ${profile.location}`,
-    description: `Book ${profile.name}, a verified companion located in ${profile.location}, Uganda. Browse ${profile.name}'s pictures and services on Escorts UG.`,
+    title: `${profile.name} - Verified Sexy Escort in ${profile.location} | Hex Escorts UG`,
+    description: `Book ${profile.name}, a verified companion in ${profile.location}, Uganda. View pictures and services on Hex Escorts UG.`,
+    keywords: `${profile.name}, escorts ${profile.location}, sexy girls ${profile.location}, hot girls Uganda, hex escorts, companions Uganda`,
     openGraph: {
       title: `${profile.name} - Verified Escort in ${profile.location}`,
-      description: `Book ${profile.name}, a verified companion located in ${profile.location}.`,
+      description: `Book ${profile.name}, a verified sexy companion located in ${profile.location}. Contact on Hex Escorts UG.`,
       images: [profile.profileImage],
     },
   }
@@ -36,8 +36,7 @@ export async function generateMetadata(
 export default async function Page({ params }: Props) {
   const { id } = params;
   
-  const profiles = await fetchAllProfiles();
-  const profile = profiles.find(p => p.id === id) || profiles.find(p => p.id.includes(id));
+  const profile = await fetchProfileById(id);
 
   const jsonLd = profile ? {
     "@context": "https://schema.org",
