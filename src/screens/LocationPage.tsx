@@ -7,6 +7,8 @@ import { Logo } from "@/components/ui/logo";
 import { useState, useEffect } from "react";
 import { Menu, ChevronDown, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FEATURED_PROFILE_IDS } from "@/lib/constants";
+import { ProfileType } from "@/types/profile";
 
 const cityMeta: Record<string, { title: string; description: string; heading: string; body: string }> = {
   kampala: {
