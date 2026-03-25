@@ -105,7 +105,7 @@ const AdminPage = () => {
       }
     );
 
-    // Sign out first so admin always sees login form
+    // Sign out first so admin always sees login form — as per user preference
     const initializeAuth = async () => {
       try {
         await supabase.auth.signOut();

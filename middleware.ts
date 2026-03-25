@@ -5,9 +5,9 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Block anyone who tries to guess /admin-panel (old URL)
+  // Link the old URL back to the new obfuscated route
   if (pathname.startsWith('/admin-panel')) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL('/hx-ctrl-7k9', request.url));
   }
 
   return NextResponse.next();

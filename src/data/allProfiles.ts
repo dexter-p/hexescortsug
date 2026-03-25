@@ -23,7 +23,7 @@ export async function fetchAllProfiles() {
     complexion: p.complexion ?? undefined,
     location: p.location,
     rating: Number(p.rating) || 4.5,
-    profileImage: p.profile_image || "/placeholder.svg",
+    profileImage: p.profile_image || (p.images && p.images.length > 0 ? p.images[0] : "/placeholder.svg"),
     images: (p.images && p.images.length > 0) ? p.images : [p.profile_image || "/placeholder.svg"],
     shortBio: p.short_bio || "",
     description: p.description || "",

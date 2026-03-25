@@ -6,6 +6,7 @@ import { ProfileGrid } from "@/components/profiles/ProfileGrid";
 import { useAllProfiles } from "@/data/allProfiles";
 import { ProfileType } from "@/types/profile";
 import { Button } from "@/components/ui/button";
+import { FEATURED_PROFILE_IDS } from "@/lib/constants";
 
 const PAGE_SIZE = 12;
 
@@ -34,7 +35,6 @@ const HomePage = ({ initialProfiles }: HomePageProps) => {
   const allProfiles = (isMounted && queryProfiles?.length) ? queryProfiles : (initialProfiles || []);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  const featuredIds = ["1", "5", "7", "9"];
   const visibleProfiles = allProfiles.slice(0, visibleCount);
   const hasMore = visibleCount < allProfiles.length;
   const isInitialLoading = allProfiles.length === 0;
@@ -68,7 +68,7 @@ const HomePage = ({ initialProfiles }: HomePageProps) => {
           <ProfileGrid
             profiles={visibleProfiles}
             title="🔥 Top Profiles"
-            featuredIds={featuredIds}
+            featuredIds={FEATURED_PROFILE_IDS}
             loading={isInitialLoading}
           />
 

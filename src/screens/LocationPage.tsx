@@ -8,6 +8,7 @@ import { Logo } from "@/components/ui/logo";
 import { useState, useEffect } from "react";
 import { Menu, ChevronDown, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FEATURED_PROFILE_IDS } from "@/lib/constants";
 
 const cityMeta: Record<string, { title: string; description: string; heading: string; body: string }> = {
   kampala: {
@@ -289,7 +290,7 @@ const LocationPage = ({ cityParam, suburbParam }: LocationPageProps = {}) => {
                 }
               </p>
               {meta && (
-                <p className="text-sm text-muted-foreground mt-2 max-w-2xl">{meta.body}</p>
+                <p className="text-sm text-muted-foreground mt-2 max-w-2xl">{meta.description}</p>
               )}
             </div>
 
