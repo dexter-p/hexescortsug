@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next'
 import { fetchAllProfiles } from '@/data/allProfiles'
 
+export const revalidate = 86400 // Cache sitemap for 24 hours at the edge
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.hexescortsug.xyz'
   
