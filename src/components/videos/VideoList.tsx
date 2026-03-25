@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
-import { useAllProfiles } from "@/data/allProfiles";
+import { useAllProfiles } from "@/hooks/use-all-profiles";
 
 interface VideoListProps {
   profileId: string;
+  profiles?: ProfileType[];
   refreshTrigger?: number;
 }
 
-export function VideoList({ profileId, refreshTrigger }: VideoListProps) {
+export function VideoList({ profileId, profiles = [], refreshTrigger }: VideoListProps) {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
-  const { data: allProfiles = [] } = useAllProfiles();
-  const profile = allProfiles.find(p => p.id === profileId);
+  const profile = profiles.find(p => p.id === profileId);
   const videos = (profile?.videos || []).map((url, index) => ({
     id: `video-${index}`,
     title: `Video ${index + 1}`,

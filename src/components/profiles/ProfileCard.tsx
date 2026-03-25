@@ -5,7 +5,7 @@ import { MapPin } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ProfileType } from "@/types/profile";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { usePhoneHandler } from "@/hooks/use-phone-handler";
@@ -18,9 +18,14 @@ interface ProfileCardProps {
 
 export function ProfileCard({ profile, featured = false, priority = false }: ProfileCardProps) {
   const [showContact, setShowContact] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const isMobile = useIsMobile();
   const { handlePhoneClick } = usePhoneHandler();
   
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Use the phone number from the profile data
   const phoneNumber = profile.phone || "0706089641";
   // Convert to international format for WhatsApp: 07XXXXXXXX → 256XXXXXXXX
@@ -122,7 +127,9 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
             onMouseLeave={() => setShowContact(false)}
             onClick={handleContactClick}
           >
-            {showContact ? phoneNumber : "Contact Me"}
+            <span suppressHydrationWarning>
+              {!isMounted ? "Contact Me" : (showContact ? phoneNumber : "Contact Me")}
+            </span>
           </Button>
           <a 
             href={`whatsapp://send?phone=${waNumber}&text=${encodeURIComponent("hi there , I got your profile from hex escorts ug ")}`}

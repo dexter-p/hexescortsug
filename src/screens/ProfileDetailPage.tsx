@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProfileDetail } from "@/components/profiles/ProfileDetail";
-import { useAllProfiles } from "@/data/allProfiles";
+import { useAllProfiles } from "@/hooks/use-all-profiles";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { VideoList } from "@/components/videos/VideoList";
 import { PhotoList } from "@/components/photos/PhotoList";
@@ -101,12 +101,14 @@ const ProfileDetailPage = ({ profileId, initialProfile }: ProfileDetailPageProps
             <TabsContent value="gallery" className="p-4">
               <PhotoList 
                 profileId={profile.id} 
+                profiles={allProfiles}
               />
             </TabsContent>
 
             <TabsContent value="videos" className="p-4">
               <VideoList 
                 profileId={profile.id} 
+                profiles={allProfiles}
               />
             </TabsContent>
           </Tabs>
@@ -117,7 +119,7 @@ const ProfileDetailPage = ({ profileId, initialProfile }: ProfileDetailPageProps
           <h2 className="text-xl font-bold mb-6 text-pink-500">More Similar Sexy Girls in {profile.location}</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {allProfiles
-              .filter(p => p.id !== profile.id && (p.location === profile.location || Math.random() > 0.7))
+              .filter(p => p.id !== profile.id && p.location === profile.location)
               .slice(0, 4)
               .map(p => (
                 <Link key={p.id} href={`/profile/${p.id}`} className="group hover:opacity-90">

@@ -1,7 +1,36 @@
 import { ProfileType } from "@/types/profile";
 import { mockProfiles } from "@/data/mockProfiles";
 import { supabase } from "@/integrations/supabase/client";
-import { useQuery } from "@tanstack/react-query";
+
+export function createSeededRand(s: string) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
+  return () => {
+    h = Math.imul(h ^ (h >>> 16), 0x85ebca6b);
+    h = Math.imul(h ^ (h >>> 13), 0xc2b2ae35);
+    h = (h ^ (h >>> 16)) >>> 0;
+    return h / 4294967296;
+  };
+}
+
+export function shuffleArray<T>(array: T[], rand?: () => number): T[] {
+  const arr = [...array];
+  const r = rand || Math.random;
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(r() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+export function sortAndShuffleProfiles(profiles: ProfileType[], seed?: string): ProfileType[] {
+  if (!seed) return profiles;
+  const rand = createSeededRand(seed);
+  const pinned = profiles.filter(p => p.isPinned);
+  const regular = profiles.filter(p => !p.isPinned);
+
+  return [...shuffleArray(pinned, rand), ...shuffleArray(regular, rand)];
+}
 
 function mapDbProfile(p: any): ProfileType {
   return {
@@ -24,13 +53,15 @@ function mapDbProfile(p: any): ProfileType {
     videos: p.videos || [],
     reviews: [],
     isPinned: p.is_pinned || false,
+    isVip: p.is_vip || false,
+    isPremium: p.is_premium || false,
   };
 }
 
-export async function fetchAllProfiles() {
+export async function fetchAllProfiles(seed?: string) {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
     console.warn("Skipping Supabase fetch during build since credentials are missing.");
-    return mockProfiles;
+    return seed ? sortAndShuffleProfiles(mockProfiles, seed) : mockProfiles;
   }
   
   const { data, error } = await supabase
@@ -41,21 +72,21 @@ export async function fetchAllProfiles() {
 
   if (error) {
     console.error("Error fetching profiles:", error);
-    return mockProfiles;
+    return seed ? sortAndShuffleProfiles(mockProfiles, seed) : mockProfiles;
   }
 
   const dbProfiles: ProfileType[] = (data || []).map(mapDbProfile);
-  return [...dbProfiles, ...mockProfiles];
+  const combined = [...dbProfiles, ...mockProfiles];
+  
+  return seed ? sortAndShuffleProfiles(combined, seed) : combined;
 }
 
 export async function fetchProfileById(id: string) {
-  // If it's a mock profile
   const mock = mockProfiles.find(p => p.id === id);
   if (mock) return mock;
 
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return null;
 
-  // Otherwise check DB
   const { data, error } = await supabase
     .from("profiles")
     .select("*")
@@ -68,19 +99,4 @@ export async function fetchProfileById(id: string) {
   }
 
   return data ? mapDbProfile(data) : null;
-}
-
-export function useAllProfiles(initialData?: ProfileType[]) {
-  return useQuery({
-    queryKey: ["all-profiles"],
-    queryFn: fetchAllProfiles,
-    initialData,
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  });
-}
-
-export function getAllProfiles(): ProfileType[] {
-  return mockProfiles;
 }

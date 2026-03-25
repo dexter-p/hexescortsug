@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PhotoModal } from "./PhotoModal";
-import { useAllProfiles } from "@/data/allProfiles";
+import { useAllProfiles } from "@/hooks/use-all-profiles";
 
 interface Photo {
   id: string;
@@ -10,16 +10,15 @@ interface Photo {
 
 interface PhotoListProps {
   profileId: string;
+  profiles?: ProfileType[];
   refreshTrigger?: number;
 }
 
-export function PhotoList({ profileId, refreshTrigger }: PhotoListProps) {
+export function PhotoList({ profileId, profiles = [], refreshTrigger }: PhotoListProps) {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   
-  const { data: allProfiles = [] } = useAllProfiles();
-  
   // Get images from profile data
-  const profile = allProfiles.find(p => p.id === profileId);
+  const profile = profiles.find(p => p.id === profileId);
   const photos: Photo[] = profile?.images?.map((url, index) => ({
     id: `${profileId}-photo-${index}`,
     title: `${profile.name} - Photo ${index + 1}`,

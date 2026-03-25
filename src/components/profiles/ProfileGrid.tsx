@@ -25,18 +25,10 @@ function SkeletonCard() {
 export function ProfileGrid({ profiles, title, featuredIds = [], loading = false }: ProfileGridProps) {
   const showSkeletons = loading;
 
-  const sortedProfiles = [...profiles].sort((a, b) => {
-    const aIsFeatured = featuredIds.includes(a.id);
-    const bIsFeatured = featuredIds.includes(b.id);
-    if (aIsFeatured && !bIsFeatured) return -1;
-    if (!aIsFeatured && bIsFeatured) return 1;
-    return 0;
-  });
-
   return (
     <div className="space-y-4 md:space-y-6">
       {title && (
-        <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-primary">{title}</h2>
+        <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-pink-500">{title}</h2>
       )}
       
       <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
@@ -46,7 +38,7 @@ export function ProfileGrid({ profiles, title, featuredIds = [], loading = false
                 <SkeletonCard />
               </div>
             ))
-          : sortedProfiles.map((profile, index) => (
+          : profiles.map((profile, index) => (
               <div key={profile.id} className="flex w-full">
                 <ProfileCard 
                   profile={profile} 
