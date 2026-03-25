@@ -131,7 +131,6 @@ const LocationPage = ({ cityParam, suburbParam, initialProfiles }: LocationPageP
   }, []);
 
   const locationProfiles = getLocationProfiles();
-  const featuredIds = locationProfiles.slice(0, 2).map(p => p.id);
 
   const categories = [
     "Escorts"
@@ -296,7 +295,7 @@ const LocationPage = ({ cityParam, suburbParam, initialProfiles }: LocationPageP
             </div>
 
             {locationProfiles.length > 0 ? (
-              <ProfileGrid profiles={locationProfiles} featuredIds={featuredIds} />
+              <ProfileGrid profiles={locationProfiles} featuredIds={FEATURED_PROFILE_IDS} />
             ) : (
               <NoEscortsMessage />
             )}
