@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "independent escorts Uganda",
   ].join(", "),
   verification: {
-    google: "37jbT2PcWcRwnnSmVcZxesfTuLLL5uyupKBsSed4pY4",
+    google: ["37jbT2PcWcRwnnSmVcZxesfTuLLL5uyupKBsSed4pY4", "JFY34OVLDSzS0ieEkEQAHauVc4__UBUFCT-8RYtIyuE"],
   },
   openGraph: {
     title: "Escorts UG – #1 Verified Escorts in Uganda | Kampala Girls",
