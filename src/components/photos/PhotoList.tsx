@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { PhotoModal } from "./PhotoModal";
 import { useAllProfiles } from "@/hooks/use-all-profiles";
+import { ProfileType } from "@/types/profile";
 
 interface Photo {
   id: string;

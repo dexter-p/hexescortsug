@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 import { useAllProfiles } from "@/hooks/use-all-profiles";
+import { ProfileType } from "@/types/profile";
 
 interface VideoListProps {
   profileId: string;
