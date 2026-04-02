@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { cn, getMediaUrl } from "@/lib/utils";
 import { ProfileType } from "@/types/profile";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -90,7 +90,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
             <Link href={`/profile/${profile.id}`}>
               <div className="w-full h-full overflow-hidden">
                 <Image 
-                  src={profile.profileImage} 
+                  src={getMediaUrl(profile.profileImage)} 
                   alt={`${profile.name} - verified sexy call girl and erotic companion in ${profile.location} - Hex Escorts UG`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   priority={priority}

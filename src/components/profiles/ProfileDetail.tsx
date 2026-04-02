@@ -9,6 +9,7 @@ import { ProfileType } from "@/types/profile";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { usePhoneHandler } from "@/hooks/use-phone-handler";
 import Image from "next/image";
+import { getMediaUrl } from "@/lib/utils";
 
 interface ProfileDetailProps {
   profile: ProfileType;
@@ -59,7 +60,7 @@ export function ProfileDetail({ profile, onShare }: ProfileDetailProps) {
             )}
             
             <Image 
-              src={profile.profileImage} 
+              src={getMediaUrl(profile.profileImage)} 
               alt={`${profile.name} - verified high class sexy escort in ${profile.location} - Hex Escorts UG`} 
               fill
               priority
