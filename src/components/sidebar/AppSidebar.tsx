@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, MapPin, Info, HelpCircle, Menu, ChevronDown, ChevronRight, UserPlus } from "lucide-react";
+import { Home, MapPin, Info, HelpCircle, Menu, ChevronDown, ChevronRight, UserPlus, Star } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -46,6 +46,7 @@ const locations = [
 
 const mainItems = [
   { title: "Home", path: "/", icon: Home },
+  { title: "VIP Escorts", path: "/vip", icon: Star },
   { title: "Locations", path: "/location", icon: MapPin, children: locations },
   { title: "About", path: "/about", icon: Info },
   { title: "FAQ", path: "/faq", icon: HelpCircle },

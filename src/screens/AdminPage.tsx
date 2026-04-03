@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trash2, Plus, LogOut, Video } from "lucide-react";
+import { Trash2, Plus, LogOut, Video, Star } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { mockProfiles } from "@/data/mockProfiles";
@@ -31,6 +31,7 @@ interface DbProfile {
   profile_image: string | null;
   images: string[];
   videos: string[];
+  is_pinned?: boolean;
 }
 
 interface EditProfile {
@@ -307,6 +308,17 @@ const AdminPage = () => {
     setSaving(false);
   };
 
+  const toggleVip = async (id: string, currentVip: boolean) => {
+    const { error } = await supabase.from("profiles").update({ is_pinned: !currentVip }).eq("id", id);
+    if (!error) {
+      toast({ title: !currentVip ? "Promoted to VIP!" : "Removed from VIP" });
+      await fetchProfiles();
+      queryClient.invalidateQueries({ queryKey: ["all-profiles"] });
+    } else {
+      toast({ title: "Update failed", variant: "destructive" });
+    }
+  };
+
   const handleDelete = async (id: string) => {
     const { error } = await supabase.from("profiles").delete().eq("id", id);
     if (!error) {
@@ -542,6 +554,14 @@ const AdminPage = () => {
                   <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{p.short_bio}</p>
                   <div className="flex gap-2">
                     <Button size="sm" variant="outline" className="flex-1" onClick={() => setEditingProfile(dbToEdit(p))}>Edit</Button>
+                    <Button 
+                      size="sm" 
+                      variant={p.is_pinned ? "default" : "outline"} 
+                      className={p.is_pinned ? "bg-yellow-500 hover:bg-yellow-600 text-black font-bold" : "text-yellow-500 border-yellow-500/50"} 
+                      onClick={() => toggleVip(p.id, !!p.is_pinned)}
+                    >
+                      <Star className={`w-3 h-3 ${p.is_pinned ? "fill-black" : ""}`} />
+                    </Button>
                     <Button size="sm" variant="destructive" onClick={() => handleDelete(p.id)}>
                       <Trash2 className="w-3 h-3" />
                     </Button>

@@ -38,7 +38,6 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
   const waNumber = toWhatsAppNumber(phoneNumber);
 
   // Stable badges based on data or deterministic ID-based logic
-  const isVip = profile.isVip ?? true; // All are VIP by default for now
   const isPremium = profile.isPremium ?? (profile.id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) % 3 === 0);
 
   const handleContactClick = (e: React.MouseEvent) => {
@@ -56,24 +55,15 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
           "transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/10 hover:-translate-y-1"
         )}>
           <div className="relative aspect-[3/4] overflow-hidden">
-            {/* VIP Badge */}
-            {isVip && (
-              <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-10">
-                <div className="bg-gradient-to-r from-pink-600 to-pink-500 text-white px-1 py-0.5 text-[8px] sm:text-[10px] md:text-xs font-bold rounded">
-                  VIP
-                </div>
-              </div>
-            )}
-
-            {/* PINNED Badge */}
+            {/* VIP Badge for Pinned Profiles - Premium Shiny Design */}
             {profile.isPinned && (
-              <div className={cn(
-                "absolute left-1 sm:left-2 z-10",
-                isVip ? "top-5 sm:top-7" : "top-1 sm:top-2"
-              )}>
-                <div className="bg-primary text-primary-foreground px-1 py-0.5 text-[8px] sm:text-[10px] md:text-xs font-bold rounded shadow-sm flex items-center gap-0.5">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="w-2 h-2 sm:w-3 sm:h-3"><path d="M16 3a1 1 0 0 1 .117 1.993L16 5v4.764l1.894 3.789a1 1 0 0 1 .1.331L18 14v2a1 1 0 0 1-.883.993L17 17h-4v4a1 1 0 0 1-1.993.117L11 21v-4H7a1 1 0 0 1-.993-.883L6 16v-2a1 1 0 0 1 .058-.331L6.106 13.553 8 9.764V5a1 1 0 0 1-.117-1.993L8 3h8z"/></svg>
-                  PINNED
+              <div className="absolute top-2 left-2 z-10">
+                <div className="relative group overflow-hidden bg-gradient-to-br from-[#ffd700] via-[#fff1a8] to-[#b8860b] text-black px-3 py-1 text-[10px] sm:text-xs md:text-sm font-black rounded-sm shadow-[0_0_20px_rgba(255,215,0,0.5)] border border-[#ffd700]/50 flex items-center gap-1.5 transform hover:scale-110 transition-transform duration-500">
+                  {/* Shimmer Effect */}
+                  <div className="absolute inset-0 w-full h-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full" />
+                  
+                  <span className="text-sm">⭐</span>
+                  <span className="tracking-widest drop-shadow-sm">VIP</span>
                 </div>
               </div>
             )}
