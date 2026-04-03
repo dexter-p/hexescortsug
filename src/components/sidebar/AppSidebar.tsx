@@ -42,6 +42,8 @@ const locations = [
   { name: "Gulu", path: "/location/gulu" },
   { name: "Fort Portal", path: "/location/fort-portal" },
   { name: "Mbale", path: "/location/mbale" },
+  { name: "Tororo", path: "/location/tororo" },
+  { name: "Mukono", path: "/location/mukono" },
 ];
 
 const mainItems = [

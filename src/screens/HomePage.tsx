@@ -15,6 +15,10 @@ const cities = [
   { name: "Jinja", path: "/location/jinja" },
   { name: "Mbarara", path: "/location/mbarara" },
   { name: "Gulu", path: "/location/gulu" },
+  { name: "Mbale", path: "/location/mbale" },
+  { name: "Tororo", path: "/location/tororo" },
+  { name: "Fort Portal", path: "/location/fort-portal" },
+  { name: "Mukono", path: "/location/mukono" },
 ];
 
 interface HomePageProps {
@@ -53,7 +57,7 @@ const HomePage = ({ initialProfiles = [], shuffleSeed }: HomePageProps) => {
               <Link
                 key={c.name}
                 href={c.path}
-                className="text-xs bg-pink-600 text-white hover:bg-pink-700 px-5 py-2 rounded-full font-bold transition-all shadow-md active:scale-95"
+                className="text-[10px] sm:text-[11px] bg-gradient-to-r from-[#db0061] to-[#ff1493] text-white hover:from-[#ff1493] hover:to-[#db0061] px-4 py-2 rounded-full font-black transition-all duration-300 shadow-[0_2px_10px_rgba(255,20,147,0.3)] hover:shadow-[0_2px_15px_rgba(255,20,147,0.5)] hover:-translate-y-0.5 active:scale-95"
               >
                 {c.name}
               </Link>
