@@ -55,15 +55,15 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
           "transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/10 hover:-translate-y-1"
         )}>
           <div className="relative aspect-[3/4] overflow-hidden">
-            {/* Ultra-Gold Crown Corner Sash - Bigger & Shinier */}
+            {/* Golden Crown Corner Sash - Elite Royal Design */}
             {profile.isPinned && (
-              <div className="absolute top-0 left-0 z-20 overflow-hidden w-28 h-28 pointer-events-none select-none">
-                <div className="absolute top-0 left-0 bg-gradient-to-br from-[#ffd700] via-[#fff9e3] to-[#8b6508] text-black w-40 py-1.5 text-center font-black text-[11px] tracking-[0.25em] transform -rotate-45 -translate-x-12 translate-y-5 shadow-[0_4px_15px_rgba(0,0,0,0.6)] border-b-2 border-[#fff9e3]/60 flex items-center justify-center gap-2 uppercase">
-                   {/* Intense Shine Sweep */}
-                   <div className="absolute inset-0 w-full h-full animate-[shimmer_1.8s_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full" />
+              <div className="absolute top-0 left-0 z-20 overflow-hidden w-24 h-24 pointer-events-none select-none">
+                <div className="absolute top-0 left-0 bg-gradient-to-br from-[#ffd700] via-[#fff1a8] to-[#b8860b] text-black w-32 py-1 text-center font-black text-[10px] tracking-[0.2em] transform -rotate-45 -translate-x-10 translate-y-4 shadow-[0_2px_10px_rgba(0,0,0,0.5)] border-b border-yellow-200/50 flex items-center justify-center gap-1.5 uppercase">
+                   {/* Shine Sweep Animation */}
+                   <div className="absolute inset-0 w-full h-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full" />
                    
-                   <span className="text-sm drop-shadow-sm">👑</span>
-                   <span className="drop-shadow-md">VIP</span>
+                   <span className="text-xs">👑</span>
+                   <span className="drop-shadow-sm">VIP</span>
                 </div>
               </div>
             )}
