@@ -67,6 +67,7 @@ export async function fetchAllProfiles(seed?: string) {
   const { data, error } = await supabase
     .from("profiles")
     .select("*")
+    .eq("is_archived", false)
     .order("is_pinned", { ascending: false })
     .order("created_at", { ascending: false });
 
@@ -90,6 +91,7 @@ export async function fetchProfileById(id: string) {
   const { data, error } = await supabase
     .from("profiles")
     .select("*")
+    .eq("is_archived", false)
     .eq("id", id)
     .maybeSingle();
 

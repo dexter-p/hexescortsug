@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trash2, Plus, LogOut, Video, Star } from "lucide-react";
+import { Trash2, Plus, LogOut, Video, Star, Archive, ArchiveRestore } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { mockProfiles } from "@/data/mockProfiles";
@@ -32,6 +32,7 @@ interface DbProfile {
   images: string[];
   videos: string[];
   is_pinned?: boolean;
+  is_archived?: boolean;
 }
 
 interface EditProfile {
@@ -66,6 +67,7 @@ const AdminPage = () => {
   const [profiles, setProfiles] = useState<DbProfile[]>([]);
   const [editingProfile, setEditingProfile] = useState<EditProfile | null>(null);
   const [saving, setSaving] = useState(false);
+  const [showArchived, setShowArchived] = useState(false);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const galleryInputRef = useRef<HTMLInputElement>(null);
@@ -319,6 +321,17 @@ const AdminPage = () => {
     }
   };
 
+  const toggleArchive = async (id: string, currentArchived: boolean) => {
+    const { error } = await supabase.from("profiles").update({ is_archived: !currentArchived }).eq("id", id);
+    if (!error) {
+      toast({ title: !currentArchived ? "Profile hidden from public" : "Profile restored to public" });
+      await fetchProfiles();
+      queryClient.invalidateQueries({ queryKey: ["all-profiles"] });
+    } else {
+      toast({ title: "Update failed", variant: "destructive" });
+    }
+  };
+
   const handleDelete = async (id: string) => {
     const { error } = await supabase.from("profiles").delete().eq("id", id);
     if (!error) {
@@ -517,6 +530,10 @@ const AdminPage = () => {
     );
   }
 
+  const activeProfiles = profiles.filter(p => !p.is_archived);
+  const archivedProfiles = profiles.filter(p => p.is_archived);
+  const displayedProfiles = showArchived ? archivedProfiles : activeProfiles;
+
   return (
     <div className="container mx-auto px-4 py-6 lg:pl-72">
       <div className="lg:hidden h-16" />
@@ -532,45 +549,78 @@ const AdminPage = () => {
         </div>
       </div>
 
+      {/* Active / Archived tabs */}
+      <div className="flex gap-2 mb-6">
+        <Button
+          variant={!showArchived ? "default" : "outline"}
+          size="sm"
+          onClick={() => setShowArchived(false)}
+        >
+          Active ({activeProfiles.length})
+        </Button>
+        <Button
+          variant={showArchived ? "default" : "outline"}
+          size="sm"
+          onClick={() => setShowArchived(true)}
+          className={showArchived ? "bg-orange-600 hover:bg-orange-700" : "text-orange-400 border-orange-400/50"}
+        >
+          <Archive className="w-3 h-3 mr-1" /> Archived ({archivedProfiles.length})
+        </Button>
+      </div>
+
       {/* DB Profiles */}
-      {profiles.length > 0 && (
-        <>
-          <h2 className="text-lg font-semibold mb-3">Database Profiles ({profiles.length})</h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8">
-            {profiles.map((p) => (
-              <Card key={p.id}>
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-3 mb-3">
-                    {p.profile_image ? (
-                      <img src={p.profile_image} alt={p.name} className="w-12 h-12 rounded-full object-cover" />
-                    ) : (
-                      <div className="w-12 h-12 rounded-full bg-muted" />
-                    )}
-                    <div>
+      {displayedProfiles.length > 0 ? (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+          {displayedProfiles.map((p) => (
+            <Card key={p.id} className={p.is_archived ? "border-orange-500/40 opacity-75" : ""}>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  {p.profile_image ? (
+                    <img src={p.profile_image} alt={p.name} className="w-12 h-12 rounded-full object-cover" />
+                  ) : (
+                    <div className="w-12 h-12 rounded-full bg-muted" />
+                  )}
+                  <div>
+                    <div className="flex items-center gap-2">
                       <p className="font-semibold">{p.name}</p>
-                      <p className="text-sm text-muted-foreground">{p.age} • {p.location}</p>
+                      {p.is_archived && <span className="text-[10px] bg-orange-500/20 text-orange-400 px-1.5 py-0.5 rounded">Hidden</span>}
                     </div>
+                    <p className="text-sm text-muted-foreground">{p.age} • {p.location}</p>
                   </div>
-                  <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{p.short_bio}</p>
-                  <div className="flex gap-2">
-                    <Button size="sm" variant="outline" className="flex-1" onClick={() => setEditingProfile(dbToEdit(p))}>Edit</Button>
-                    <Button 
-                      size="sm" 
-                      variant={p.is_pinned ? "default" : "outline"} 
-                      className={p.is_pinned ? "bg-yellow-500 hover:bg-yellow-600 text-black font-bold" : "text-yellow-500 border-yellow-500/50"} 
-                      onClick={() => toggleVip(p.id, !!p.is_pinned)}
-                    >
-                      <Star className={`w-3 h-3 ${p.is_pinned ? "fill-black" : ""}`} />
-                    </Button>
-                    <Button size="sm" variant="destructive" onClick={() => handleDelete(p.id)}>
-                      <Trash2 className="w-3 h-3" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{p.short_bio}</p>
+                <div className="flex gap-2">
+                  <Button size="sm" variant="outline" className="flex-1" onClick={() => setEditingProfile(dbToEdit(p))}>Edit</Button>
+                  <Button 
+                    size="sm" 
+                    variant={p.is_pinned ? "default" : "outline"} 
+                    className={p.is_pinned ? "bg-yellow-500 hover:bg-yellow-600 text-black font-bold" : "text-yellow-500 border-yellow-500/50"} 
+                    onClick={() => toggleVip(p.id, !!p.is_pinned)}
+                    title="Pin to top"
+                  >
+                    <Star className={`w-3 h-3 ${p.is_pinned ? "fill-black" : ""}`} />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className={p.is_archived ? "text-green-500 border-green-500/50" : "text-orange-400 border-orange-400/50"}
+                    onClick={() => toggleArchive(p.id, !!p.is_archived)}
+                    title={p.is_archived ? "Restore to public" : "Archive (hide from public)"}
+                  >
+                    {p.is_archived ? <ArchiveRestore className="w-3 h-3" /> : <Archive className="w-3 h-3" />}
+                  </Button>
+                  <Button size="sm" variant="destructive" onClick={() => handleDelete(p.id)}>
+                    <Trash2 className="w-3 h-3" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <p className="text-muted-foreground text-center py-8">
+          {showArchived ? "No archived profiles." : "No active profiles."}
+        </p>
       )}
 
       {/* Static/Mock Profiles */}
