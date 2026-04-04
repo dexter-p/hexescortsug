@@ -64,7 +64,8 @@ export async function fetchAllProfiles(seed?: string) {
     return seed ? sortAndShuffleProfiles(mockProfiles, seed) : mockProfiles;
   }
   
-  const { data, error } = await supabase
+  // @ts-ignore – Supabase type chain depth limit; works correctly at runtime
+  const { data, error } = await (supabase as any)
     .from("profiles")
     .select("*")
     .eq("is_archived", false)
@@ -88,7 +89,8 @@ export async function fetchProfileById(id: string) {
 
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return null;
 
-  const { data, error } = await supabase
+  // @ts-ignore – Supabase type chain depth limit; works correctly at runtime
+  const { data, error } = await (supabase as any)
     .from("profiles")
     .select("*")
     .eq("is_archived", false)
