@@ -322,7 +322,7 @@ const AdminPage = () => {
   };
 
   const toggleArchive = async (id: string, currentArchived: boolean) => {
-    const { error } = await supabase.from("profiles").update({ is_archived: !currentArchived }).eq("id", id);
+    const { error } = await supabase.from("profiles").update({ is_archived: !currentArchived } as any).eq("id", id);
     if (!error) {
       toast({ title: !currentArchived ? "Profile hidden from public" : "Profile restored to public" });
       await fetchProfiles();
