@@ -130,7 +130,7 @@ export function ProfileDetail({ profile, onShare }: ProfileDetailProps) {
                   Contact
                 </Button>
                 <a 
-                  href={`whatsapp://send?phone=${waNumber}&text=${encodeURIComponent("hi there , I got your profile from hex escorts ug ")}`}
+                  href={`whatsapp://send?phone=${waNumber}&text=${encodeURIComponent("Hi, i got your contact from https://www.hexescortsug.xyz")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white rounded-md h-9 lg:h-11 transition-all hover:scale-105 shadow-lg shadow-green-500/20 overflow-hidden font-medium text-xs lg:text-sm gap-2"

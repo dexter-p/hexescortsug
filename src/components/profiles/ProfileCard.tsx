@@ -122,7 +122,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
             </span>
           </Button>
           <a 
-            href={`whatsapp://send?phone=${waNumber}&text=${encodeURIComponent("hi there , I got your profile from hex escorts ug ")}`}
+            href={`whatsapp://send?phone=${waNumber}&text=${encodeURIComponent("Hi, i got your contact from https://www.hexescortsug.xyz")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-none flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-7 h-7 sm:w-9 sm:h-9 transition-colors shadow-sm overflow-hidden"
