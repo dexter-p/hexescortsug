@@ -9,6 +9,7 @@ import { AppSidebar } from "@/components/sidebar/AppSidebar";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import React from "react";
+import { PostHogProvider } from "./posthog-provider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,19 +22,20 @@ const queryClient = new QueryClient({
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <SidebarProvider>
-          <div className="min-h-screen flex w-full">
-            <AppSidebar />
-            <div className="flex-1">{children}</div>
-          </div>
-          <Toaster />
-          <Sonner />
-        </SidebarProvider>
-      </TooltipProvider>
-      <Analytics />
-      <SpeedInsights />
-    </QueryClientProvider>
+    <PostHogProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <SidebarProvider>
+            <div className="min-h-screen flex w-full">
+              <AppSidebar />
+              <div className="flex-1">{children}</div>
+            </div>
+            <Toaster />
+            <Sonner />
+          </SidebarProvider>
+        </TooltipProvider>
+        {/* Removed Analytics to save quota */}
+      </QueryClientProvider>
+    </PostHogProvider>
   );
 }

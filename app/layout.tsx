@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "./providers";
 import Footer from "@/components/Footer";
+import React, { Suspense } from "react";
+import PostHogPageview from "./posthog-pageview";
 
 export const metadata: Metadata = {
   title: "Escorts UG – #1 Verified Escorts in Uganda | Kampala Girls",
@@ -105,6 +107,9 @@ export default function RootLayout({
             <main className="flex-grow">{children}</main>
             <Footer />
           </div>
+          <Suspense fallback={null}>
+            <PostHogPageview />
+          </Suspense>
         </Providers>
       </body>
     </html>

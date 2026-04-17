@@ -11,7 +11,7 @@ export async function GET(request: Request, { params }: { params: { path: string
   
   // The Unique Workaround: Route storage fetches through a global free image CDN (wsrv.nl)
   // This bypasses Vercel's 1000 PIC quota and slashes Supabase Egress by caching optimized versions globally.
-  const supabaseUrl = `https://zdiosdkoxcimlovewroz.supabase.co/storage/v1/object/public/${path}`;
+  const supabaseUrl = `https://dkyikirsvpauhbexbhvu.supabase.co/storage/v1/object/public/${path}`;
   const targetUrl = `https://wsrv.nl/?url=${encodeURIComponent(supabaseUrl)}&w=600&output=webp&q=80`;
 
   try {
