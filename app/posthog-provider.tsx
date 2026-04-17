@@ -14,6 +14,8 @@ if (typeof window !== "undefined") {
       person_profiles: "identified_only",
       capture_pageview: false, // Pageviews handled manually
     });
+    posthog.debug(); // This will show all tracking events in your browser's console
+    console.log("PostHog initialized with key:", key);
   }
 }
 
