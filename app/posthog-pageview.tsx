@@ -17,7 +17,6 @@ export default function PostHogPageview() {
       posthog.capture("$pageview", {
         $current_url: url,
       });
-      console.log("PostHog: Capturing $pageview for", url);
     }
   }, [pathname, searchParams]);
 
