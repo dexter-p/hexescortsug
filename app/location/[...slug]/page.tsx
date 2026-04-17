@@ -12,6 +12,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
   const city = slug?.[0];
+  const suburb = slug?.[1];
   
   const locationName = city ? city.charAt(0).toUpperCase() + city.slice(1).toLowerCase() : 'Uganda';
   
@@ -22,6 +23,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `Escorts in ${locationName} - Verified Sexy Companions`,
       description: `Browse verified sexy escorts and hot girls available in ${locationName}, Uganda. Browse Hex Escorts UG.`
+    },
+    alternates: {
+      canonical: city ? (suburb ? `/location/${city}/${suburb}` : `/location/${city}`) : `/location`,
     }
   }
 }

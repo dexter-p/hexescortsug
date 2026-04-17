@@ -57,9 +57,7 @@ export const metadata: Metadata = {
     title: "Escorts UG – #1 Verified Escorts in Uganda",
     description: "Browse verified escorts from across Uganda. Real profiles, reviewed companions.",
   },
-  alternates: {
-    canonical: "https://www.hexescortsug.xyz",
-  },
+  metadataBase: new URL("https://www.hexescortsug.xyz"),
 };
 
 export default function RootLayout({

@@ -30,6 +30,9 @@ export async function generateMetadata(
       description: `Book ${profile.name}, a verified sexy companion located in ${profile.location}. Contact on Hex Escorts UG.`,
       images: [profile.profileImage],
     },
+    alternates: {
+      canonical: `/profile/${id}`,
+    },
   }
 }
 
