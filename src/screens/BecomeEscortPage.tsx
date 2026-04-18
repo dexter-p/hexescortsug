@@ -178,7 +178,7 @@ const BecomeEscortPage = () => {
           </p>
           <p className="text-gray-400 text-sm mb-8">
             You'll receive a WhatsApp message on{" "}
-            <strong className="text-white">{form.phone}</strong> when your profile is live.
+            <strong className="text-white">{form.whatsapp || form.phone}</strong> when your profile is live.
           </p>
           <Button className="bg-pink-600 hover:bg-pink-700" onClick={() => (window.location.href = "/")}>
             Go Back to Homepage

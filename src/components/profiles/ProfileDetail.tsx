@@ -29,7 +29,7 @@ export function ProfileDetail({ profile, onShare }: ProfileDetailProps) {
     if (cleaned.startsWith("0")) return "256" + cleaned.slice(1);
     return "256" + cleaned;
   };
-  const waNumber = toWhatsAppNumber(phoneNumber);
+  const waNumber = toWhatsAppNumber(profile.whatsapp || phoneNumber);
 
   // Stable badges based on data or deterministic ID-based logic
   const isVip = profile.isVip ?? true; 

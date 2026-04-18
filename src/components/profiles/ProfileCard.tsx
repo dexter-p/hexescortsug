@@ -35,7 +35,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
     if (cleaned.startsWith("0")) return "256" + cleaned.slice(1);
     return "256" + cleaned;
   };
-  const waNumber = toWhatsAppNumber(phoneNumber);
+  const waNumber = toWhatsAppNumber(profile.whatsapp || phoneNumber);
 
   // Stable badges based on data or deterministic ID-based logic
   const isPremium = profile.isPremium ?? (profile.id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) % 3 === 0);

@@ -24,6 +24,7 @@ interface DbProfile {
   complexion: string | null;
   location: string;
   phone: string | null;
+  whatsapp: string | null;
   email: string | null;
   instagram: string | null;
   short_bio: string | null;
@@ -45,6 +46,7 @@ interface EditProfile {
   complexion: string;
   location: string;
   phone: string;
+  whatsapp: string;
   email: string;
   instagram: string;
   shortBio: string;
@@ -167,6 +169,7 @@ const AdminPage = () => {
     complexion: "Medium",
     location: "",
     phone: "",
+    whatsapp: "",
     email: "",
     instagram: "",
     shortBio: "",
@@ -186,6 +189,7 @@ const AdminPage = () => {
     complexion: p.complexion || "Medium",
     location: p.location,
     phone: p.phone || "",
+    whatsapp: (p as any).whatsapp || "",
     email: p.email || "",
     instagram: p.instagram || "",
     shortBio: p.short_bio || "",
@@ -285,6 +289,7 @@ const AdminPage = () => {
       complexion: editingProfile.complexion,
       location: editingProfile.location,
       phone: editingProfile.phone,
+      whatsapp: editingProfile.whatsapp,
       email: editingProfile.email,
       instagram: editingProfile.instagram,
       short_bio: editingProfile.shortBio,
@@ -472,6 +477,10 @@ const AdminPage = () => {
             <div className="space-y-2">
               <Label>Phone</Label>
               <Input value={editingProfile.phone} onChange={(e) => setEditingProfile({ ...editingProfile, phone: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label>WhatsApp (if different)</Label>
+              <Input value={editingProfile.whatsapp} onChange={(e) => setEditingProfile({ ...editingProfile, whatsapp: e.target.value })} />
             </div>
             <div className="space-y-2">
               <Label>Height</Label>

@@ -14,7 +14,7 @@ interface PaymentModalProps {
   onClose: () => void;
 }
 
-const PAYMENT_NUMBER = "0707683295";
+const PAYMENT_NUMBER = "0765040502";
 
 export default function PaymentModal({ applicationId, planAmount, planName, onVerified, onClose }: PaymentModalProps) {
   const [step, setStep] = useState<"choose" | "instructions" | "verify">("choose");
