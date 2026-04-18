@@ -18,15 +18,20 @@ export async function GET() {
     `${BASE_URL}/location`,
   ]
 
-  const cities = ['kampala', 'entebbe', 'jinja', 'mbarara', 'gulu', 'fort-portal', 'mbale', 'tororo', 'mukono']
+  const cities = [
+    'kampala', 'entebbe', 'jinja', 'mbarara', 'gulu', 'fort-portal', 'mbale', 'tororo', 'mukono', 
+    'masaka', 'arua', 'lira', 'kasese', 'hoima', 'soroti', 'busia', 'mubende', 'wakiso'
+  ]
   const cityUrls = cities.map(city => `${BASE_URL}/location/${city}`)
 
   let dynamicUrls: string[] = []
   try {
-    const { data: profiles } = await supabase
+    const { data: profiles, error } = await supabase
       .from('profiles')
       .select('id')
       .eq('is_archived', false)
+
+    if (error) throw error
 
     if (profiles) {
       dynamicUrls = profiles.map(p => `${BASE_URL}/profile/${p.id}`)
