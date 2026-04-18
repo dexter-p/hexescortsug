@@ -24,7 +24,7 @@ interface DbProfile {
   complexion: string | null;
   location: string;
   phone: string | null;
-  whatsapp: string | null;
+  whatsapp?: string | null;
   email: string | null;
   instagram: string | null;
   short_bio: string | null;
@@ -135,7 +135,7 @@ const AdminPage = () => {
 
   const fetchProfiles = async () => {
     const { data, error } = await supabase.from("profiles").select("*").order("created_at", { ascending: false });
-    if (!error && data) setProfiles(data as DbProfile[]);
+    if (!error && data) setProfiles(data as any as DbProfile[]);
   };
 
   useEffect(() => {

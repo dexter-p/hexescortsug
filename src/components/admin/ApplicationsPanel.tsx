@@ -17,7 +17,7 @@ type Application = {
   age: number | null;
   location: string;
   phone: string;
-  whatsapp: string | null;
+  whatsapp?: string | null;
   short_bio: string | null;
   body_type: string | null;
   complexion: string | null;
