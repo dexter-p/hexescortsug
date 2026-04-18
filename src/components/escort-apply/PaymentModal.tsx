@@ -8,24 +8,21 @@ import { CheckCircle, Loader2, Phone, X } from "lucide-react";
 
 interface PaymentModalProps {
   applicationId: string;
+  planAmount: number;      // e.g. 20000 or 40000
+  planName: string;        // e.g. "Ordinary" or "VIP"
   onVerified: () => void;
   onClose: () => void;
 }
 
-const LISTING_FEE = 50000; // UGX
+const PAYMENT_NUMBER = "0707683295";
 
-export default function PaymentModal({ applicationId, onVerified, onClose }: PaymentModalProps) {
+export default function PaymentModal({ applicationId, planAmount, planName, onVerified, onClose }: PaymentModalProps) {
   const [step, setStep] = useState<"choose" | "instructions" | "verify">("choose");
   const [method, setMethod] = useState<"mtn" | "airtel" | null>(null);
   const [payPhone, setPayPhone] = useState("");
   const [txId, setTxId] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  const PAYMENT_NUMBERS = {
-    mtn: "0707683295",
-    airtel: "0707683295",
-  };
 
   const handleChoose = (m: "mtn" | "airtel") => {
     setMethod(m);
@@ -56,7 +53,7 @@ export default function PaymentModal({ applicationId, onVerified, onClose }: Pay
         .eq("id", applicationId);
       if (dbError) throw dbError;
       onVerified();
-    } catch (err: any) {
+    } catch {
       setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
@@ -77,11 +74,12 @@ export default function PaymentModal({ applicationId, onVerified, onClose }: Pay
         {step === "choose" && (
           <div className="text-center">
             <div className="text-4xl mb-3">💳</div>
-            <h2 className="text-xl font-bold text-white mb-1">Listing Fee Required</h2>
-            <p className="text-gray-400 text-sm mb-6">
-              Pay <span className="text-pink-400 font-bold">UGX {LISTING_FEE.toLocaleString()}</span> to activate your profile.
+            <h2 className="text-xl font-bold text-white mb-1">{planName} Plan — Payment</h2>
+            <p className="text-gray-400 text-sm mb-1">
+              Pay <span className="text-pink-400 font-bold">UGX {planAmount.toLocaleString()}</span> per week to activate your profile.
             </p>
-            <p className="text-gray-300 text-sm mb-6">Choose your payment method:</p>
+            <p className="text-gray-500 text-xs mb-6">Your profile goes live in 5–10 minutes after confirmation.</p>
+            <p className="text-gray-300 text-sm mb-4">Choose your payment method:</p>
             <div className="grid grid-cols-2 gap-4">
               <button
                 onClick={() => handleChoose("mtn")}
@@ -106,6 +104,7 @@ export default function PaymentModal({ applicationId, onVerified, onClose }: Pay
           <div>
             <div className={`text-center mb-4 p-3 rounded-xl ${method === "mtn" ? "bg-yellow-400/10 border border-yellow-400/30" : "bg-red-400/10 border border-red-400/30"}`}>
               <p className="font-bold text-lg text-white">{method === "mtn" ? "MTN Mobile Money" : "Airtel Money"}</p>
+              <p className="text-gray-300 text-sm">{planName} Plan · UGX {planAmount.toLocaleString()} / week</p>
             </div>
 
             <div className="space-y-3 mb-6 bg-gray-800/60 rounded-xl p-4">
@@ -114,27 +113,24 @@ export default function PaymentModal({ applicationId, onVerified, onClose }: Pay
                 <ol className="text-gray-300 text-sm space-y-2 list-decimal list-inside">
                   <li>Dial <span className="text-yellow-400 font-mono">*165#</span> on your MTN line</li>
                   <li>Select <strong>Send Money</strong></li>
-                  <li>Enter number: <span className="text-yellow-400 font-bold">{PAYMENT_NUMBERS.mtn}</span></li>
-                  <li>Amount: <span className="text-white font-bold">UGX {LISTING_FEE.toLocaleString()}</span></li>
+                  <li>Send to number: <span className="text-yellow-400 font-bold">{PAYMENT_NUMBER}</span></li>
+                  <li>Amount: <span className="text-white font-bold">UGX {planAmount.toLocaleString()}</span></li>
                   <li>Enter your PIN and confirm</li>
-                  <li>Save the <strong>Transaction ID</strong> from the SMS</li>
+                  <li>Copy the <strong>Transaction ID</strong> from your SMS</li>
                 </ol>
               ) : (
                 <ol className="text-gray-300 text-sm space-y-2 list-decimal list-inside">
                   <li>Dial <span className="text-red-400 font-mono">*185#</span> on your Airtel line</li>
                   <li>Select <strong>Make Payments</strong></li>
-                  <li>Enter number: <span className="text-red-400 font-bold">{PAYMENT_NUMBERS.airtel}</span></li>
-                  <li>Amount: <span className="text-white font-bold">UGX {LISTING_FEE.toLocaleString()}</span></li>
+                  <li>Send to number: <span className="text-red-400 font-bold">{PAYMENT_NUMBER}</span></li>
+                  <li>Amount: <span className="text-white font-bold">UGX {planAmount.toLocaleString()}</span></li>
                   <li>Enter your PIN and confirm</li>
-                  <li>Save the <strong>Transaction ID</strong> from the SMS</li>
+                  <li>Copy the <strong>Transaction ID</strong> from your SMS</li>
                 </ol>
               )}
             </div>
 
-            <Button
-              className="w-full bg-pink-600 hover:bg-pink-700"
-              onClick={() => setStep("verify")}
-            >
+            <Button className="w-full bg-pink-600 hover:bg-pink-700" onClick={() => setStep("verify")}>
               I've Made the Payment →
             </Button>
             <button onClick={() => setStep("choose")} className="w-full mt-2 text-sm text-gray-400 hover:text-white transition-colors">

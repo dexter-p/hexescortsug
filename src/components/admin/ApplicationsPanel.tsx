@@ -25,6 +25,7 @@ type Application = {
   payment_phone: string | null;
   transaction_id: string | null;
   status: string;
+  plan: string;
   created_at: string;
 };
 
@@ -70,8 +71,7 @@ export default function ApplicationsPanel() {
         body_type: app.body_type,
         complexion: app.complexion,
         is_archived: false,
-        is_vip: false,
-        is_premium: false,
+        is_pinned: app.plan === "vip",
         rating: 4.5,
       });
       if (insertError) throw insertError;
@@ -155,6 +155,15 @@ export default function ApplicationsPanel() {
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="font-bold text-white text-base">{app.name}</span>
                       {app.age && <span className="text-gray-400 text-sm">· {app.age} yrs</span>}
+                      {app.plan === "vip" ? (
+                        <span className="text-xs px-2 py-0.5 rounded-full border bg-yellow-500/20 text-yellow-400 border-yellow-500/30 font-bold tracking-wide">
+                          VIP PLAN
+                        </span>
+                      ) : (
+                        <span className="text-xs px-2 py-0.5 rounded-full border bg-gray-500/20 text-gray-300 border-gray-500/30">
+                          ORDINARY
+                        </span>
+                      )}
                       <span className={`text-xs px-2 py-0.5 rounded-full border ${statusInfo.color}`}>
                         {statusInfo.label}
                       </span>

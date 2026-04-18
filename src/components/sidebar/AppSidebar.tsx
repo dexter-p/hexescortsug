@@ -164,7 +164,7 @@ export function AppSidebar() {
         {/* Telegram Button */}
         <div className="p-4 mt-auto border-t border-gray-800">
           <a
-            href="https://t.me/hexescortsug"
+                  href="https://t.me/xxx18ughub"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 w-full px-3 py-2 rounded-lg bg-[#229ED9]/10 hover:bg-[#229ED9]/20 text-[#229ED9] border border-[#229ED9]/30 transition-all text-sm font-medium"
@@ -276,7 +276,7 @@ export function AppSidebar() {
               {/* Telegram Button in mobile menu */}
               <div className="pt-4 mt-4 border-t border-gray-800">
                 <a
-                  href="https://t.me/hexescortsug"
+                        href="https://t.me/xxx18ughub"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg bg-[#229ED9]/10 hover:bg-[#229ED9]/20 text-[#229ED9] border border-[#229ED9]/30 transition-all text-sm font-semibold"
