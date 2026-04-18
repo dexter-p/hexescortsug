@@ -194,7 +194,7 @@ const BecomeEscortPage = () => {
               href="https://wa.me/256727240143" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-600/20 transition-all font-bold"
+              className="inline-flex items-center justify-center gap-2 w-max mx-auto px-8 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-600/20 transition-all font-bold"
             >
               <Phone className="h-5 w-5" />
               Chat on WhatsApp
@@ -502,7 +502,7 @@ const BecomeEscortPage = () => {
                   href="https://wa.me/256727240143" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-600/20 transition-all font-bold"
+                  className="inline-flex items-center justify-center gap-2 w-max mx-auto px-8 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-600/20 transition-all font-bold"
                 >
                   <Phone className="h-5 w-5" />
                   Chat on WhatsApp
