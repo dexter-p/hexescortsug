@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, Loader2, Phone, X } from "lucide-react";
+import Image from "next/image";
 
 interface PaymentModalProps {
   applicationId: string;
@@ -83,17 +84,31 @@ export default function PaymentModal({ applicationId, planAmount, planName, onVe
             <div className="grid grid-cols-2 gap-4">
               <button
                 onClick={() => handleChoose("mtn")}
-                className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-yellow-400/40 bg-yellow-400/5 hover:bg-yellow-400/15 hover:border-yellow-400 transition-all"
+                className="flex flex-col items-center gap-2 p-3 rounded-xl border-2 border-yellow-400/40 bg-yellow-400/5 hover:bg-yellow-400/15 hover:border-yellow-400 transition-all overflow-hidden"
               >
-                <span className="text-3xl">📱</span>
-                <span className="text-yellow-400 font-bold text-sm">MTN MoMo</span>
+                <div className="w-full aspect-video relative rounded-lg overflow-hidden mb-1">
+                  <Image 
+                    src="/assets/mtn-payment.jpg" 
+                    alt="MTN MoMo" 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
+                <span className="text-yellow-400 font-bold text-xs uppercase tracking-wider">MTN MoMo</span>
               </button>
               <button
                 onClick={() => handleChoose("airtel")}
-                className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-red-400/40 bg-red-400/5 hover:bg-red-400/15 hover:border-red-400 transition-all"
+                className="flex flex-col items-center gap-2 p-3 rounded-xl border-2 border-red-400/40 bg-red-400/5 hover:bg-red-400/15 hover:border-red-400 transition-all overflow-hidden"
               >
-                <span className="text-3xl">📲</span>
-                <span className="text-red-400 font-bold text-sm">Airtel Money</span>
+                <div className="w-full aspect-video relative rounded-lg overflow-hidden mb-1">
+                  <Image 
+                    src="/assets/airtel-payment.jpg" 
+                    alt="Airtel Money" 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
+                <span className="text-red-400 font-bold text-xs uppercase tracking-wider">Airtel Money</span>
               </button>
             </div>
           </div>
