@@ -145,11 +145,15 @@ const BecomeEscortPage = () => {
         .select("id")
         .single();
 
-      if (dbError) throw dbError;
+      if (dbError) {
+        console.error("Database Insert Error:", dbError);
+        throw dbError;
+      }
       setApplicationId(data.id);
       setShowPaymentModal(true);
-    } catch {
-      setError("Failed to submit. Please try again.");
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      setError(`Failed to submit: ${err.message || "Please try again."}`);
     } finally {
       setLoading(false);
     }

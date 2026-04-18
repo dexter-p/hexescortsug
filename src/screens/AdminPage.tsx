@@ -189,7 +189,7 @@ const AdminPage = () => {
     complexion: p.complexion || "Medium",
     location: p.location,
     phone: p.phone || "",
-    whatsapp: (p as any).whatsapp || "",
+    whatsapp: p.whatsapp || "",
     email: p.email || "",
     instagram: p.instagram || "",
     shortBio: p.short_bio || "",
