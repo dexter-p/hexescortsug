@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, MapPin, Info, HelpCircle, Menu, ChevronDown, ChevronRight, UserPlus, Star } from "lucide-react";
+import { Home, MapPin, Info, HelpCircle, Menu, ChevronDown, ChevronRight, UserPlus, Star, Send } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -160,6 +160,19 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {/* Telegram Button */}
+        <div className="p-4 mt-auto border-t border-gray-800">
+          <a
+            href="https://t.me/hexescortsug"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 w-full px-3 py-2 rounded-lg bg-[#229ED9]/10 hover:bg-[#229ED9]/20 text-[#229ED9] border border-[#229ED9]/30 transition-all text-sm font-medium"
+          >
+            <Send className="h-4 w-4" />
+            Join Telegram Group
+          </a>
+        </div>
       </SidebarContent>
     </Sidebar>
   );
@@ -259,6 +272,20 @@ export function AppSidebar() {
                   </div>
                 ))}
               </nav>
+
+              {/* Telegram Button in mobile menu */}
+              <div className="pt-4 mt-4 border-t border-gray-800">
+                <a
+                  href="https://t.me/hexescortsug"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg bg-[#229ED9]/10 hover:bg-[#229ED9]/20 text-[#229ED9] border border-[#229ED9]/30 transition-all text-sm font-semibold"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Send className="h-5 w-5" />
+                  Join our Telegram Group
+                </a>
+              </div>
             </div>
           </SheetContent>
         </Sheet>

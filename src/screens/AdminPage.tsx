@@ -9,10 +9,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trash2, Plus, LogOut, Video, Star, Archive, ArchiveRestore } from "lucide-react";
+import { Trash2, Plus, LogOut, Video, Star, Archive, ArchiveRestore, ClipboardList } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { mockProfiles } from "@/data/mockProfiles";
+import ApplicationsPanel from "@/components/admin/ApplicationsPanel";
 
 interface DbProfile {
   id: string;
@@ -69,6 +70,7 @@ const AdminPage = () => {
   const [saving, setSaving] = useState(false);
   const [showArchived, setShowArchived] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [adminTab, setAdminTab] = useState<'profiles' | 'apps'>('profiles');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const galleryInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
@@ -538,7 +540,7 @@ const AdminPage = () => {
     <div className="container mx-auto px-4 py-6 lg:pl-72">
       <div className="lg:hidden h-16" />
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">Manage Profiles</h1>
+        <h1 className="text-2xl font-bold">Admin Panel</h1>
         <div className="flex gap-2">
           <Button onClick={() => setEditingProfile(emptyProfile())}>
             <Plus className="w-4 h-4 mr-1" /> Add Profile
@@ -549,7 +551,33 @@ const AdminPage = () => {
         </div>
       </div>
 
-      {/* Active / Archived tabs */}
+      {/* Main page tabs: Profiles | Applications */}
+      <div className="flex gap-2 mb-6 border-b border-gray-800 pb-2">
+        <button
+          onClick={() => setAdminTab('profiles')}
+          className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            adminTab === 'profiles' ? 'bg-pink-600 text-white' : 'text-gray-400 hover:text-white'
+          }`}
+        >
+          Manage Profiles ({activeProfiles.length})
+        </button>
+        <button
+          onClick={() => setAdminTab('apps')}
+          className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            adminTab === 'apps' ? 'bg-pink-600 text-white' : 'text-gray-400 hover:text-white'
+          }`}
+        >
+          <ClipboardList className="h-4 w-4" />
+          Applications
+        </button>
+      </div>
+
+      {/* Applications Panel */}
+      {adminTab === 'apps' && <ApplicationsPanel />}
+
+      {/* Profiles Panel */}
+      {adminTab === 'profiles' && (
+        <>
       <div className="flex gap-2 mb-6">
         <Button
           variant={!showArchived ? "default" : "outline"}
@@ -648,6 +676,8 @@ const AdminPage = () => {
 
       {profiles.length === 0 && mockProfiles.length === 0 && (
         <p className="text-muted-foreground text-center py-12">No profiles yet. Click "Add Profile" to get started.</p>
+      )}
+        </>
       )}
     </div>
   );
