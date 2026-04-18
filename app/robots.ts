@@ -9,7 +9,10 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/_next/', '/api/', '/admin/', '/hx-ctrl-7k9/'],
       }
     ],
-    sitemap: 'https://www.hexescortsug.xyz/sitemap.xml',
-    host: 'https://www.hexescortsug.xyz',
+    sitemap: [
+      'https://www.hexescortsug.xyz/sitemap.xml',
+      'https://www.hexescortsug.xyz/sitemap.txt'
+    ],
+    host: 'www.hexescortsug.xyz',
   }
 }

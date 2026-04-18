@@ -79,6 +79,7 @@ export default function RootLayout({
         <meta name="geo.country" content="Uganda" />
         <meta name="language" content="English" />
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+        <link rel="sitemap" type="text/plain" title="Sitemap TXT" href="/sitemap.txt" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
