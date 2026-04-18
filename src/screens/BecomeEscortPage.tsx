@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle, Loader2, ChevronRight, Star, Crown } from "lucide-react";
+import { CheckCircle, Loader2, ChevronRight, Star, Crown, Video } from "lucide-react";
 import PaymentModal from "@/components/escort-apply/PaymentModal";
 import { createClient } from "@supabase/supabase-js";
 
@@ -25,7 +25,12 @@ const BecomeEscortPage = () => {
   const [applicationId, setApplicationId] = useState<string | null>(null);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
+  const videoInputRef = useRef<HTMLInputElement>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -39,16 +44,76 @@ const BecomeEscortPage = () => {
     short_bio: "",
     description: "",
     services: "Dating, Companionship",
+    profileImage: "",
+    images: [] as string[],
+    videos: [] as string[],
   });
 
   const handleChange = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
+  const uploadFile = async (file: File, bucket: string): Promise<string> => {
+    const ext = file.name.split(".").pop();
+    const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const { error } = await supabase.storage.from(bucket).upload(path, file);
+    if (error) throw error;
+    const { data } = supabase.storage.from(bucket).getPublicUrl(path);
+    return data.publicUrl;
+  };
+
+  const uploadImage = async (file: File): Promise<string> => {
+    return uploadFile(file, "profile-images");
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: "profile" | "gallery") => {
+    const files = e.target.files;
+    if (!files) return;
+    setUploading(true);
+    try {
+      for (const file of Array.from(files)) {
+        const url = await uploadImage(file);
+        setForm((prev) => {
+          if (type === "profile") {
+            return { ...prev, profileImage: url, images: [url, ...prev.images.filter(i => i !== prev.profileImage)] };
+          }
+          return { ...prev, images: [...prev.images, url] };
+        });
+      }
+    } catch {
+      setError("Upload failed. Try again.");
+    }
+    setUploading(false);
+  };
+
+  const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+    setUploading(true);
+    try {
+      for (const file of Array.from(files)) {
+        if (file.size > 100 * 1024 * 1024) {
+          setError("Video too large (max 100MB).");
+          continue;
+        }
+        const url = await uploadFile(file, "profile-images");
+        setForm((prev) => ({ ...prev, videos: [...prev.videos, url] }));
+      }
+    } catch {
+      setError("Video upload failed. Try again.");
+    }
+    setUploading(false);
+    if (videoInputRef.current) videoInputRef.current.value = "";
+  };
+
   const handleSubmitForm = async () => {
     setError("");
     if (!form.name.trim() || !form.phone.trim() || !form.location) {
       setError("Name, phone number, and location are required.");
+      return;
+    }
+    if (!form.profileImage) {
+      setError("Profile image is required.");
       return;
     }
     if (form.phone.trim().length < 9) {
@@ -73,6 +138,9 @@ const BecomeEscortPage = () => {
           services: form.services.split(",").map(s => s.trim()).filter(Boolean),
           status: "pending_payment",
           plan: selectedPlan,
+          profile_image: form.profileImage,
+          images: form.images,
+          videos: form.videos,
         })
         .select("id")
         .single();
@@ -210,9 +278,51 @@ const BecomeEscortPage = () => {
             <h2 className="text-lg font-bold text-white mb-5">Your Profile Details</h2>
 
             <div className="space-y-4">
-              {/* Profile Image upload hint */}
-              <div className="p-3 rounded-lg bg-blue-900/20 border border-blue-500/20 text-blue-300 text-xs">
-                💡 Photo uploads are done by our team after you submit. Just focus on filling in your details — we will contact you on WhatsApp to get your photos.
+              {/* Media Uploads */}
+              <div className="space-y-4 pb-4 border-b border-gray-700">
+                <div className="space-y-2">
+                  <Label>Profile Image *</Label>
+                  {form.profileImage && (
+                    <img src={form.profileImage} alt="Profile" className="w-24 h-24 rounded-full object-cover" />
+                  )}
+                  <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => handleImageUpload(e, "profile")} />
+                  <Button variant="outline" size="sm" onClick={() => fileInputRef.current?.click()} disabled={uploading}>
+                    {uploading ? "Uploading..." : "Upload Profile Photo"}
+                  </Button>
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Gallery Images</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {form.images.map((img, i) => (
+                      <div key={i} className="relative">
+                        <img src={img} alt="" className="w-16 h-16 rounded object-cover" />
+                        <button onClick={() => setForm(f => ({ ...f, images: f.images.filter((_, idx) => idx !== i)}))} className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">×</button>
+                      </div>
+                    ))}
+                  </div>
+                  <input ref={galleryInputRef} type="file" accept="image/*" multiple className="hidden" onChange={(e) => handleImageUpload(e, "gallery")} />
+                  <Button variant="outline" size="sm" onClick={() => galleryInputRef.current?.click()} disabled={uploading}>
+                    {uploading ? "Uploading..." : "Add Gallery Images"}
+                  </Button>
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="flex items-center gap-1"><Video className="w-4 h-4" /> Videos</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {form.videos.map((vid, i) => (
+                      <div key={i} className="relative">
+                        <video src={vid} className="w-24 h-16 rounded object-cover" />
+                        <button onClick={() => setForm(f => ({ ...f, videos: f.videos.filter((_, idx) => idx !== i)}))} className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">×</button>
+                      </div>
+                    ))}
+                  </div>
+                  <input ref={videoInputRef} type="file" accept="video/*" multiple className="hidden" onChange={handleVideoUpload} />
+                  <Button variant="outline" size="sm" onClick={() => videoInputRef.current?.click()} disabled={uploading}>
+                    {uploading ? "Uploading..." : "Add Videos"}
+                  </Button>
+                  <p className="text-xs text-muted-foreground">Max 100MB per video. MP4, WebM, MOV supported.</p>
+                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">

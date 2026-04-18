@@ -26,6 +26,9 @@ type Application = {
   transaction_id: string | null;
   status: string;
   plan: string;
+  profile_image: string | null;
+  images: string[];
+  videos: string[];
   created_at: string;
 };
 
@@ -70,6 +73,9 @@ export default function ApplicationsPanel() {
         short_bio: app.short_bio,
         body_type: app.body_type,
         complexion: app.complexion,
+        profile_image: app.profile_image,
+        images: app.images || [],
+        videos: app.videos || [],
         is_archived: false,
         is_pinned: app.plan === "vip",
         rating: 4.5,
@@ -151,30 +157,40 @@ export default function ApplicationsPanel() {
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   {/* Info */}
-                  <div className="space-y-1.5 flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-white text-base">{app.name}</span>
-                      {app.age && <span className="text-gray-400 text-sm">· {app.age} yrs</span>}
-                      {app.plan === "vip" ? (
-                        <span className="text-xs px-2 py-0.5 rounded-full border bg-yellow-500/20 text-yellow-400 border-yellow-500/30 font-bold tracking-wide">
-                          VIP PLAN
+                  <div className="flex gap-4 flex-1 min-w-0">
+                    {app.profile_image ? (
+                      <img src={app.profile_image} alt={app.name} className="w-16 h-16 rounded-lg object-cover flex-shrink-0" />
+                    ) : (
+                      <div className="w-16 h-16 rounded-lg bg-gray-700 flex items-center justify-center flex-shrink-0">
+                        <User className="w-8 h-8 text-gray-500" />
+                      </div>
+                    )}
+                    
+                    <div className="space-y-1.5 flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-bold text-white text-base">{app.name}</span>
+                        {app.age && <span className="text-gray-400 text-sm">· {app.age} yrs</span>}
+                        {app.plan === "vip" ? (
+                          <span className="text-xs px-2 py-0.5 rounded-full border bg-yellow-500/20 text-yellow-400 border-yellow-500/30 font-bold tracking-wide">
+                            VIP PLAN
+                          </span>
+                        ) : (
+                          <span className="text-xs px-2 py-0.5 rounded-full border bg-gray-500/20 text-gray-300 border-gray-500/30">
+                            ORDINARY
+                          </span>
+                        )}
+                        <span className={`text-xs px-2 py-0.5 rounded-full border ${statusInfo.color}`}>
+                          {statusInfo.label}
                         </span>
-                      ) : (
-                        <span className="text-xs px-2 py-0.5 rounded-full border bg-gray-500/20 text-gray-300 border-gray-500/30">
-                          ORDINARY
-                        </span>
-                      )}
-                      <span className={`text-xs px-2 py-0.5 rounded-full border ${statusInfo.color}`}>
-                        {statusInfo.label}
-                      </span>
-                    </div>
+                      </div>
 
-                    <div className="flex flex-wrap gap-3 text-gray-400 text-sm">
-                      <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" /> {app.location}</span>
-                      <span className="flex items-center gap-1"><Phone className="h-3.5 w-3.5" /> {app.phone}</span>
-                      {app.body_type && <span>{app.body_type}</span>}
-                      {app.complexion && <span>· {app.complexion}</span>}
-                    </div>
+                      <div className="flex flex-wrap gap-3 text-gray-400 text-sm">
+                        <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" /> {app.location}</span>
+                        <span className="flex items-center gap-1"><Phone className="h-3.5 w-3.5" /> {app.phone}</span>
+                        {app.body_type && <span>{app.body_type}</span>}
+                        {app.complexion && <span>· {app.complexion}</span>}
+                        <span className="text-gray-500">· {app.images?.length || 0} pics, {app.videos?.length || 0} vids</span>
+                      </div>
 
                     {app.short_bio && (
                       <p className="text-gray-400 text-xs italic">"{app.short_bio}"</p>
@@ -190,7 +206,8 @@ export default function ApplicationsPanel() {
                       </div>
                     )}
 
-                    <p className="text-gray-600 text-xs">Applied: {new Date(app.created_at).toLocaleDateString()}</p>
+                    <p className="text-gray-600 text-xs mt-1">Applied: {new Date(app.created_at).toLocaleDateString()}</p>
+                  </div>
                   </div>
 
                   {/* Actions */}
