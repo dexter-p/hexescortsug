@@ -57,9 +57,10 @@ export const metadata: Metadata = {
     locale: "en_UG",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Escorts UG – #1 Verified Escorts in Uganda",
     description: "Browse verified escorts from across Uganda. Real profiles, reviewed companions.",
+  },
+  alternates: {
+    canonical: "/",
   },
   metadataBase: new URL("https://www.hexescortsug.xyz"),
 };

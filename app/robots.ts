@@ -7,10 +7,6 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         disallow: ['/_next/', '/api/', '/admin/', '/hx-ctrl-7k9/'],
-      },
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
       }
     ],
     sitemap: 'https://www.hexescortsug.xyz/sitemap.xml',
