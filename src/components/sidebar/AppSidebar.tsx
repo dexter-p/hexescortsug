@@ -167,7 +167,7 @@ export function AppSidebar() {
                   href="https://t.me/xxx18ughub"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 w-full px-3 py-2 rounded-lg bg-[#24A1DE]/10 hover:bg-[#24A1DE]/20 text-[#24A1DE] border border-[#24A1DE]/30 transition-all text-sm font-medium"
+            className="flex items-center gap-2 w-full px-3 py-2 rounded-lg bg-[#24A1DE] hover:bg-[#24A1DE]/90 text-white shadow-lg shadow-[#24A1DE]/20 transition-all text-sm font-semibold"
           >
             <Send className="h-4 w-4" />
             Join Telegram Group
@@ -279,7 +279,7 @@ export function AppSidebar() {
                         href="https://t.me/xxx18ughub"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg bg-[#24A1DE]/10 hover:bg-[#24A1DE]/20 text-[#24A1DE] border border-[#24A1DE]/30 transition-all text-sm font-semibold"
+                  className="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg bg-[#24A1DE] hover:bg-[#24A1DE]/90 text-white shadow-lg shadow-[#24A1DE]/20 transition-all text-sm font-semibold"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <Send className="h-5 w-5" />
