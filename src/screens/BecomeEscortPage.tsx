@@ -184,9 +184,22 @@ const BecomeEscortPage = () => {
             You'll receive a WhatsApp message on{" "}
             <strong className="text-white">{form.whatsapp || form.phone}</strong> when your profile is live.
           </p>
-          <Button className="bg-pink-600 hover:bg-pink-700" onClick={() => (window.location.href = "/")}>
+          <Button className="bg-pink-600 hover:bg-pink-700 w-full" onClick={() => (window.location.href = "/")}>
             Go Back to Homepage
           </Button>
+
+          <div className="mt-8 pt-6 border-t border-gray-800">
+            <p className="text-gray-400 text-sm mb-3">Questions? Contact Support:</p>
+            <a 
+              href="https://wa.me/256727240143" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 text-green-400 border border-green-500/30 hover:bg-green-500/20 transition-all text-sm font-medium"
+            >
+              <Phone className="h-4 w-4" />
+              WhatsApp Support: 0727240143
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -482,6 +495,19 @@ const BecomeEscortPage = () => {
                   <>Continue to Payment (UGX {(PRICE).toLocaleString()}) <ChevronRight className="ml-2 h-4 w-4" /></>
                 )}
               </Button>
+
+              <div className="mt-8 pt-6 border-t border-gray-700 text-center">
+                <p className="text-gray-400 text-sm mb-3">Need help with your application?</p>
+                <a 
+                  href="https://wa.me/256727240143" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors font-semibold"
+                >
+                  <Phone className="h-4 w-4" />
+                  Chat with Support on WhatsApp
+                </a>
+              </div>
             </div>
           </CardContent>
         </Card>
