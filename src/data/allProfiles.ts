@@ -2,6 +2,7 @@ import { ProfileType } from "@/types/profile";
 import { mockProfiles } from "@/data/mockProfiles";
 import { staticProfiles } from "@/data/staticProfiles";
 import { supabase } from "@/integrations/supabase/client";
+import { slugify } from "@/lib/utils";
 
 // Set this to false to use live database updates while serving images locally to save quota
 const FORCE_STATIC_DATA = false;
@@ -107,25 +108,39 @@ export async function fetchAllProfiles(seed?: string) {
 
 export async function fetchProfileById(id: string) {
   if (FORCE_STATIC_DATA) {
-    return staticProfiles.find(p => p.id === id) || null;
+    return staticProfiles.find(p => p.id === id || slugify(p.name) === id) || null;
   }
 
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return null;
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    return staticProfiles.find(p => p.id === id || slugify(p.name) === id) || null;
+  }
 
   try {
-    // @ts-ignore – Supabase type chain depth limit
-    const { data, error } = await (supabase as any)
+    // First try by ID
+    // @ts-ignore
+    const { data: idData, error: idError } = await (supabase as any)
       .from("profiles")
       .select("*")
       .eq("id", id)
       .maybeSingle();
 
-    if (error || !data) {
-      return staticProfiles.find(p => p.id === id) || null;
+    if (idData) return mapDbProfile(idData);
+
+    // If not found, try searching all profiles for a slug match (more reliable than ILike if names have weird chars)
+    const { data: allProfiles, error: allErr } = await (supabase as any)
+      .from("profiles")
+      .select("*")
+      .eq("is_archived", false);
+
+    if (allProfiles) {
+      const match = allProfiles.find((p: any) => slugify(p.name) === id);
+      if (match) return mapDbProfile(match);
     }
 
-    return mapDbProfile(data);
+    // Fallback to static lookup by slug or ID
+    return staticProfiles.find(p => p.id === id || slugify(p.name) === id) || null;
   } catch (err) {
-    return staticProfiles.find(p => p.id === id) || null;
+    console.error("Fetch exception, using static fallback:", err);
+    return staticProfiles.find(p => p.id === id || slugify(p.name) === id) || null;
   }
 }

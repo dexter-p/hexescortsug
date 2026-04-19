@@ -28,13 +28,16 @@ export async function GET() {
   try {
     const { data: profiles, error } = await supabase
       .from('profiles')
-      .select('id')
+      .select('id, name')
       .eq('is_archived', false)
 
     if (error) throw error
 
+    // Simple slugify function for the route handler
+    const slugify = (text: string) => text.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+
     if (profiles) {
-      dynamicUrls = profiles.map(p => `${BASE_URL}/profile/${p.id}`)
+      dynamicUrls = profiles.map(p => `${BASE_URL}/profile/${slugify(p.name)}`)
     }
   } catch (e) {
     console.error('Sitemap fetch error:', e)

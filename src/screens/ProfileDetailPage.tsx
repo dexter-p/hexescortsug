@@ -10,6 +10,7 @@ import { VideoList } from "@/components/videos/VideoList";
 import { PhotoList } from "@/components/photos/PhotoList";
 import { useEffect } from "react";
 import { ProfileType } from "@/types/profile";
+import { slugify } from "@/lib/utils";
 
 interface ProfileDetailPageProps {
   profileId: string;
@@ -21,7 +22,7 @@ const ProfileDetailPage = ({ profileId, initialProfile }: ProfileDetailPageProps
   
   const { data: allProfiles = [], isLoading } = useAllProfiles();
   // Use initialProfile immediately (server-rendered data) while client query loads
-  const profile = (allProfiles.length > 0 ? allProfiles.find(p => p.id === id) : undefined) ?? initialProfile;
+  const profile = (allProfiles.length > 0 ? allProfiles.find(p => p.id === id || slugify(p.name) === id) : undefined) ?? initialProfile;
 
   // Scroll to top when component mounts or profile ID changes
   useEffect(() => {
@@ -122,7 +123,7 @@ const ProfileDetailPage = ({ profileId, initialProfile }: ProfileDetailPageProps
               .filter(p => p.id !== profile.id && p.location === profile.location)
               .slice(0, 4)
               .map(p => (
-                <Link key={p.id} href={`/profile/${p.id}`} className="group hover:opacity-90">
+                <Link key={p.id} href={`/profile/${slugify(p.name)}`} className="group hover:opacity-90">
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-2 shadow-lg">
                     <img src={p.profileImage} alt={p.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-2 sm:p-3">

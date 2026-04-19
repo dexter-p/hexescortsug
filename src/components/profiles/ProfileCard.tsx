@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { cn, getMediaUrl } from "@/lib/utils";
+import { cn, getMediaUrl, slugify } from "@/lib/utils";
 import { ProfileType } from "@/types/profile";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -77,7 +77,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
               </div>
             )}
             
-            <Link href={`/profile/${profile.id}`}>
+            <Link href={`/profile/${slugify(profile.name)}`}>
               <div className="w-full h-full overflow-hidden">
                 <Image 
                   src={getMediaUrl(profile.profileImage)} 

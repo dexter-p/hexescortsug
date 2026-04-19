@@ -1,6 +1,7 @@
 import ProfileDetailPageClient from "@/screens/ProfileDetailPage";
 import { fetchAllProfiles, fetchProfileById } from "@/data/allProfiles";
 import type { Metadata, ResolvingMetadata } from 'next';
+import { slugify } from "@/lib/utils";
 
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
@@ -31,7 +32,7 @@ export async function generateMetadata(
       images: [profile.profileImage],
     },
     alternates: {
-      canonical: `/profile/${id}`,
+      canonical: `/profile/${slugify(profile.name)}`,
     },
   }
 }
