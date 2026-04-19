@@ -379,14 +379,11 @@ const BecomeEscortPage = () => {
                 {/* Location */}
                 <div className="space-y-2">
                   <Label>Location *</Label>
-                  <Select value={form.location} onValueChange={(v) => handleChange("location", v)}>
-                    <SelectTrigger><SelectValue placeholder="Select city..." /></SelectTrigger>
-                    <SelectContent>
-                      {["Kampala", "Entebbe", "Jinja", "Mbarara", "Gulu", "Fort Portal", "Mbale", "Tororo", "Mukono", "Masaka", "Lira", "Arua"].map((c) => (
-                        <SelectItem key={c} value={c}>{c}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Input
+                    value={form.location}
+                    onChange={(e) => handleChange("location", e.target.value)}
+                    placeholder="e.g. Kampala, Najjera"
+                  />
                 </div>
 
                 {/* Phone */}
