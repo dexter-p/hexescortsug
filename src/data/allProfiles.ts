@@ -1,6 +1,10 @@
 import { ProfileType } from "@/types/profile";
 import { mockProfiles } from "@/data/mockProfiles";
+import { staticProfiles } from "@/data/staticProfiles";
 import { supabase } from "@/integrations/supabase/client";
+
+// Set this to false to use live database updates while serving images locally to save quota
+const FORCE_STATIC_DATA = false;
 
 export function createSeededRand(s: string) {
   let h = 0;
@@ -33,6 +37,15 @@ export function sortAndShuffleProfiles(profiles: ProfileType[], seed?: string): 
 }
 
 function mapDbProfile(p: any): ProfileType {
+  // Helper to convert Supabase storage URLs to local ones
+  const transformUrl = (url: string | null | undefined): string => {
+    if (!url) return "/placeholder.svg";
+    if (url.includes(".supabase.co/storage/v1/object/public/")) {
+      return url.replace(/https:\/\/.*\.supabase\.co\/storage\/v1\/object\/public\//g, '/storage/');
+    }
+    return url;
+  };
+
   return {
     id: String(p.id),
     name: p.name,
@@ -42,8 +55,8 @@ function mapDbProfile(p: any): ProfileType {
     complexion: p.complexion ?? undefined,
     location: p.location,
     rating: Number(p.rating) || 4.5,
-    profileImage: p.profile_image || (p.images && p.images.length > 0 ? p.images[0] : "/placeholder.svg"),
-    images: (p.images && p.images.length > 0) ? p.images : [p.profile_image || "/placeholder.svg"],
+    profileImage: transformUrl(p.profile_image || (p.images && p.images.length > 0 ? p.images[0] : null)),
+    images: (p.images && p.images.length > 0) ? p.images.map(transformUrl) : [transformUrl(p.profile_image)],
     shortBio: p.short_bio || "",
     description: p.description || "",
     phone: p.phone ?? undefined,
@@ -51,7 +64,7 @@ function mapDbProfile(p: any): ProfileType {
     email: p.email ?? undefined,
     instagram: p.instagram ?? undefined,
     services: p.services || [],
-    videos: p.videos || [],
+    videos: (p.videos || []).map(transformUrl),
     reviews: [],
     isPinned: p.is_pinned || false,
     isArchived: p.is_archived || false,
@@ -61,48 +74,58 @@ function mapDbProfile(p: any): ProfileType {
 }
 
 export async function fetchAllProfiles(seed?: string) {
+  if (FORCE_STATIC_DATA) {
+    return seed ? sortAndShuffleProfiles(staticProfiles, seed) : staticProfiles;
+  }
+
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-    console.warn("Skipping Supabase fetch during build since credentials are missing.");
-    return seed ? sortAndShuffleProfiles(mockProfiles, seed) : mockProfiles;
+    console.warn("No Supabase URL; using static fallback.");
+    return seed ? sortAndShuffleProfiles(staticProfiles, seed) : staticProfiles;
   }
   
-  // @ts-ignore – Supabase type chain depth limit; works correctly at runtime
-  const { data, error } = await (supabase as any)
-    .from("profiles")
-    .select("*")
-    .eq("is_archived", false)
-    .order("is_pinned", { ascending: false })
-    .order("created_at", { ascending: false });
+  try {
+    // @ts-ignore – Supabase type chain depth limit
+    const { data, error } = await (supabase as any)
+      .from("profiles")
+      .select("*")
+      .eq("is_archived", false)
+      .order("is_pinned", { ascending: false })
+      .order("created_at", { ascending: false });
 
-  if (error) {
-    console.error("Error fetching profiles:", error);
-    return seed ? sortAndShuffleProfiles(mockProfiles, seed) : mockProfiles;
+    if (error) {
+      console.error("Supabase error (likely quota hit), using local backup:", error);
+      return seed ? sortAndShuffleProfiles(staticProfiles, seed) : staticProfiles;
+    }
+
+    const dbProfiles: ProfileType[] = (data || []).map(mapDbProfile);
+    return seed ? sortAndShuffleProfiles(dbProfiles, seed) : dbProfiles;
+  } catch (err) {
+    console.error("Fetch exception, using static fallback:", err);
+    return seed ? sortAndShuffleProfiles(staticProfiles, seed) : staticProfiles;
   }
-
-  const dbProfiles: ProfileType[] = (data || []).map(mapDbProfile);
-  const combined = [...dbProfiles, ...mockProfiles];
-  
-  return seed ? sortAndShuffleProfiles(combined, seed) : combined;
 }
 
 export async function fetchProfileById(id: string) {
-  const mock = mockProfiles.find(p => p.id === id);
-  if (mock) return mock;
+  if (FORCE_STATIC_DATA) {
+    return staticProfiles.find(p => p.id === id) || null;
+  }
 
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return null;
 
-  // @ts-ignore – Supabase type chain depth limit; works correctly at runtime
-  const { data, error } = await (supabase as any)
-    .from("profiles")
-    .select("*")
-    .eq("is_archived", false)
-    .eq("id", id)
-    .maybeSingle();
+  try {
+    // @ts-ignore – Supabase type chain depth limit
+    const { data, error } = await (supabase as any)
+      .from("profiles")
+      .select("*")
+      .eq("id", id)
+      .maybeSingle();
 
-  if (error) {
-    console.error("Error fetching profile by id:", error);
-    return null;
+    if (error || !data) {
+      return staticProfiles.find(p => p.id === id) || null;
+    }
+
+    return mapDbProfile(data);
+  } catch (err) {
+    return staticProfiles.find(p => p.id === id) || null;
   }
-
-  return data ? mapDbProfile(data) : null;
 }
