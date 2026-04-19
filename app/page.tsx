@@ -1,7 +1,7 @@
 import HomePage from "@/screens/HomePage";
 import { fetchAllProfiles } from "@/data/allProfiles";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Refresh home data every 60 seconds
 
 export default async function Page() {
   // Generate a fresh seed for every request to ensure a new shuffle on refresh

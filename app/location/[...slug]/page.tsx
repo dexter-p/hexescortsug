@@ -2,7 +2,7 @@ import LocationPageClient from "@/screens/LocationPage";
 import type { Metadata } from 'next';
 import { fetchAllProfiles } from "@/data/allProfiles";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 export const dynamicParams = true;
 
 type Props = {

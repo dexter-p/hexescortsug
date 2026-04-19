@@ -77,7 +77,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
               </div>
             )}
             
-            <Link href={`/profile/${slugify(profile.name)}`}>
+            <Link href={`/profile/${slugify(profile.name)}`} prefetch={false}>
               <div className="w-full h-full overflow-hidden">
                 <Image 
                   src={getMediaUrl(profile.profileImage)} 

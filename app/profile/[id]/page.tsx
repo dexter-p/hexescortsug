@@ -3,7 +3,7 @@ import { fetchAllProfiles, fetchProfileById } from "@/data/allProfiles";
 import type { Metadata, ResolvingMetadata } from 'next';
 import { slugify } from "@/lib/utils";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Refresh profile data every 60 seconds to save Edge Requests
 export const dynamicParams = true;
 
 type Props = {

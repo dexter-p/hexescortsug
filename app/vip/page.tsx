@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Experience true luxury with our hand-picked elite VIP escorts in Kampala and across Uganda. The most premium companions for the most discerning clients.',
 };
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export default async function Page() {
   // Generate a fresh seed for every request

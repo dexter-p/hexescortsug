@@ -13,5 +13,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'], // Apply to all non-static paths
+  matcher: ['/admin-panel/:path*', '/hx-ctrl-7k9/:path*'], 
 };

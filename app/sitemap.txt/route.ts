@@ -1,6 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 
+export const revalidate = 3600; // Refresh sitemap once per hour
+
 export async function GET() {
   const BASE_URL = 'https://www.hexescortsug.xyz'
   
