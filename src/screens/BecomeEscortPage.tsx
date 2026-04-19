@@ -49,6 +49,8 @@ const BecomeEscortPage = () => {
     videos: [] as string[],
   });
 
+  const [showForm, setShowForm] = useState(false);
+
   const handleChange = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
@@ -223,7 +225,7 @@ const BecomeEscortPage = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-white mb-1">Become an Escort</h1>
-          <p className="text-gray-400 text-sm">Fill in your details below, choose a plan, and go live in 5–10 minutes.</p>
+          <p className="text-gray-400 text-sm">Pick a plan and create your profile to go live in 5–10 minutes.</p>
         </div>
 
         {/* Plan Selection */}
@@ -289,8 +291,23 @@ const BecomeEscortPage = () => {
           </button>
         </div>
 
-        {/* Profile Form — styled like admin panel */}
-        <Card className="border-gray-700 bg-gray-900/60">
+        {/* Create Profile Button */}
+        {!showForm && (
+          <div className="flex flex-col items-center justify-center py-12 space-y-4">
+             <Button 
+               size="lg" 
+               className="bg-pink-600 hover:bg-pink-700 px-12 py-8 text-xl font-bold rounded-2xl shadow-xl shadow-pink-600/20 w-full sm:w-auto"
+               onClick={() => setShowForm(true)}
+             >
+               Create a Profile
+             </Button>
+             <p className="text-xs text-gray-500 uppercase tracking-widest font-semibold">Step 2 of 3</p>
+          </div>
+        )}
+
+        {/* Profile Form — only shown after clicking button */}
+        {showForm && (
+        <Card className="border-gray-700 bg-gray-900/60 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <CardContent className="pt-6">
             <h2 className="text-lg font-bold text-white mb-5">Your Profile Details</h2>
 
@@ -508,6 +525,7 @@ const BecomeEscortPage = () => {
             </div>
           </CardContent>
         </Card>
+        )}
       </div>
     </div>
   );
