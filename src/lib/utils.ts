@@ -16,13 +16,11 @@ export function slugify(text: string) {
 
 export function getMediaUrl(url: string | null | undefined): string {
   if (!url) return '/placeholder.svg';
-  // If it's already a local path, return as is
+  
+  // If it's already a local path (transformed by allProfiles.ts), return it
   if (url.startsWith('/storage/')) return url;
-  
-  // Handle various Supabase storage URLs
-  if (url.includes('.supabase.co/storage/v1/object/public/')) {
-    return url.replace(/https:\/\/.*\.supabase\.co\/storage\/v1\/object\/public\//g, '/storage/');
-  }
-  
+  if (url.startsWith('http')) return url;
+  if (url.startsWith('/')) return url;
+
   return url;
 }

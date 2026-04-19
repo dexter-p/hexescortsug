@@ -37,13 +37,21 @@ export function sortAndShuffleProfiles(profiles: ProfileType[], seed?: string): 
   return [...shuffleArray(pinned, rand), ...shuffleArray(regular, rand)];
 }
 
+// Create a set of IDs that we have locally backed up for fast lookup
+const BACKED_UP_IDS = new Set(staticProfiles.map(p => p.id));
+
 function mapDbProfile(p: any): ProfileType {
-  // Helper to convert Supabase storage URLs to local ones
+  const isLocal = BACKED_UP_IDS.has(String(p.id));
+
+  // Helper to convert Supabase storage URLs to local ones, but ONLY if we have them backed up
   const transformUrl = (url: string | null | undefined): string => {
     if (!url) return "/placeholder.svg";
-    if (url.includes(".supabase.co/storage/v1/object/public/")) {
+    
+    // Only transform if this profile was part of our local backup
+    if (isLocal && url.includes(".supabase.co/storage/v1/object/public/")) {
       return url.replace(/https:\/\/.*\.supabase\.co\/storage\/v1\/object\/public\//g, '/storage/');
     }
+    
     return url;
   };
 
