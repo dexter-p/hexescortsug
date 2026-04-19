@@ -320,7 +320,7 @@ const BecomeEscortPage = () => {
                     <img src={form.profileImage} alt="Profile" className="w-24 h-24 rounded-full object-cover" />
                   )}
                   <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => handleImageUpload(e, "profile")} />
-                  <Button variant="outline" size="sm" onClick={() => fileInputRef.current?.click()} disabled={uploading}>
+                  <Button className="bg-pink-600 hover:bg-pink-700 text-white" size="sm" onClick={() => fileInputRef.current?.click()} disabled={uploading}>
                     {uploading ? "Uploading..." : "Upload Profile Photo"}
                   </Button>
                 </div>
@@ -336,7 +336,7 @@ const BecomeEscortPage = () => {
                     ))}
                   </div>
                   <input ref={galleryInputRef} type="file" accept="image/*" multiple className="hidden" onChange={(e) => handleImageUpload(e, "gallery")} />
-                  <Button variant="outline" size="sm" onClick={() => galleryInputRef.current?.click()} disabled={uploading}>
+                  <Button className="bg-pink-600 hover:bg-pink-700 text-white" size="sm" onClick={() => galleryInputRef.current?.click()} disabled={uploading}>
                     {uploading ? "Uploading..." : "Add Gallery Images"}
                   </Button>
                 </div>
@@ -352,7 +352,7 @@ const BecomeEscortPage = () => {
                     ))}
                   </div>
                   <input ref={videoInputRef} type="file" accept="video/*" multiple className="hidden" onChange={handleVideoUpload} />
-                  <Button variant="outline" size="sm" onClick={() => videoInputRef.current?.click()} disabled={uploading}>
+                  <Button className="bg-pink-600 hover:bg-pink-700 text-white" size="sm" onClick={() => videoInputRef.current?.click()} disabled={uploading}>
                     {uploading ? "Uploading..." : "Add Videos"}
                   </Button>
                   <p className="text-xs text-muted-foreground">Max 100MB per video. MP4, WebM, MOV supported.</p>
