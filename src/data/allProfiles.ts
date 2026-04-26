@@ -43,22 +43,22 @@ const BACKED_UP_IDS = new Set(staticProfiles.map(p => p.id));
 function mapDbProfile(p: any): ProfileType {
   const isLocal = BACKED_UP_IDS.has(String(p.id));
 
-  // Helper to convert Supabase storage URLs to either local backup or our media proxy
+  // Helper to convert Supabase storage URLs to our smart media proxy
+  // The proxy (app/api/media) will automatically check local backup first, then fallback to Supabase
   const transformUrl = (url: string | null | undefined): string => {
     if (!url) return "/placeholder.svg";
     
-    const currentUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    
-    // If this URL is from our CURRENT project, use our media proxy (saves quota via wsrv.nl)
-    // This works for BOTH old profiles that were updated and brand new ones
-    if (currentUrl && url.includes(currentUrl) && url.includes("/storage/v1/object/public/")) {
-      return url.replace(`${currentUrl}/storage/v1/object/public/`, '/api/media/');
+    // If it's already a local path or static reference, keep it
+    if (url.startsWith('/storage/') || url.startsWith('/') || !url.includes('.supabase.co')) {
+      return url;
     }
     
-    // Only transform to local /storage if this profile was part of our local backup 
-    // AND it's an old Supabase URL (from a previous project)
-    if (isLocal && url.includes(".supabase.co/storage/v1/object/public/")) {
-      return url.replace(/https:\/\/.*\.supabase\.co\/storage\/v1\/object\/public\//g, '/storage/');
+    // Route ALL Supabase storage URLs through our smart proxy
+    if (url.includes("/storage/v1/object/public/")) {
+      const match = url.match(/\.supabase\.co\/storage\/v1\/object\/public\/(.*)/);
+      if (match && match[1]) {
+        return `/api/media/${match[1]}`;
+      }
     }
     
     return url;
