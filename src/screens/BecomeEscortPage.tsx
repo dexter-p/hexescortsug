@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -50,6 +50,37 @@ const BecomeEscortPage = () => {
   });
 
   const [showForm, setShowForm] = useState(false);
+
+  // Load draft from localStorage on mount
+  useEffect(() => {
+    const savedDraft = localStorage.getItem("escort_application_draft");
+    if (savedDraft) {
+      try {
+        const { form: savedForm, plan: savedPlan, showForm: savedShowForm } = JSON.parse(savedDraft);
+        if (savedForm) setForm(savedForm);
+        if (savedPlan) setSelectedPlan(savedPlan);
+        if (savedShowForm) setShowForm(savedShowForm);
+      } catch (err) {
+        console.error("Failed to load draft:", err);
+      }
+    }
+  }, []);
+
+  // Save to localStorage whenever form or plan changes
+  useEffect(() => {
+    // Don't save if on success screen
+    if (screen === "success") return;
+    
+    // Check if form has any content before saving
+    const hasContent = form.name || form.phone || form.profileImage || form.images.length > 0;
+    if (hasContent) {
+      localStorage.setItem("escort_application_draft", JSON.stringify({ 
+        form, 
+        plan: selectedPlan,
+        showForm
+      }));
+    }
+  }, [form, selectedPlan, showForm, screen]);
 
   const handleChange = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -162,6 +193,7 @@ const BecomeEscortPage = () => {
   };
 
   const handlePaymentVerified = () => {
+    localStorage.removeItem("escort_application_draft");
     setShowPaymentModal(false);
     setScreen("success");
   };
