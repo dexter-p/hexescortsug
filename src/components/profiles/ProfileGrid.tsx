@@ -31,7 +31,7 @@ export function ProfileGrid({ profiles, title, featuredIds = [], loading = false
         <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-pink-500">{title}</h2>
       )}
       
-      <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
         {showSkeletons
           ? Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="flex w-full">
