@@ -54,12 +54,44 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'kampala', 'entebbe', 'jinja', 'mbarara', 'gulu', 'fort-portal', 'mbale', 'tororo', 'mukono', 
     'masaka', 'arua', 'lira', 'kasese', 'hoima', 'soroti', 'busia', 'mubende', 'wakiso'
   ]
-  const cityUrls: MetadataRoute.Sitemap = cities.map(city => ({
+  const kampalaSuburbs = [
+    "bugolobi", "bukoto", "buziga", "kabalagala", "kamwokya", "kansanga",
+    "kisaasi", "kololo", "kyaliwajjala", "kyanja", "lubaga", "luzira",
+    "makindye", "muyenga", "naalya", "naguru", "najjera", "nakasero", "ntinda"
+  ]
+
+  const oldCityUrls: MetadataRoute.Sitemap = cities.map(city => ({
     url: `${BASE_URL}/location/${city}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
-    priority: 0.9,
+    priority: 0.8, // Slightly lower priority than the new SEO routes
   }))
+
+  const newSeoUrls: MetadataRoute.Sitemap = cities.map(city => ({
+    url: `${BASE_URL}/escorts-in/${city}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.95, // High priority for these new landing pages
+  }))
+
+  const suburbUrls: MetadataRoute.Sitemap = kampalaSuburbs.map(suburb => ({
+    url: `${BASE_URL}/escorts-in/kampala/${suburb}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.9, // High priority for hyper-local dominance
+  }))
+
+  const topCategories = ['thick', 'slim', 'curvy', 'vip', 'massage'];
+  const topCities = ['kampala', 'entebbe', 'jinja'];
+  
+  const categoryUrls: MetadataRoute.Sitemap = topCategories.flatMap(category => 
+    topCities.map(city => ({
+      url: `${BASE_URL}/${category}-escorts-in/${city}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.85,
+    }))
+  );
 
   let dynamicUrls: MetadataRoute.Sitemap = []
   try {
@@ -83,5 +115,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Sitemap generation error:', e)
   }
 
-  return [...staticPages, ...cityUrls, ...dynamicUrls]
+  return [...staticPages, ...oldCityUrls, ...newSeoUrls, ...suburbUrls, ...categoryUrls, ...dynamicUrls]
 }

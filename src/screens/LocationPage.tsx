@@ -40,13 +40,15 @@ const cityMeta: Record<string, { title: string; description: string; heading: st
 interface LocationPageProps {
   cityParam?: string;
   suburbParam?: string;
+  categoryParam?: string;
   initialProfiles?: ProfileType[];
   shuffleSeed?: string;
 }
 
-const LocationPage = ({ cityParam, suburbParam, initialProfiles, shuffleSeed }: LocationPageProps) => {
+const LocationPage = ({ cityParam, suburbParam, categoryParam, initialProfiles, shuffleSeed }: LocationPageProps) => {
   const city = cityParam;
   const suburb = suburbParam;
+  const category = categoryParam;
   const isMobile = useIsMobile();
   const [showSidebar, setShowSidebar] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -60,49 +62,68 @@ const LocationPage = ({ cityParam, suburbParam, initialProfiles, shuffleSeed }: 
   const allProfiles = queryProfiles || initialProfiles || [];
 
   const locationProfiles = (() => {
-    if (!city) return allProfiles;
+    let filtered = allProfiles;
 
-    // List of common suburbs
-    const kampalaSuburbs = [
-      "banda", "bugolobi", "bukesa", "bukoto", "bunamwaya", "bunga", 
-      "busega", "buwate", "buziga", "bwaise", "central", "ggaba", "kabalagala", "kabowa", 
-      "kampala town", "kamwokya", "kansanga", "kanyanya", "kasubi", "katooke", 
-      "kawempe", "kazo", "kibuli", "kireka", "kirinnya", "kisaasi", "kisugu", 
-      "kitintale", "kiwatule", "kololo", "komamboga", "kulambiro", "kyaliwajjala", 
-      "kyambogo", "kyanja", "kyebando", "lubaga", "lugala", "lugogo", "lungujja", 
-      "luzira", "makerere", "makindye", "masajja", "masanafu", "mawanda road", 
-      "mbuya", "mengo", "mpererwe", "mulago", "munyonyo", "mutundwe", "mutungo", 
-      "muyenga", "naalya", "nabulagala", "nabweru", "naguru", "najjanankumbi", 
-      "najjera", "nakasero", "nakawa", "nakulabye", "namasuba", "namirembe", 
-      "namungoona", "namuwongo", "nateete", "nkuba", "nsambya", "ntinda", 
-      "rubaga", "salaama rd", "sir apollo kagwa", "wandegeya"
-    ];
+    // Filter by Location
+    if (city) {
+      const kampalaSuburbs = [
+        "banda", "bugolobi", "bukesa", "bukoto", "bunamwaya", "bunga", 
+        "busega", "buwate", "buziga", "bwaise", "central", "ggaba", "kabalagala", "kabowa", 
+        "kampala town", "kamwokya", "kansanga", "kanyanya", "kasubi", "katooke", 
+        "kawempe", "kazo", "kibuli", "kireka", "kirinnya", "kisaasi", "kisugu", 
+        "kitintale", "kiwatule", "kololo", "komamboga", "kulambiro", "kyaliwajjala", 
+        "kyambogo", "kyanja", "kyebando", "lubaga", "lugala", "lugogo", "lungujja", 
+        "luzira", "makerere", "makindye", "masajja", "masanafu", "mawanda road", 
+        "mbuya", "mengo", "mpererwe", "mulago", "munyonyo", "mutundwe", "mutungo", 
+        "muyenga", "naalya", "nabulagala", "nabweru", "naguru", "najjanankumbi", 
+        "najjera", "nakasero", "nakawa", "nakulabye", "namasuba", "namirembe", 
+        "namungoona", "namuwongo", "nateete", "nkuba", "nsambya", "ntinda", 
+        "rubaga", "salaama rd", "sir apollo kagwa", "wandegeya"
+      ];
 
-    return allProfiles.filter(profile => {
-      const profileLoc = profile.location.toLowerCase();
-      const targetCity = city.toLowerCase();
+      filtered = filtered.filter(profile => {
+        const profileLoc = profile.location.toLowerCase();
+        const targetCity = city.toLowerCase();
 
-      if (suburb) {
-        const targetSuburb = suburb.toLowerCase().replace(/-/g, ' ');
-        return profileLoc === targetSuburb || profileLoc.includes(targetSuburb);
-      }
+        if (suburb) {
+          const targetSuburb = suburb.toLowerCase().replace(/-/g, ' ');
+          return profileLoc === targetSuburb || profileLoc.includes(targetSuburb);
+        }
 
-      if (targetCity === 'kampala') {
-        const isKampala = profileLoc === 'kampala' || profileLoc.includes('kampala');
-        const isSuburb = kampalaSuburbs.some(sub => profileLoc.includes(sub));
-        return isKampala || isSuburb;
-      }
+        if (targetCity === 'kampala') {
+          const isKampala = profileLoc === 'kampala' || profileLoc.includes('kampala');
+          const isSuburb = kampalaSuburbs.some(sub => profileLoc.includes(sub));
+          return isKampala || isSuburb;
+        }
 
-      return profileLoc === targetCity || profileLoc.includes(targetCity);
-    });
+        return profileLoc === targetCity || profileLoc.includes(targetCity);
+      });
+    }
+
+    // Filter by Category (Body Type or Services or VIP)
+    if (category) {
+      const cat = category.toLowerCase().replace(/-/g, ' ');
+      filtered = filtered.filter(profile => {
+        const bodyTypeMatch = profile.bodyType?.toLowerCase() === cat || profile.bodyType?.toLowerCase().includes(cat);
+        const serviceMatch = profile.services?.some(s => s.toLowerCase().includes(cat));
+        const vipMatch = (cat === 'vip' || cat === 'premium') ? profile.isVip || profile.isPinned : false;
+        
+        return bodyTypeMatch || serviceMatch || vipMatch;
+      });
+    }
+
+    return filtered;
   })();
 
   const getLocationTitle = () => {
-    if (!city) return "All Locations";
+    const catName = category ? category.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') : "Escorts";
+    if (!city) return category ? catName : "All Locations";
+    
     const cityName = city.charAt(0).toUpperCase() + city.slice(1);
-    if (!suburb) return cityName;
+    if (!suburb) return `${catName} in ${cityName}`;
+    
     const suburbName = suburb.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-    return `${suburbName}, ${cityName}`;
+    return `${catName} in ${suburbName}, ${cityName}`;
   };
 
   useEffect(() => {
@@ -172,7 +193,7 @@ const LocationPage = ({ cityParam, suburbParam, initialProfiles, shuffleSeed }: 
         <div className="flex-1 lg:pl-64 p-4 lg:p-6">
           <div className="max-w-6xl mx-auto">
             <h1 className="text-2xl lg:text-4xl font-bold mb-2 text-primary">
-              {meta ? meta.heading : `Escorts in ${getLocationTitle()}`}
+              {meta && !category ? meta.heading : getLocationTitle()}
             </h1>
             
             {/* Stable Hydration Text */}
