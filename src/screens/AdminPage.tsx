@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trash2, Plus, LogOut, Video, Star, Archive, ArchiveRestore, ClipboardList } from "lucide-react";
+import { Trash2, Plus, LogOut, Video, Star, Archive, ArchiveRestore, ClipboardList, Megaphone } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { mockProfiles } from "@/data/mockProfiles";
@@ -35,6 +35,8 @@ interface DbProfile {
   videos: string[];
   is_pinned?: boolean;
   is_archived?: boolean;
+  is_ad?: boolean;
+  ad_images?: string[];
 }
 
 interface EditProfile {
@@ -55,6 +57,8 @@ interface EditProfile {
   profileImage: string;
   images: string[];
   videos: string[];
+  isAd?: boolean;
+  adImages: string[];
 }
 
 const AdminPage = () => {
@@ -75,6 +79,7 @@ const AdminPage = () => {
   const [adminTab, setAdminTab] = useState<'profiles' | 'apps'>('profiles');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const galleryInputRef = useRef<HTMLInputElement>(null);
+  const adGalleryInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
 
   // Always require fresh login for admin page
@@ -178,6 +183,8 @@ const AdminPage = () => {
     profileImage: "",
     images: [],
     videos: [],
+    isAd: false,
+    adImages: [],
   });
 
   const dbToEdit = (p: DbProfile): EditProfile => ({
@@ -198,6 +205,8 @@ const AdminPage = () => {
     profileImage: p.profile_image || "",
     images: p.images || [],
     videos: p.videos || [],
+    isAd: p.is_ad || false,
+    adImages: p.ad_images || [],
   });
 
   const uploadFile = async (file: File, bucket: string): Promise<string> => {
@@ -213,7 +222,7 @@ const AdminPage = () => {
     return uploadFile(file, "profile-images");
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: "profile" | "gallery") => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: "profile" | "gallery" | "ad_gallery") => {
     const files = e.target.files;
     if (!files || !editingProfile) return;
     setUploading(true);
@@ -224,6 +233,9 @@ const AdminPage = () => {
           if (!prev) return prev;
           if (type === "profile") {
             return { ...prev, profileImage: url, images: [url, ...prev.images.filter(i => i !== prev.profileImage)] };
+          }
+          if (type === "ad_gallery") {
+            return { ...prev, adImages: [...prev.adImages, url] };
           }
           return { ...prev, images: [...prev.images, url] };
         });
@@ -298,6 +310,8 @@ const AdminPage = () => {
       profile_image: editingProfile.profileImage,
       images: editingProfile.images,
       videos: editingProfile.videos,
+      is_ad: editingProfile.isAd,
+      ad_images: editingProfile.adImages,
     };
     let error;
     if (editingProfile.id) {
@@ -339,6 +353,17 @@ const AdminPage = () => {
     }
   };
 
+  const toggleAd = async (id: string, currentAd: boolean) => {
+    const { error } = await supabase.from("profiles").update({ is_ad: !currentAd }).eq("id", id);
+    if (!error) {
+      toast({ title: !currentAd ? "Promoted to Ads!" : "Removed from Ads" });
+      await fetchProfiles();
+      queryClient.invalidateQueries({ queryKey: ["all-profiles"] });
+    } else {
+      toast({ title: "Update failed", variant: "destructive" });
+    }
+  };
+
   const handleDelete = async (id: string) => {
     const { error } = await supabase.from("profiles").delete().eq("id", id);
     if (!error) {
@@ -353,6 +378,14 @@ const AdminPage = () => {
     setEditingProfile({
       ...editingProfile,
       images: editingProfile.images.filter((_, i) => i !== index),
+    });
+  };
+
+  const removeAdImage = (index: number) => {
+    if (!editingProfile) return;
+    setEditingProfile({
+      ...editingProfile,
+      adImages: editingProfile.adImages.filter((_, i) => i !== index),
     });
   };
 
@@ -459,6 +492,23 @@ const AdminPage = () => {
               {uploading ? "Uploading..." : "Add Videos"}
             </Button>
             <p className="text-xs text-muted-foreground">Max 100MB per video. MP4, WebM, MOV supported.</p>
+          </div>
+
+          <div className="space-y-2 border-t border-dashed border-gray-700 pt-4">
+            <Label className="text-pink-400 flex items-center gap-1"><Megaphone className="w-4 h-4" /> Ad Images (for sliding section)</Label>
+            <div className="flex flex-wrap gap-2">
+              {editingProfile.adImages.map((img, i) => (
+                <div key={i} className="relative">
+                  <img src={img} alt="" className="w-16 h-16 rounded object-cover border border-pink-500/30" />
+                  <button onClick={() => removeAdImage(i)} className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">×</button>
+                </div>
+              ))}
+            </div>
+            <input ref={adGalleryInputRef} type="file" accept="image/*" multiple className="hidden" onChange={(e) => handleImageUpload(e, "ad_gallery")} />
+            <Button variant="outline" size="sm" className="border-pink-500/50 text-pink-400 hover:bg-pink-500/10" onClick={() => adGalleryInputRef.current?.click()} disabled={uploading}>
+              {uploading ? "Uploading..." : "Add Ad Images"}
+            </Button>
+            <p className="text-[10px] text-muted-foreground">These images will only show in the top sliding banner.</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -636,6 +686,15 @@ const AdminPage = () => {
                     title="Pin to top"
                   >
                     <Star className={`w-3 h-3 ${p.is_pinned ? "fill-black" : ""}`} />
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant={p.is_ad ? "default" : "outline"} 
+                    className={p.is_ad ? "bg-pink-500 hover:bg-pink-600 text-white font-bold" : "text-pink-500 border-pink-500/50"} 
+                    onClick={() => toggleAd(p.id, !!p.is_ad)}
+                    title="Promote to sliding section"
+                  >
+                    <Megaphone className={`w-3 h-3 ${p.is_ad ? "fill-white" : ""}`} />
                   </Button>
                   <Button
                     size="sm"

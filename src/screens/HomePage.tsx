@@ -7,6 +7,8 @@ import { useAllProfiles } from "@/hooks/use-all-profiles";
 import { ProfileType } from "@/types/profile";
 import { Button } from "@/components/ui/button";
 
+import { AdCarousel } from "@/components/profiles/AdCarousel";
+
 const PAGE_SIZE = 12;
 
 const cities = [
@@ -45,19 +47,25 @@ const HomePage = ({ initialProfiles = [], shuffleSeed }: HomePageProps) => {
   const featuredIds = allProfiles.filter(p => p.isPinned).map(p => p.id);
 
   return (
-    <div className="pt-20 lg:pt-6 min-h-screen">
-      <div className="container mx-auto px-4">
+    <div className="pt-20 lg:pt-6 min-h-screen max-w-full overflow-x-hidden">
+      <div className="container mx-auto px-3 sm:px-4 max-w-full">
         {/* SEO Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl lg:text-4xl font-bold text-primary mb-4">
+        <div className="mb-6 sm:mb-8 overflow-x-hidden">
+          <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold text-primary mb-4 break-words">
             Verified Escorts in Uganda
           </h1>
-          <nav aria-label="Browse by city" className="flex flex-wrap gap-2">
+          
+          {/* Top Sliding Section */}
+          <div className="w-full overflow-hidden mb-6">
+            <AdCarousel profiles={allProfiles} />
+          </div>
+
+          <nav aria-label="Browse by city" className="flex flex-wrap gap-1.5 sm:gap-2">
             {cities.map((c) => (
               <Link
                 key={c.name}
                 href={c.path}
-                className="text-[10px] sm:text-[11px] bg-gradient-to-r from-[#db0061] to-[#ff1493] text-white hover:from-[#ff1493] hover:to-[#db0061] px-4 py-2 rounded-full font-black transition-all duration-300 shadow-[0_2px_10px_rgba(255,20,147,0.3)] hover:shadow-[0_2px_15px_rgba(255,20,147,0.5)] hover:-translate-y-0.5 active:scale-95"
+                className="text-[9px] sm:text-[11px] bg-gradient-to-r from-[#db0061] to-[#ff1493] text-white hover:from-[#ff1493] hover:to-[#db0061] px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full font-black transition-all duration-300 shadow-[0_2px_10px_rgba(255,20,147,0.3)] hover:shadow-[0_2px_15px_rgba(255,20,147,0.5)] hover:-translate-y-0.5 active:scale-95"
               >
                 {c.name}
               </Link>

@@ -88,6 +88,8 @@ function mapDbProfile(p: any): ProfileType {
     isArchived: p.is_archived || false,
     isVip: p.is_vip || false,
     isPremium: p.is_premium || false,
+    isAd: p.is_ad || false,
+    adImages: (p.ad_images || []).map(transformUrl),
   };
 }
 

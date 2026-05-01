@@ -106,10 +106,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body suppressHydrationWarning>
+      <body suppressHydrationWarning className="overflow-x-hidden">
         <Providers>
           <div className="flex flex-col min-h-screen">
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow overflow-x-hidden">{children}</main>
             <Footer />
           </div>
           <Suspense fallback={null}>

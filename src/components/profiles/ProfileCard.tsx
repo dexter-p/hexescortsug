@@ -86,54 +86,52 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
                   priority={priority}
                   width={300}
                   height={400}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
               </div>
               
               {/* Watermark */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                <span className="text-pink-500 text-xs sm:text-sm md:text-base font-bold">HEX ESCORTS UG</span>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-40 transition-opacity duration-300">
+                <span className="text-pink-500 text-[9px] sm:text-[10px] font-bold">HEX ESCORTS UG</span>
               </div>
             </Link>
           
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-1 sm:p-2 text-white">
-              <div className="text-center">
-                <h3 className="font-bold text-xs sm:text-sm truncate">{profile.name}</h3>
-                
-                <div className="flex items-center justify-center text-[10px] sm:text-xs text-gray-300 mt-0.5">
-                  <MapPin className="h-2 w-2 sm:h-3 sm:w-3 mr-0.5" />
-                  <span className="truncate">{profile.location}</span>
-                </div>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-1 pb-1 pt-3 text-white">
+              <h3 className="font-bold text-[10px] sm:text-xs text-center truncate leading-tight">{profile.name}</h3>
+              <div className="flex items-center justify-center text-[8px] sm:text-[9px] text-gray-300 mt-0.5">
+                <MapPin className="h-1.5 w-1.5 mr-0.5 shrink-0" />
+                <span className="truncate">{profile.location}</span>
               </div>
             </div>
           </div>
         </Card>
         
-        <div className="mt-1 sm:mt-2 w-full flex items-center gap-1.5 sm:gap-2">
+        {/* Action buttons */}
+        <div className="mt-1 w-full flex items-center gap-0.5">
           <Button 
             variant="default" 
-            className="flex-1 bg-primary hover:bg-primary/90 text-white text-[10px] sm:text-xs py-0.5 h-7 sm:h-9 shadow-[0_0_15px_rgba(235,0,115,0.4)] transition-all duration-300"
+            className="flex-1 min-w-0 bg-primary hover:bg-primary/90 text-white text-[9px] sm:text-[10px] h-6 sm:h-7 px-0.5 shadow-[0_0_10px_rgba(235,0,115,0.35)] transition-all duration-300"
             onMouseEnter={() => setShowContact(true)}
             onMouseLeave={() => setShowContact(false)}
             onClick={handleContactClick}
           >
-            <span suppressHydrationWarning>
-              {!isMounted ? "Contact Me" : (showContact ? phoneNumber : "Contact Me")}
+            <span suppressHydrationWarning className="truncate text-center w-full">
+              {!isMounted ? "Contact" : (showContact ? phoneNumber : "Contact")}
             </span>
           </Button>
           <a 
             href={`whatsapp://send?phone=${waNumber}&text=${encodeURIComponent("Hi, i got your contact from https://www.hexescortsug.xyz")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-none flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-7 h-7 sm:w-9 sm:h-9 transition-colors shadow-sm overflow-hidden"
+            className="flex-none flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-6 h-6 sm:w-7 sm:h-7 transition-colors shadow-sm overflow-hidden shrink-0"
             onClick={(e) => e.stopPropagation()}
             aria-label="Contact on WhatsApp"
           >
             <Image 
               src="/assets/whatsapp-icon.jpg" 
               alt="WhatsApp" 
-              width={36} 
-              height={36} 
+              width={28} 
+              height={28} 
               className="w-full h-full object-cover"
             />
           </a>

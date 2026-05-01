@@ -29,4 +29,6 @@ export interface ProfileType {
   isPremium?: boolean;
   isPinned?: boolean;
   isArchived?: boolean;
+  isAd?: boolean;
+  adImages?: string[];
 }

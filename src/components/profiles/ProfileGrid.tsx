@@ -26,12 +26,12 @@ export function ProfileGrid({ profiles, title, featuredIds = [], loading = false
   const showSkeletons = loading;
 
   return (
-    <div className="space-y-4 md:space-y-6">
+    <div className="space-y-4 md:space-y-6 max-w-full overflow-hidden">
       {title && (
         <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-pink-500">{title}</h2>
       )}
       
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
+      <div className="grid grid-cols-[repeat(2,minmax(0,1fr))] sm:grid-cols-[repeat(3,minmax(0,1fr))] lg:grid-cols-[repeat(3,minmax(0,1fr))] gap-1.5 sm:gap-4 w-full">
         {showSkeletons
           ? Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="flex w-full">
