@@ -2,27 +2,30 @@ import { ProfileType } from "@/types/profile";
 
 export const staticProfiles: ProfileType[] = [
   {
-    "id": "01ea2985-2bc1-459e-a08c-289c2dc157a8",
-    "name": "Victoria",
+    "id": "2007e5c8-daee-4b84-89ef-3fd7be4db279",
+    "name": "Emilanda",
     "age": 23,
-    "height": "5'6\"",
-    "bodyType": "Athletic",
+    "height": "5'8\"",
+    "bodyType": "Slim",
     "complexion": "Brown",
-    "location": "Makerere",
+    "location": "Kampala town",
     "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775299269076-x4uyilvg9jm.jpg",
+    "profileImage": "/storage/profile-images/1775302727752-xfc5hx8jj1i.jpg",
     "images": [
-      "/storage/profile-images/1775299269076-x4uyilvg9jm.jpg"
+      "/storage/profile-images/1775302727752-xfc5hx8jj1i.jpg",
+      "/storage/profile-images/1775302735632-55la8k4gm4m.jpg"
     ],
     "shortBio": "",
     "description": "",
-    "phone": "0789986462",
+    "phone": "0776786998",
     "services": [
       "Companionship"
     ],
-    "videos": [],
+    "videos": [
+      "/storage/profile-images/1775302743005-ar3vv0zdbxs.mp4"
+    ],
     "reviews": [],
-    "isPinned": false,
+    "isPinned": true,
     "isArchived": false,
     "isVip": false,
     "isPremium": false
@@ -52,28 +55,28 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
-    "id": "2178ebb1-e061-4aec-9446-5c83d64bb505",
-    "name": "Promise",
-    "age": 21,
-    "height": "5'6\"",
-    "bodyType": "Slim",
+    "id": "08155db7-ed47-4f96-becd-3659ccda2d17",
+    "name": "Nalme",
+    "age": 23,
+    "height": "5'7\"",
+    "bodyType": "Curvy",
     "complexion": "Brown",
-    "location": "Kyaliwajala",
+    "location": "Rubaga",
     "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775299155080-9fvozjvg8qa.jpg",
+    "profileImage": "/storage/profile-images/1775300903484-hdf182brj5.jpg",
     "images": [
-      "/storage/profile-images/1775299155080-9fvozjvg8qa.jpg"
+      "/storage/profile-images/1775300903484-hdf182brj5.jpg"
     ],
     "shortBio": "",
     "description": "",
-    "phone": "0748945675",
+    "phone": "0780335075",
     "services": [
       "Companionship"
     ],
     "videos": [],
     "reviews": [],
     "isPinned": true,
-    "isArchived": false,
+    "isArchived": true,
     "isVip": false,
     "isPremium": false
   },
@@ -128,115 +131,33 @@ export const staticProfiles: ProfileType[] = [
     "videos": [],
     "reviews": [],
     "isPinned": false,
-    "isArchived": false,
+    "isArchived": true,
     "isVip": false,
     "isPremium": false
   },
   {
-    "id": "00e10dfb-b888-4748-a357-d17c1e5b4e40",
-    "name": "Jojo",
-    "age": 24,
+    "id": "01ea2985-2bc1-459e-a08c-289c2dc157a8",
+    "name": "Victoria",
+    "age": 23,
     "height": "5'6\"",
-    "bodyType": "Curvy",
-    "complexion": "Medium",
-    "location": "Mengo",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775300990073-oc09ima8lat.jpg",
-    "images": [
-      "/storage/profile-images/1775300990073-oc09ima8lat.jpg",
-      "/storage/profile-images/1775301016113-3f70iz6uso.jpg",
-      "/storage/profile-images/1775301819040-2w0dyzbwyiw.jpg"
-    ],
-    "shortBio": "",
-    "description": "Companionship\nQuickie\nBJ\n",
-    "phone": "0759339609",
-    "services": [],
-    "videos": [],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "1a94a013-f251-47c9-b9f0-2292743273ae",
-    "name": "Maya",
-    "age": 23,
-    "height": "5'7\"",
-    "bodyType": "Curvy",
-    "complexion": "Medium",
-    "location": "Kampala town",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775302590917-gme6m2fk7ia.jpg",
-    "images": [
-      "/storage/profile-images/1775302590917-gme6m2fk7ia.jpg",
-      "/storage/profile-images/1775302598603-lo11uxa6el.jpg"
-    ],
-    "shortBio": "",
-    "description": "",
-    "phone": "0702331016",
-    "services": [
-      "Companionship"
-    ],
-    "videos": [],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "08155db7-ed47-4f96-becd-3659ccda2d17",
-    "name": "Nalme",
-    "age": 23,
-    "height": "5'7\"",
-    "bodyType": "Curvy",
+    "bodyType": "Athletic",
     "complexion": "Brown",
-    "location": "Rubaga",
+    "location": "Makerere",
     "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775300903484-hdf182brj5.jpg",
+    "profileImage": "/storage/profile-images/1775299269076-x4uyilvg9jm.jpg",
     "images": [
-      "/storage/profile-images/1775300903484-hdf182brj5.jpg"
+      "/storage/profile-images/1775299269076-x4uyilvg9jm.jpg"
     ],
     "shortBio": "",
     "description": "",
-    "phone": "0780335075",
+    "phone": "0789986462",
     "services": [
       "Companionship"
     ],
     "videos": [],
     "reviews": [],
     "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "2007e5c8-daee-4b84-89ef-3fd7be4db279",
-    "name": "Emilanda",
-    "age": 23,
-    "height": "5'8\"",
-    "bodyType": "Slim",
-    "complexion": "Brown",
-    "location": "Kampala town",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775302727752-xfc5hx8jj1i.jpg",
-    "images": [
-      "/storage/profile-images/1775302727752-xfc5hx8jj1i.jpg",
-      "/storage/profile-images/1775302735632-55la8k4gm4m.jpg"
-    ],
-    "shortBio": "",
-    "description": "",
-    "phone": "0776786998",
-    "services": [
-      "Companionship"
-    ],
-    "videos": [
-      "/storage/profile-images/1775302743005-ar3vv0zdbxs.mp4"
-    ],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
+    "isArchived": true,
     "isVip": false,
     "isPremium": false
   },
@@ -293,6 +214,32 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
+    "id": "2178ebb1-e061-4aec-9446-5c83d64bb505",
+    "name": "Promise",
+    "age": 21,
+    "height": "5'6\"",
+    "bodyType": "Slim",
+    "complexion": "Brown",
+    "location": "Kyaliwajala",
+    "rating": 4.5,
+    "profileImage": "/storage/profile-images/1775299155080-9fvozjvg8qa.jpg",
+    "images": [
+      "/storage/profile-images/1775299155080-9fvozjvg8qa.jpg"
+    ],
+    "shortBio": "",
+    "description": "",
+    "phone": "0748945675",
+    "services": [
+      "Companionship"
+    ],
+    "videos": [],
+    "reviews": [],
+    "isPinned": true,
+    "isArchived": true,
+    "isVip": false,
+    "isPremium": false
+  },
+  {
     "id": "228840cf-065b-4568-b636-a27be90343bc",
     "name": "Sanyu",
     "age": 25,
@@ -319,29 +266,29 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
-    "id": "22edaf7b-2a4e-4703-8d35-679edf1bbe34",
-    "name": "Diel",
-    "age": 25,
+    "id": "1a94a013-f251-47c9-b9f0-2292743273ae",
+    "name": "Maya",
+    "age": 23,
     "height": "5'7\"",
     "bodyType": "Curvy",
     "complexion": "Medium",
-    "location": "Makerere",
+    "location": "Kampala town",
     "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775300963193-kpjf4zgkpq.jpg",
+    "profileImage": "/storage/profile-images/1775302590917-gme6m2fk7ia.jpg",
     "images": [
-      "/storage/profile-images/1775300963193-kpjf4zgkpq.jpg",
-      "/storage/profile-images/1775300974924-4cpowmlivkn.jpg"
+      "/storage/profile-images/1775302590917-gme6m2fk7ia.jpg",
+      "/storage/profile-images/1775302598603-lo11uxa6el.jpg"
     ],
     "shortBio": "",
     "description": "",
-    "phone": "0759609051",
-    "services": [],
-    "videos": [
-      "/storage/profile-images/1775300984305-cahnxx3osdd.mp4"
+    "phone": "0702331016",
+    "services": [
+      "Companionship"
     ],
+    "videos": [],
     "reviews": [],
     "isPinned": false,
-    "isArchived": false,
+    "isArchived": true,
     "isVip": false,
     "isPremium": false
   },
@@ -440,59 +387,7 @@ export const staticProfiles: ProfileType[] = [
     "videos": [],
     "reviews": [],
     "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "3f4bd7bf-e4b8-4631-be03-05fa65157dfd",
-    "name": "Anitah",
-    "age": 25,
-    "height": "5'7\"",
-    "bodyType": "Thick",
-    "complexion": "Brown",
-    "location": "Rubaga",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775303192204-5g6ca8bnb9p.jpg",
-    "images": [
-      "/storage/profile-images/1775303192204-5g6ca8bnb9p.jpg",
-      "/storage/profile-images/1775303199976-nisqq9qnggh.jpg"
-    ],
-    "shortBio": "",
-    "description": "",
-    "phone": "0759229256",
-    "services": [],
-    "videos": [
-      "/storage/profile-images/1775303208215-v1b6a6e0hej.mp4"
-    ],
-    "reviews": [],
-    "isPinned": true,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "43bf8ced-53e6-4ab9-9af1-d4ba8b73fe1f",
-    "name": "Anna",
-    "age": 23,
-    "height": "5'7\"",
-    "bodyType": "Slim",
-    "complexion": "Brown",
-    "location": "Rubaga",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775376366422-o4ddattcz8.jpg",
-    "images": [
-      "/storage/profile-images/1775376366422-o4ddattcz8.jpg",
-      "/storage/profile-images/1775376379045-mv0z2shp6z.jpg"
-    ],
-    "shortBio": "",
-    "description": "",
-    "phone": "0761202874",
-    "services": [],
-    "videos": [],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
+    "isArchived": true,
     "isVip": false,
     "isPremium": false
   },
@@ -519,6 +414,33 @@ export const staticProfiles: ProfileType[] = [
     "reviews": [],
     "isPinned": false,
     "isArchived": false,
+    "isVip": false,
+    "isPremium": false
+  },
+  {
+    "id": "22edaf7b-2a4e-4703-8d35-679edf1bbe34",
+    "name": "Diel",
+    "age": 25,
+    "height": "5'7\"",
+    "bodyType": "Curvy",
+    "complexion": "Medium",
+    "location": "Makerere",
+    "rating": 4.5,
+    "profileImage": "/storage/profile-images/1775300963193-kpjf4zgkpq.jpg",
+    "images": [
+      "/storage/profile-images/1775300963193-kpjf4zgkpq.jpg",
+      "/storage/profile-images/1775300974924-4cpowmlivkn.jpg"
+    ],
+    "shortBio": "",
+    "description": "",
+    "phone": "0759609051",
+    "services": [],
+    "videos": [
+      "/storage/profile-images/1775300984305-cahnxx3osdd.mp4"
+    ],
+    "reviews": [],
+    "isPinned": false,
+    "isArchived": true,
     "isVip": false,
     "isPremium": false
   },
@@ -673,62 +595,6 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
-    "id": "4c272994-00be-4fe1-a8c5-ff4c2d8ebc20",
-    "name": "Angel",
-    "age": 24,
-    "height": "5'8\"",
-    "bodyType": "Slim",
-    "complexion": "Medium",
-    "location": "Bukesa",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775300947706-zz59f63n7b.jpg",
-    "images": [
-      "/storage/profile-images/1775300947706-zz59f63n7b.jpg",
-      "/storage/profile-images/1775300961695-9xul6v5fxud.jpg",
-      "/storage/profile-images/1775300966727-tyko8fot3po.jpg"
-    ],
-    "shortBio": "",
-    "description": "",
-    "phone": "0783092568",
-    "services": [
-      "Companionship"
-    ],
-    "videos": [
-      "/storage/profile-images/1775301070206-ue4eh1l2gh.mp4"
-    ],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "5cb8c468-775d-4d2c-a9d2-08a1fd52d0a9",
-    "name": "Mia",
-    "age": 24,
-    "height": "5'6\"",
-    "bodyType": "Curvy",
-    "complexion": "Brown",
-    "location": "Rubaga",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775300701643-pln1ddo08jf.jpg",
-    "images": [
-      "/storage/profile-images/1775300701643-pln1ddo08jf.jpg"
-    ],
-    "shortBio": "",
-    "description": "",
-    "phone": "0784941905",
-    "services": [
-      "Companionship"
-    ],
-    "videos": [],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
     "id": "541d15d0-c0c0-480c-ac56-b47da6762695",
     "name": "Jojo",
     "age": 26,
@@ -753,7 +619,7 @@ export const staticProfiles: ProfileType[] = [
     "videos": [],
     "reviews": [],
     "isPinned": false,
-    "isArchived": false,
+    "isArchived": true,
     "isVip": false,
     "isPremium": false
   },
@@ -812,29 +678,28 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
-    "id": "6f41a5c6-f442-47d0-8c2d-ae8a4067c73a",
-    "name": "Alice",
-    "age": 25,
+    "id": "5cb8c468-775d-4d2c-a9d2-08a1fd52d0a9",
+    "name": "Mia",
+    "age": 24,
     "height": "5'6\"",
     "bodyType": "Curvy",
-    "complexion": "Medium",
-    "location": "Kampala town",
+    "complexion": "Brown",
+    "location": "Rubaga",
     "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775302323653-b7szrlss06c.jpg",
+    "profileImage": "/storage/profile-images/1775300701643-pln1ddo08jf.jpg",
     "images": [
-      "/storage/profile-images/1775302323653-b7szrlss06c.jpg",
-      "/storage/profile-images/1775302329710-ad72ilzdpv.jpg"
+      "/storage/profile-images/1775300701643-pln1ddo08jf.jpg"
     ],
     "shortBio": "",
-    "description": "My name is Alice I offer \nServices like ;BJ, Massage and Sex \n,Video sex and Nudes",
-    "phone": "0758570321",
+    "description": "",
+    "phone": "0784941905",
     "services": [
-      "BJ_Massage_Sex_Nudes_Video-sex"
+      "Companionship"
     ],
     "videos": [],
     "reviews": [],
     "isPinned": false,
-    "isArchived": false,
+    "isArchived": true,
     "isVip": false,
     "isPremium": false
   },
@@ -854,30 +719,6 @@ export const staticProfiles: ProfileType[] = [
     "shortBio": "",
     "description": "Incalls and outcalls ",
     "phone": "0703518487",
-    "services": [],
-    "videos": [],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "79311fa0-a8bd-402d-ba51-19793d5541ff",
-    "name": "Tanisha",
-    "age": 22,
-    "height": "5'5\"",
-    "bodyType": "Slim",
-    "complexion": "Medium",
-    "location": "Salaama",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775302189065-qv1sdayd19f.jpg",
-    "images": [
-      "/storage/profile-images/1775302189065-qv1sdayd19f.jpg"
-    ],
-    "shortBio": "",
-    "description": "",
-    "phone": "+256757114621",
     "services": [],
     "videos": [],
     "reviews": [],
@@ -1121,6 +962,31 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
+    "id": "79311fa0-a8bd-402d-ba51-19793d5541ff",
+    "name": "Tanisha",
+    "age": 22,
+    "height": "5'5\"",
+    "bodyType": "Thick",
+    "complexion": "Medium",
+    "location": "Salaama",
+    "rating": 4.5,
+    "profileImage": "/storage/profile-images/1777198018944-re3yaxnvgm.jpg",
+    "images": [
+      "/storage/profile-images/1777198018944-re3yaxnvgm.jpg",
+      "/storage/profile-images/1777198034875-o9md7ll2of.jpg"
+    ],
+    "shortBio": "",
+    "description": "",
+    "phone": "+256757114621",
+    "services": [],
+    "videos": [],
+    "reviews": [],
+    "isPinned": false,
+    "isArchived": false,
+    "isVip": false,
+    "isPremium": false
+  },
+  {
     "id": "d8aa96bb-19fe-4afd-adf9-04ea39ddaf11",
     "name": "Miracle",
     "age": 23,
@@ -1136,32 +1002,6 @@ export const staticProfiles: ProfileType[] = [
     "shortBio": "",
     "description": "",
     "phone": "0762803423",
-    "services": [
-      "Companionship"
-    ],
-    "videos": [],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "b074025f-bd46-4094-85f8-507b8d9ceea7",
-    "name": "Celine",
-    "age": 27,
-    "height": "5'6\"",
-    "bodyType": "Curvy",
-    "complexion": "Brown",
-    "location": "Bukoto",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775299918040-szeso3o9fv.jpg",
-    "images": [
-      "/storage/profile-images/1775299918040-szeso3o9fv.jpg"
-    ],
-    "shortBio": "",
-    "description": "I am to give what u have always dreamed of❤️, come Let me take you to your fantasies daddy💋💕💗",
-    "phone": "0792775940",
     "services": [
       "Companionship"
     ],
@@ -1253,28 +1093,28 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
-    "id": "b72ca5e0-f0e5-4eb4-bc52-827385482bfa",
-    "name": "Moses Kash",
+    "id": "c8fd13ef-c553-4e99-a99b-89ecca5bc707",
+    "name": "Anitah",
     "age": 23,
-    "height": "6'5\"",
-    "bodyType": "Slim",
-    "complexion": "Medium",
-    "location": "Kampala",
+    "height": "5'6\"",
+    "bodyType": "Curvy",
+    "complexion": "Dark",
+    "location": "Fort-portal",
     "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775303543643-6yjsfyv2aub.jpg",
+    "profileImage": "/storage/profile-images/1775300305791-qt9zpbdx5w.jpg",
     "images": [
-      "/storage/profile-images/1775303543643-6yjsfyv2aub.jpg"
+      "/storage/profile-images/1775300305791-qt9zpbdx5w.jpg"
     ],
     "shortBio": "",
     "description": "",
-    "phone": "0727590207",
+    "phone": "0792193616",
     "services": [
       "Companionship"
     ],
     "videos": [],
     "reviews": [],
     "isPinned": false,
-    "isArchived": false,
+    "isArchived": true,
     "isVip": false,
     "isPremium": false
   },
@@ -1356,6 +1196,32 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
+    "id": "b074025f-bd46-4094-85f8-507b8d9ceea7",
+    "name": "Celine",
+    "age": 27,
+    "height": "5'6\"",
+    "bodyType": "Curvy",
+    "complexion": "Brown",
+    "location": "Bukoto",
+    "rating": 4.5,
+    "profileImage": "/storage/profile-images/1775299918040-szeso3o9fv.jpg",
+    "images": [
+      "/storage/profile-images/1775299918040-szeso3o9fv.jpg"
+    ],
+    "shortBio": "",
+    "description": "I am to give what u have always dreamed of❤️, come Let me take you to your fantasies daddy💋💕💗",
+    "phone": "0792775940",
+    "services": [
+      "Companionship"
+    ],
+    "videos": [],
+    "reviews": [],
+    "isPinned": false,
+    "isArchived": true,
+    "isVip": false,
+    "isPremium": false
+  },
+  {
     "id": "bdd90dec-858b-4ed9-8b41-3e162c0bc76a",
     "name": "Her Majesty",
     "age": 25,
@@ -1380,53 +1246,52 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
-    "id": "c8fd13ef-c553-4e99-a99b-89ecca5bc707",
-    "name": "Anitah",
-    "age": 23,
-    "height": "5'6\"",
-    "bodyType": "Curvy",
-    "complexion": "Dark",
-    "location": "Fort-portal",
+    "id": "138eef54-9c0c-4fb2-a035-1ae9b66669ac",
+    "name": "Smart wire",
+    "age": 25,
+    "height": "5'9\"",
+    "bodyType": "Slim",
+    "complexion": "Medium",
+    "location": "Kampala",
     "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775300305791-qt9zpbdx5w.jpg",
+    "profileImage": "/storage/profile-images/1776251250880-mshkqvkf0tb.jpg",
     "images": [
-      "/storage/profile-images/1775300305791-qt9zpbdx5w.jpg"
+      "/storage/profile-images/1776251250880-mshkqvkf0tb.jpg"
     ],
     "shortBio": "",
-    "description": "",
-    "phone": "0792193616",
-    "services": [
-      "Companionship"
-    ],
-    "videos": [],
-    "reviews": [],
-    "isPinned": true,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "c90ab695-4e8d-4a28-93c5-8d9ebd47be10",
-    "name": "Alicia",
-    "age": 22,
-    "height": "5'7\"",
-    "bodyType": "Thick",
-    "complexion": "Light",
-    "location": "Nansana",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775388153156-w48lximt3c.jpg",
-    "images": [
-      "/storage/profile-images/1775388153156-w48lximt3c.jpg",
-      "/storage/profile-images/1775388197658-vvdjttb6fhm.jpg"
-    ],
-    "shortBio": "",
-    "description": "",
-    "phone": "0780606681",
+    "description": "Incalls and outcalls",
+    "phone": "0758535858",
     "services": [],
     "videos": [],
     "reviews": [],
     "isPinned": false,
     "isArchived": false,
+    "isVip": false,
+    "isPremium": false
+  },
+  {
+    "id": "f3edbc13-5107-4aa9-a723-db9bbc833372",
+    "name": "Loryn",
+    "age": 25,
+    "height": "5'8\"",
+    "bodyType": "Slim",
+    "complexion": "Medium",
+    "location": "Bugolobi",
+    "rating": 4.5,
+    "profileImage": "/storage/profile-images/1775383126879-onu1k02tvzn.jpg",
+    "images": [
+      "/storage/profile-images/1775383126879-onu1k02tvzn.jpg"
+    ],
+    "shortBio": "",
+    "description": "Good n profetional massages, out calls only",
+    "phone": "0789870732",
+    "services": [
+      "Companionship"
+    ],
+    "videos": [],
+    "reviews": [],
+    "isPinned": false,
+    "isArchived": true,
     "isVip": false,
     "isPremium": false
   },
@@ -1457,56 +1322,6 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
-    "id": "fc4e081b-bc54-4dc6-9f24-7710e253fee2",
-    "name": "Barbra",
-    "age": 24,
-    "height": "5'5\"",
-    "bodyType": "Thick",
-    "complexion": "Medium",
-    "location": "Nakawa",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775299062736-hrif9c8y625.jpg",
-    "images": [
-      "/storage/profile-images/1775299062736-hrif9c8y625.jpg"
-    ],
-    "shortBio": "",
-    "description": "I do incalls and outcalls ",
-    "phone": "0771471297",
-    "services": [],
-    "videos": [],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "c9fb406b-ee06-4f4c-916a-08fcf6e2e68e",
-    "name": "Dorah",
-    "age": 23,
-    "height": "5'6\"",
-    "bodyType": "Slim",
-    "complexion": "Medium",
-    "location": "Kira",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775299158358-gs7fntyj2k.jpg",
-    "images": [
-      "/storage/profile-images/1775299158358-gs7fntyj2k.jpg"
-    ],
-    "shortBio": "",
-    "description": "Incalls and outcalls",
-    "phone": "0707188821",
-    "services": [],
-    "videos": [
-      "/storage/profile-images/1773737232430-j3yiecifech.mp4"
-    ],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
     "id": "fc5f3d44-17ee-4359-b33b-183be800bdcc",
     "name": "Liana",
     "age": 24,
@@ -1530,7 +1345,7 @@ export const staticProfiles: ProfileType[] = [
     ],
     "reviews": [],
     "isPinned": false,
-    "isArchived": false,
+    "isArchived": true,
     "isVip": false,
     "isPremium": false
   },
@@ -1612,32 +1427,6 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
-    "id": "ec5cd15e-c225-4250-b5fb-b465d52bac0b",
-    "name": "Sheila",
-    "age": 28,
-    "height": "5'6\"",
-    "bodyType": "Curvy",
-    "complexion": "Medium",
-    "location": "Buziga",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775299999807-rr7tt1p214.jpg",
-    "images": [
-      "/storage/profile-images/1775299999807-rr7tt1p214.jpg"
-    ],
-    "shortBio": "",
-    "description": "Minimum 100k😍 🍆 ",
-    "phone": "0755660333",
-    "services": [
-      "Companionship_BJ_sex-chat"
-    ],
-    "videos": [],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
     "id": "ff84648f-0b1a-4bd0-92fc-9cbc3d7b894f",
     "name": "Katusiime",
     "age": 24,
@@ -1657,30 +1446,6 @@ export const staticProfiles: ProfileType[] = [
     "videos": [],
     "reviews": [],
     "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "138eef54-9c0c-4fb2-a035-1ae9b66669ac",
-    "name": "Smart wire",
-    "age": 25,
-    "height": "5'9\"",
-    "bodyType": "Slim",
-    "complexion": "Medium",
-    "location": "Kampala",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1776251250880-mshkqvkf0tb.jpg",
-    "images": [
-      "/storage/profile-images/1776251250880-mshkqvkf0tb.jpg"
-    ],
-    "shortBio": "",
-    "description": "Incalls and outcalls",
-    "phone": "0758535858",
-    "services": [],
-    "videos": [],
-    "reviews": [],
-    "isPinned": true,
     "isArchived": false,
     "isVip": false,
     "isPremium": false
@@ -1742,59 +1507,6 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
-    "id": "f3edbc13-5107-4aa9-a723-db9bbc833372",
-    "name": "Loryn",
-    "age": 25,
-    "height": "5'8\"",
-    "bodyType": "Slim",
-    "complexion": "Medium",
-    "location": "Bugolobi",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775383126879-onu1k02tvzn.jpg",
-    "images": [
-      "/storage/profile-images/1775383126879-onu1k02tvzn.jpg"
-    ],
-    "shortBio": "",
-    "description": "Good n profetional massages, out calls only",
-    "phone": "0789870732",
-    "services": [
-      "Companionship"
-    ],
-    "videos": [],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
-    "id": "f8884d1f-9402-428f-a2e4-771b02839dd7",
-    "name": "Cara",
-    "age": 22,
-    "height": "5'6\"",
-    "bodyType": "Curvy",
-    "complexion": "Medium",
-    "location": "Kireka",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775299005357-w1fqh2rrnj.jpg",
-    "images": [
-      "/storage/profile-images/1775299005357-w1fqh2rrnj.jpg",
-      "/storage/profile-images/1775299014804-t0wfezqvus.jpg"
-    ],
-    "shortBio": "Your favorite escape is just a message away",
-    "description": "Hi there I am Cara, and I believe the best moments in life are the ones where you can truly be yourself, I'm a wrm, down to earth companion who loves good conversation, genuine laughs, creating a relaxed atmosphere where the outside world just fades away.  Come let me make you feel better, happy and have fun all night or day❤️😘😍",
-    "phone": "0778037135",
-    "services": [
-      "Companionship"
-    ],
-    "videos": [],
-    "reviews": [],
-    "isPinned": true,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
     "id": "ad613b34-86ed-4549-8890-f98161d45aec",
     "name": "Denis",
     "age": 24,
@@ -1851,37 +1563,6 @@ export const staticProfiles: ProfileType[] = [
     "isPremium": false
   },
   {
-    "id": "47a102ee-a557-4c56-a543-3d23316e0943",
-    "name": "Sylvia ",
-    "age": 24,
-    "height": "5'5\"",
-    "bodyType": "Curvy",
-    "complexion": "Medium",
-    "location": "Ntinda",
-    "rating": 4.5,
-    "profileImage": "/storage/profile-images/1775304166134-40y3nktuwt7.jpg",
-    "images": [
-      "/storage/profile-images/1775304166134-40y3nktuwt7.jpg",
-      "/storage/profile-images/1775304221823-dnutudt7x6l.jpg",
-      "/storage/profile-images/1775304228200-3ldo5ej7dz4.jpg",
-      "/storage/profile-images/1775304250574-3dte6ok788n.jpg",
-      "/storage/profile-images/1775304264835-jth3mc6rj1.jpg",
-      "/storage/profile-images/1775304279661-h9g46t6367s.jpg"
-    ],
-    "shortBio": "",
-    "description": "I do outcalls only❤️",
-    "phone": "0744244750",
-    "services": [
-      "Companionship"
-    ],
-    "videos": [],
-    "reviews": [],
-    "isPinned": false,
-    "isArchived": false,
-    "isVip": false,
-    "isPremium": false
-  },
-  {
     "id": "9b5866c6-b788-4ff1-bb57-77703ed6714c",
     "name": "Soft touch SPA",
     "age": 19,
@@ -1899,6 +1580,7 @@ export const staticProfiles: ProfileType[] = [
     "shortBio": "",
     "description": "Forget the clinical feel of a standard massage spa. Soft Touch Spa is designed for the modern gentleman who demands more from his downtime😍🍆 . Our stunning escorts are trained to melt away your stress through expert massage before pivoting to a more intimate, personalized experience.🥰💋 \n​What to Expect: Hot oil treatments, Nuru-style play, and gorgeous ladies who love what they do.❤️🔥 ",
     "phone": "0791505503",
+    "whatsapp": "0757350093",
     "services": [],
     "videos": [],
     "reviews": [],
@@ -1999,6 +1681,90 @@ export const staticProfiles: ProfileType[] = [
     "description": "",
     "phone": "0743983374",
     "services": [],
+    "videos": [],
+    "reviews": [],
+    "isPinned": false,
+    "isArchived": false,
+    "isVip": false,
+    "isPremium": false
+  },
+  {
+    "id": "f8884d1f-9402-428f-a2e4-771b02839dd7",
+    "name": "Cara",
+    "age": 22,
+    "height": "5'6\"",
+    "bodyType": "Curvy",
+    "complexion": "Medium",
+    "location": "Kireka",
+    "rating": 4.5,
+    "profileImage": "/storage/profile-images/1775299005357-w1fqh2rrnj.jpg",
+    "images": [
+      "/storage/profile-images/1775299005357-w1fqh2rrnj.jpg",
+      "/storage/profile-images/1775299014804-t0wfezqvus.jpg"
+    ],
+    "shortBio": "Your favorite escape is just a message away",
+    "description": "Hi there I am Cara, and I believe the best moments in life are the ones where you can truly be yourself, I'm a wrm, down to earth companion who loves good conversation, genuine laughs, creating a relaxed atmosphere where the outside world just fades away.  Come let me make you feel better, happy and have fun all night or day❤️😘😍",
+    "phone": "0778037135",
+    "services": [
+      "Companionship"
+    ],
+    "videos": [],
+    "reviews": [],
+    "isPinned": true,
+    "isArchived": true,
+    "isVip": false,
+    "isPremium": false
+  },
+  {
+    "id": "b4381c9f-71f4-45d8-886a-8e4902d0159e",
+    "name": "Bless",
+    "age": 24,
+    "height": "5'8\"",
+    "bodyType": "Athletic",
+    "complexion": "Brown",
+    "location": "Kansanga",
+    "rating": 4.5,
+    "profileImage": "/storage/profile-images/1777215654595-53392p2rhu4.jpg",
+    "images": [
+      "/storage/profile-images/1777215654595-53392p2rhu4.jpg"
+    ],
+    "shortBio": "",
+    "description": "",
+    "phone": "0789714095",
+    "services": [
+      "Dating",
+      "Companionship"
+    ],
+    "videos": [],
+    "reviews": [],
+    "isPinned": false,
+    "isArchived": false,
+    "isVip": false,
+    "isPremium": false
+  },
+  {
+    "id": "b0f159df-b447-4e0a-ab85-262173f481b7",
+    "name": "Anna",
+    "age": 22,
+    "height": "5'6\"",
+    "bodyType": "Curvy",
+    "complexion": "Medium",
+    "location": "Kabusu",
+    "rating": 4.5,
+    "profileImage": "/storage/profile-images/1777270293825-bsibkqmu6w7.jpg",
+    "images": [
+      "/storage/profile-images/1777270293825-bsibkqmu6w7.jpg",
+      "/storage/profile-images/1777270315323-h9og35m6t3k.jpg",
+      "/storage/profile-images/1777270316438-u38d32j15ke.jpg",
+      "/storage/profile-images/1777270318132-c7fvjnx1e2n.jpg"
+    ],
+    "shortBio": "",
+    "description": "Daddy, I got it all that you need 🥰🍆😛 ",
+    "phone": "0790781679",
+    "services": [
+      "Dating",
+      "Companionship"
+    ],
     "videos": [],
     "reviews": [],
     "isPinned": false,

@@ -3,6 +3,7 @@ import { mockProfiles } from "@/data/mockProfiles";
 import { staticProfiles } from "@/data/staticProfiles";
 import { supabase } from "@/integrations/supabase/client";
 import { slugify } from "@/lib/utils";
+import { unstable_cache } from 'next/cache';
 
 // Set this to false to use live database updates while serving images locally to save quota
 const FORCE_STATIC_DATA = false;
@@ -163,3 +164,37 @@ export async function fetchProfileById(id: string) {
     return staticProfiles.find(p => p.id === id || slugify(p.name) === id) || null;
   }
 }
+
+// Quota-Safe Fetcher for Location Pages
+export const fetchProfilesByLocation = unstable_cache(
+  async (location: string) => {
+    if (FORCE_STATIC_DATA || !process.env.NEXT_PUBLIC_SUPABASE_URL) {
+      // Fallback to static data if needed
+      return staticProfiles.filter(p => 
+        p.location.toLowerCase().includes(location.toLowerCase())
+      );
+    }
+
+    try {
+      // @ts-ignore
+      const { data, error } = await (supabase as any)
+        .from("profiles")
+        // CRITICAL: Only select lightweight columns to save egress! No descriptions or large arrays.
+        .select("id, name, location, profile_image, rating, is_pinned, is_vip, is_premium")
+        .eq("is_archived", false)
+        // CRITICAL: Filter in the DB so we only download profiles for this location
+        .ilike("location", `%${location}%`) 
+        .order("is_pinned", { ascending: false });
+
+      if (error) throw error;
+      
+      // Map it using your existing mapDbProfile logic
+      return (data || []).map(mapDbProfile);
+    } catch (err) {
+      console.error(`Error fetching profiles for ${location}:`, err);
+      return [];
+    }
+  },
+  ['location-profiles'], // Cache key prefix
+  { revalidate: 3600 } // Cache in Next.js for 1 hour (3600 seconds) to protect Supabase
+);

@@ -11,7 +11,6 @@ export default function robots(): MetadataRoute.Robots {
     ],
     sitemap: [
       'https://www.hexescortsug.xyz/sitemap.xml',
-      'https://www.hexescortsug.xyz/sitemap.txt'
     ],
     host: 'www.hexescortsug.xyz',
   }

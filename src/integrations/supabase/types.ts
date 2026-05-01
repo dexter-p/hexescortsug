@@ -51,8 +51,6 @@ export type Database = {
           updated_at: string
           videos: string[] | null
           is_pinned: boolean | null
-          is_ad: boolean | null
-          ad_images: string[] | null
         }
         Insert: {
           age?: number | null
@@ -75,8 +73,6 @@ export type Database = {
           updated_at?: string
           videos?: string[] | null
           is_pinned?: boolean | null
-          is_ad?: boolean | null
-          ad_images?: string[] | null
         }
         Update: {
           age?: number | null
@@ -99,8 +95,6 @@ export type Database = {
           updated_at?: string
           videos?: string[] | null
           is_pinned?: boolean | null
-          is_ad?: boolean | null
-          ad_images?: string[] | null
         }
         Relationships: []
       }
