@@ -8,12 +8,16 @@ export const revalidate = 3600;
 export const dynamicParams = true;
 
 type Props = {
-  params: { location: string }
+  params: { location: string[] }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const rawLocation = params.location.replace(/-/g, ' ');
-  const locationName = rawLocation.charAt(0).toUpperCase() + rawLocation.slice(1).toLowerCase();
+  const city = params.location[0].replace(/-/g, ' ');
+  const suburb = params.location[1] ? params.location[1].replace(/-/g, ' ') : null;
+  
+  const rawLocation = suburb ? `${suburb}, ${city}` : city;
+  const locationName = rawLocation.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+  const routePath = params.location.join('/');
   
   return {
     title: `${locationName} Escorts - #1 Verified Sexy Call Girls & Hookups`,
@@ -22,22 +26,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `Top Escorts & Call Girls in ${locationName}`,
       description: `Browse verified sexy escorts and hot girls available in ${locationName}, Uganda. 100% Real & Verified profiles.`,
-      url: `https://www.hexescortsug.xyz/escorts-in/${params.location}`,
+      url: `https://www.hexescortsug.xyz/escorts-in/${routePath}`,
       siteName: 'Hex Escorts UG',
     },
     alternates: {
-      canonical: `https://www.hexescortsug.xyz/escorts-in/${params.location}`,
+      canonical: `https://www.hexescortsug.xyz/escorts-in/${routePath}`,
     }
   }
 }
 
 export default async function EscortsInLocationPage({ params }: Props) {
-  const { location } = params;
-  const formattedLocation = location.replace(/-/g, ' ');
-  const locationName = formattedLocation.charAt(0).toUpperCase() + formattedLocation.slice(1).toLowerCase();
+  const city = params.location[0].replace(/-/g, ' ');
+  const suburb = params.location[1] ? params.location[1].replace(/-/g, ' ') : null;
+  
+  const rawLocation = suburb ? `${suburb}, ${city}` : city;
+  const locationName = rawLocation.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
 
   // Fetch only the specific profiles for this location (Cache-protected)
-  const locationProfiles = await fetchProfilesByLocation(formattedLocation);
+  // If suburb exists, we pass it to the fetcher, else just city
+  const locationProfiles = await fetchProfilesByLocation(city);
 
   // Fresh seed for client-side shuffling
   const seed = Math.random().toString(36).substring(2, 10);
@@ -81,7 +88,8 @@ export default async function EscortsInLocationPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <LocationPageClient 
-        cityParam={formattedLocation} 
+        cityParam={city} 
+        suburbParam={suburb || undefined}
         initialProfiles={locationProfiles} 
         shuffleSeed={seed} 
       />
