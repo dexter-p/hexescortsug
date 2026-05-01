@@ -34,6 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function EscortsInLocationPage({ params }: Props) {
   const { location } = params;
   const formattedLocation = location.replace(/-/g, ' ');
+  const locationName = formattedLocation.charAt(0).toUpperCase() + formattedLocation.slice(1).toLowerCase();
 
   // Fetch only the specific profiles for this location (Cache-protected)
   const locationProfiles = await fetchProfilesByLocation(formattedLocation);
@@ -41,11 +42,49 @@ export default async function EscortsInLocationPage({ params }: Props) {
   // Fresh seed for client-side shuffling
   const seed = Math.random().toString(36).substring(2, 10);
 
+  // Generate FAQ Schema for Google Rich Snippets
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": `Are the escorts in ${locationName} verified?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `Yes, all escorts listed on Hex Escorts UG for ${locationName} go through a strict verification process to ensure authenticity, safety, and a premium experience.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `How much do escorts cost in ${locationName}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `Prices vary depending on the companion, duration, and specific services. You can view individual rates on each verified profile for escorts available in ${locationName}.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `Can I book an outcall to my hotel in ${locationName}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `Absolutely. Many of our high-class call girls in ${locationName} offer discreet outcall services to premium hotels, apartments, and private residences.`
+        }
+      }
+    ]
+  };
+
   return (
-    <LocationPageClient 
-      cityParam={formattedLocation} 
-      initialProfiles={locationProfiles} 
-      shuffleSeed={seed} 
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <LocationPageClient 
+        cityParam={formattedLocation} 
+        initialProfiles={locationProfiles} 
+        shuffleSeed={seed} 
+      />
+    </>
   );
 }
