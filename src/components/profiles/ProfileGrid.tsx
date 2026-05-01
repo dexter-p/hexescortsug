@@ -1,7 +1,7 @@
 "use client";
-import { ProfileType } from "@/types/profile";
+
 import { ProfileCard } from "./ProfileCard";
-import { Skeleton } from "@/components/ui/skeleton";
+import { ProfileType } from "@/types/profile";
 
 interface ProfileGridProps {
   profiles: ProfileType[];
@@ -10,15 +10,17 @@ interface ProfileGridProps {
   loading?: boolean;
 }
 
-const SkeletonCard = () => (
-  <div className="w-full space-y-3">
-    <Skeleton className="h-[250px] w-full rounded-xl" />
-    <div className="space-y-2">
-      <Skeleton className="h-4 w-[80%]" />
-      <Skeleton className="h-4 w-[60%]" />
+function SkeletonCard() {
+  return (
+    <div className="w-full rounded-lg overflow-hidden bg-card border border-border animate-pulse">
+      <div className="aspect-[3/4] bg-muted" />
+      <div className="p-2 space-y-2">
+        <div className="h-3 bg-muted rounded w-2/3" />
+        <div className="h-3 bg-muted rounded w-1/2" />
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
 export function ProfileGrid({ profiles, title, featuredIds = [], loading = false }: ProfileGridProps) {
   const showSkeletons = loading;
@@ -29,7 +31,7 @@ export function ProfileGrid({ profiles, title, featuredIds = [], loading = false
         <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-pink-500">{title}</h2>
       )}
       
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-6 w-full">
+      <div className="grid grid-cols-[repeat(2,minmax(0,1fr))] sm:grid-cols-[repeat(3,minmax(0,1fr))] lg:grid-cols-[repeat(3,minmax(0,1fr))] gap-2 sm:gap-4 w-full">
         {showSkeletons
           ? Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="flex w-full">
@@ -40,11 +42,12 @@ export function ProfileGrid({ profiles, title, featuredIds = [], loading = false
               <div key={profile.id} className="flex w-full">
                 <ProfileCard 
                   profile={profile} 
-                  featured={featuredIds.includes(profile.id)} 
-                  priority={index < 4}
+                  featured={featuredIds.includes(profile.id)}
+                  priority={index < 2}
                 />
               </div>
-            ))}
+            ))
+        }
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           <SidebarProvider>
             <div className="min-h-screen flex w-full">
               <AppSidebar />
-              <div className="flex-1">{children}</div>
+              <div className="flex-1 min-w-0 overflow-hidden">{children}</div>
             </div>
             <Toaster />
             <Sonner />

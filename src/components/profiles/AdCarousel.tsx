@@ -31,13 +31,13 @@ export const AdCarousel = ({ profiles }: AdCarouselProps) => {
   const trackItems = [...adItems, ...adItems];
 
   return (
-    <div className="relative w-full overflow-hidden bg-black/40 py-4 border-y border-pink-500/20 mb-8">
-      <div className="flex marquee-track gap-4" style={{ width: "max-content" }}>
+    <div className="relative w-full max-w-full overflow-hidden bg-black/40 py-4 border-y border-pink-500/20 mb-8">
+      <div className="flex marquee-track gap-3 sm:gap-4 w-max max-w-none">
         {trackItems.map((item, idx) => (
           <Link
             key={`${item.id}-${idx}`}
             href={`/profile/${item.slug}`}
-            className="relative shrink-0 w-40 h-56 sm:w-48 sm:h-64 lg:w-64 lg:h-80 rounded-xl overflow-hidden border border-pink-500/30 hover:border-pink-500 transition-colors shadow-[0_0_15px_rgba(236,72,153,0.1)] hover:shadow-[0_0_20px_rgba(236,72,153,0.3)]"
+            className="relative shrink-0 w-32 h-44 sm:w-48 sm:h-64 lg:w-64 lg:h-80 rounded-xl overflow-hidden border border-pink-500/30 hover:border-pink-500 transition-colors shadow-[0_0_15px_rgba(236,72,153,0.1)] hover:shadow-[0_0_20px_rgba(236,72,153,0.3)]"
           >
             <img
               src={item.image}

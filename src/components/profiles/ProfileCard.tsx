@@ -96,10 +96,10 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
               </div>
             </Link>
           
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-2 pb-2 pt-4 text-white">
-              <h3 className="font-bold text-xs sm:text-sm text-center truncate leading-tight">{profile.name}</h3>
-              <div className="flex items-center justify-center text-[10px] sm:text-xs text-gray-300 mt-1">
-                <MapPin className="h-2 w-2 mr-1 shrink-0" />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-1 pb-1 pt-3 text-white">
+              <h3 className="font-bold text-[10px] sm:text-xs text-center truncate leading-tight">{profile.name}</h3>
+              <div className="flex items-center justify-center text-[8px] sm:text-[9px] text-gray-300 mt-0.5">
+                <MapPin className="h-1.5 w-1.5 mr-0.5 shrink-0" />
                 <span className="truncate">{profile.location}</span>
               </div>
             </div>
@@ -110,12 +110,12 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
         <div className="mt-1 w-full flex items-center gap-1">
           <Button 
             variant="default" 
-            className="flex-1 min-w-0 bg-primary hover:bg-primary/90 text-white text-[10px] sm:text-[11px] h-7 sm:h-8 px-2 shadow-[0_0_10px_rgba(235,0,115,0.35)] transition-all duration-300"
+            className="flex-1 min-w-0 bg-primary hover:bg-primary/90 text-white text-[8px] sm:text-[10px] h-5 sm:h-7 px-1 shadow-[0_0_8px_rgba(235,0,115,0.3)] transition-all duration-300"
             onMouseEnter={() => setShowContact(true)}
             onMouseLeave={() => setShowContact(false)}
             onClick={handleContactClick}
           >
-            <span suppressHydrationWarning className="truncate">
+            <span suppressHydrationWarning className="truncate block">
               {!isMounted ? "Contact" : (showContact ? phoneNumber : "Contact")}
             </span>
           </Button>
@@ -123,15 +123,15 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
             href={`whatsapp://send?phone=${waNumber}&text=${encodeURIComponent("Hi, i got your contact from https://www.hexescortsug.xyz")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-none flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-7 h-7 sm:w-8 sm:h-8 transition-colors shadow-sm overflow-hidden shrink-0"
+            className="flex-none flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-5 h-5 sm:w-7 sm:h-7 transition-colors shadow-sm overflow-hidden shrink-0"
             onClick={(e) => e.stopPropagation()}
             aria-label="Contact on WhatsApp"
           >
             <Image 
               src="/assets/whatsapp-icon.jpg" 
               alt="WhatsApp" 
-              width={28} 
-              height={28} 
+              width={24} 
+              height={24} 
               className="w-full h-full object-cover"
             />
           </a>
