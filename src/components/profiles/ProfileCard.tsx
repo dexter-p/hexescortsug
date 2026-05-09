@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin } from "lucide-react";
+import { MapPin, Crown } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { cn, getMediaUrl, slugify } from "@/lib/utils";
 import { ProfileType } from "@/types/profile";
@@ -78,7 +78,7 @@ export function ProfileCard({ profile, featured = false, priority = false, anima
                    {/* Shine Sweep Animation */}
                    <div className="absolute inset-0 w-full h-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full" />
                    
-                   <span className="text-xs">👑</span>
+                   <Crown className="w-3 h-3 text-black fill-black" />
                    <span className="drop-shadow-sm">VIP</span>
                 </div>
               </div>
