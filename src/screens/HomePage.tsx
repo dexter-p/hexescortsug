@@ -6,7 +6,7 @@ import { ProfileGrid } from "@/components/profiles/ProfileGrid";
 import { useAllProfiles } from "@/hooks/use-all-profiles";
 import { ProfileType } from "@/types/profile";
 import { Button } from "@/components/ui/button";
-
+import { motion } from "framer-motion";
 import { AdCarousel } from "@/components/profiles/AdCarousel";
 
 const PAGE_SIZE = 12;
@@ -39,12 +39,14 @@ const HomePage = ({ initialProfiles = [], shuffleSeed }: HomePageProps) => {
   const { data: queryProfiles } = useAllProfiles(initialProfiles, shuffleSeed);
   const allProfiles = queryProfiles || initialProfiles || [];
 
-  const visibleProfiles = allProfiles.slice(0, visibleCount);
-  const hasMore = visibleCount < allProfiles.length;
   const isInitialLoading = allProfiles.length === 0;
 
-  // Mark all pinned profiles as featured
-  const featuredIds = allProfiles.filter(p => p.isPinned).map(p => p.id);
+  // Split profiles into VIP and Ordinary
+  const vipProfiles = allProfiles.filter(p => p.isPinned);
+  const ordinaryProfiles = allProfiles.filter(p => !p.isPinned);
+  
+  const visibleOrdinary = ordinaryProfiles.slice(0, visibleCount);
+  const hasMore = visibleCount < ordinaryProfiles.length;
 
   return (
     <div className="pt-20 lg:pt-6 min-h-screen max-w-[100vw] overflow-x-hidden">
@@ -73,29 +75,58 @@ const HomePage = ({ initialProfiles = [], shuffleSeed }: HomePageProps) => {
           </nav>
         </div>
 
-        {/* Profile Grid */}
-        <div className="space-y-8">
-          <ProfileGrid
-            profiles={visibleProfiles}
-            title="🔥 Verified Top Profiles"
-            featuredIds={featuredIds}
-            loading={isInitialLoading}
-          />
-
-          {!isInitialLoading && hasMore && (
-            <div className="flex justify-center pt-2 pb-4">
-              <Button
-                onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                className="bg-gradient-to-r from-pink-600 to-pink-500 hover:from-pink-700 hover:to-pink-600 text-white px-8 py-2 rounded-full font-semibold shadow-[0_0_18px_4px_rgba(236,72,153,0.55)] hover:shadow-[0_0_28px_8px_rgba(236,72,153,0.75)] transition-shadow duration-300 animate-pulse"
-              >
-                Load More Profiles
-              </Button>
+        {/* Profile Grid Section */}
+        <div className="space-y-16 sm:space-y-24">
+          
+          {/* VIP SECTION */}
+          {vipProfiles.length > 0 && (
+            <div className="space-y-6">
+              <div className="flex flex-col items-center sm:items-start">
+                <motion.h2 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  className="text-2xl sm:text-3xl lg:text-4xl font-black italic uppercase tracking-tighter bg-gradient-to-r from-yellow-400 via-white to-yellow-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] animate-pulse"
+                >
+                  👑 Elite VIP Escorts
+                </motion.h2>
+                <div className="h-1 w-32 bg-gradient-to-r from-yellow-500 to-transparent mt-1" />
+              </div>
+              <ProfileGrid
+                profiles={vipProfiles}
+                featuredIds={vipProfiles.map(p => p.id)}
+                loading={isInitialLoading}
+              />
             </div>
           )}
+
+          {/* ORDINARY SECTION */}
+          <div className="space-y-6">
+            <div className="flex flex-col items-center sm:items-start">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white/90 tracking-tight">
+                Ordinary Escorts
+              </h2>
+              <div className="h-0.5 w-24 bg-gray-700 mt-1" />
+            </div>
+            <ProfileGrid
+              profiles={visibleOrdinary}
+              loading={isInitialLoading}
+            />
+
+            {!isInitialLoading && hasMore && (
+              <div className="flex justify-center pt-8 pb-4">
+                <Button
+                  onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+                  className="bg-gradient-to-r from-pink-600 to-pink-500 hover:from-pink-700 hover:to-pink-600 text-white px-8 py-2 rounded-full font-semibold shadow-[0_0_18px_4px_rgba(236,72,153,0.55)] hover:shadow-[0_0_28px_8px_rgba(236,72,153,0.75)] transition-shadow duration-300"
+                >
+                  Load More Profiles
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* SEO Content Section */}
-        <div className="mt-16 text-center text-muted-foreground prose prose-invert mx-auto max-w-4xl border-t border-gray-800 pt-12 pb-12">
+        <div className="mt-24 text-center text-muted-foreground prose prose-invert mx-auto max-w-4xl border-t border-gray-800 pt-16 pb-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-6">#1 Verified Escort Directory in Uganda</h2>
           <div className="space-y-6 text-sm sm:text-base leading-relaxed text-gray-400">
             <p>
