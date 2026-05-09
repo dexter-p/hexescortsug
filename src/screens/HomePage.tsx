@@ -88,7 +88,10 @@ const HomePage = ({ initialProfiles = [], shuffleSeed }: HomePageProps) => {
                   whileInView={{ opacity: 1, x: 0 }}
                   className="text-2xl sm:text-3xl lg:text-5xl font-black italic uppercase tracking-tighter bg-gradient-to-r from-yellow-400 via-white to-yellow-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] animate-pulse flex items-center gap-3"
                 >
-                  <Crown className="w-8 h-8 sm:w-10 sm:h-10 lg:w-14 lg:h-14 text-yellow-500 fill-yellow-500 drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]" />
+                  {/* Show Emoji on Mobile, Hide on Desktop */}
+                  <span className="lg:hidden">👑</span>
+                  {/* Show Icon on Desktop, Hide on Mobile */}
+                  <Crown className="hidden lg:block w-14 h-14 text-yellow-500 fill-yellow-500 drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]" />
                   Elite VIP Escorts
                 </motion.h2>
                 <div className="h-1 w-32 bg-gradient-to-r from-yellow-500 to-transparent mt-1" />

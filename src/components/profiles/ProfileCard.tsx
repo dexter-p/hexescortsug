@@ -78,7 +78,7 @@ export function ProfileCard({ profile, featured = false, priority = false, anima
                    {/* Shine Sweep Animation */}
                    <div className="absolute inset-0 w-full h-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full" />
                    
-                   <Crown className="w-3 h-3 text-black fill-black" />
+                   <span className="text-xs">👑</span>
                    <span className="drop-shadow-sm">VIP</span>
                 </div>
               </div>
