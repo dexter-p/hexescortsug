@@ -10,8 +10,8 @@ export default function robots(): MetadataRoute.Robots {
       }
     ],
     sitemap: [
-      'https://www.hexescortsug.xyz/sitemap.xml',
+      'https://www.hexescortsug.com/sitemap.xml',
     ],
-    host: 'www.hexescortsug.xyz',
+    host: 'www.hexescortsug.com',
   }
 }

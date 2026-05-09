@@ -80,7 +80,7 @@ export default async function Page({ params }: Props) {
     // This adds the "Price" snippet in Google Search
     "offers": {
       "@type": "Offer",
-      "url": `https://www.hexescortsug.xyz/profile/${profileSlug}`,
+      "url": `https://www.hexescortsug.com/profile/${profileSlug}`,
       "priceCurrency": "UGX",
       "price": "100000",
       "availability": "https://schema.org/InStock",

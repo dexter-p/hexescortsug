@@ -27,11 +27,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `Top Escorts & Call Girls in ${locationName}`,
       description: `Browse verified sexy escorts and hot girls available in ${locationName}, Uganda. 100% Real & Verified profiles.`,
-      url: `https://www.hexescortsug.xyz/escorts-in/${routePath}`,
+      url: `https://www.hexescortsug.com/escorts-in/${routePath}`,
       siteName: 'Hex Escorts UG',
     },
     alternates: {
-      canonical: `https://www.hexescortsug.xyz/escorts-in/${routePath}`,
+      canonical: `https://www.hexescortsug.com/escorts-in/${routePath}`,
     }
   }
 }

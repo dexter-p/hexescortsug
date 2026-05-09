@@ -46,6 +46,7 @@ export const metadata: Metadata = {
   ].join(", "),
   verification: {
     google: [
+      "CB2_zvrFVSNRXPIALZfpGR4eg2Gc8HQIgKh41BJd4OM",
       "37jbT2PcWcRwnnSmVcZxesfTuLLL5uyupKBsSed4pY4", 
       "JFY34OVLDSzS0ieEkEQAHauVc4__UBUFCT-8RYtIyuE",
       "-p0KFe2PgD4tXKEQ7tB5IS2OQ2bErUgDzWaq_W8JEO4"
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
     title: "Escorts UG – #1 Discreet & Verified Escorts in Uganda",
     description:
       "Find discreet, verified escorts in Uganda with real photos and direct WhatsApp contacts. Real profiles from Kampala, Entebbe, Jinja, Mbarara and countrywide.",
-    url: "https://www.hexescortsug.xyz",
+    url: "https://www.hexescortsug.com",
     siteName: "Escorts UG",
     type: "website",
     locale: "en_UG",
@@ -66,7 +67,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  metadataBase: new URL("https://www.hexescortsug.xyz"),
+  metadataBase: new URL("https://www.hexescortsug.com"),
 };
 
 export default function RootLayout({
@@ -90,7 +91,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "Escorts UG",
-              "url": "https://www.hexescortsug.xyz",
+              "url": "https://www.hexescortsug.com",
               "description": "Uganda's #1 verified escort directory. Find escorts in Kampala, Entebbe, Jinja, Mbarara and all major Uganda cities.",
               "address": {
                 "@type": "PostalAddress",
