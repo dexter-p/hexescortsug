@@ -9,6 +9,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/hx-ctrl-7k9', request.url));
   }
 
+  // SEO Redirect: Old /location/ routes to new /escorts-in/ routes
+  if (pathname.startsWith('/location/')) {
+    const newPath = pathname.replace('/location/', '/escorts-in/');
+    return NextResponse.redirect(new URL(newPath, request.url), 301);
+  }
+
   // SEO Rewrite: /thick-escorts-in/kampala -> /category/thick/kampala
   const categoryMatch = pathname.match(/^\/([a-z0-9-]+)-escorts-in\/(.+)$/i);
   if (categoryMatch) {

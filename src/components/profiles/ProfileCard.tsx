@@ -76,6 +76,16 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
                 </div>
               </div>
             )}
+
+            {/* VERIFIED Badge */}
+            {profile.isVerified && (
+              <div className="absolute top-2 right-2 z-30">
+                <div className="bg-green-500/90 backdrop-blur-sm text-white text-[7px] sm:text-[9px] font-bold py-0.5 px-2 rounded-full shadow-[0_2px_10px_rgba(34,197,94,0.4)] flex items-center gap-1 border border-white/20">
+                  <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-white rounded-full animate-pulse" />
+                  VERIFIED
+                </div>
+              </div>
+            )}
             
             <Link href={`/profile/${slugify(profile.name)}`} prefetch={false}>
               <div className="w-full h-full overflow-hidden">

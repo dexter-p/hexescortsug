@@ -30,5 +30,6 @@ export interface ProfileType {
   isPinned?: boolean;
   isArchived?: boolean;
   isAd?: boolean;
+  isVerified?: boolean;
   adImages?: string[];
 }

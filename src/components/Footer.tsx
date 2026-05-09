@@ -17,11 +17,11 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start space-y-4">
             <h4 className="font-bold text-lg text-primary">Top Locations</h4>
             <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-400 text-center md:text-left">
-              <Link href="/location/kampala" className="hover:text-pink-500 transition-colors">Kampala</Link>
-              <Link href="/location/entebbe" className="hover:text-pink-500 transition-colors">Entebbe</Link>
-              <Link href="/location/jinja" className="hover:text-pink-500 transition-colors">Jinja</Link>
-              <Link href="/location/mbarara" className="hover:text-pink-500 transition-colors">Mbarara</Link>
-              <Link href="/location/gulu" className="hover:text-pink-500 transition-colors">Gulu</Link>
+              <Link href="/escorts-in/kampala" className="hover:text-pink-500 transition-colors">Kampala</Link>
+              <Link href="/escorts-in/entebbe" className="hover:text-pink-500 transition-colors">Entebbe</Link>
+              <Link href="/escorts-in/jinja" className="hover:text-pink-500 transition-colors">Jinja</Link>
+              <Link href="/escorts-in/mbarara" className="hover:text-pink-500 transition-colors">Mbarara</Link>
+              <Link href="/escorts-in/gulu" className="hover:text-pink-500 transition-colors">Gulu</Link>
             </div>
           </div>
 

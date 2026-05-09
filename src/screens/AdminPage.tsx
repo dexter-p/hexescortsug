@@ -36,6 +36,7 @@ interface DbProfile {
   is_pinned?: boolean;
   is_archived?: boolean;
   is_ad?: boolean;
+  is_verified?: boolean;
   ad_images?: string[];
 }
 
@@ -58,6 +59,7 @@ interface EditProfile {
   images: string[];
   videos: string[];
   isAd?: boolean;
+  isVerified?: boolean;
   adImages: string[];
 }
 
@@ -184,6 +186,7 @@ const AdminPage = () => {
     images: [],
     videos: [],
     isAd: false,
+    isVerified: false,
     adImages: [],
   });
 
@@ -206,6 +209,7 @@ const AdminPage = () => {
     images: p.images || [],
     videos: p.videos || [],
     isAd: p.is_ad || false,
+    isVerified: p.is_verified || false,
     adImages: p.ad_images || [],
   });
 
@@ -311,6 +315,7 @@ const AdminPage = () => {
       images: editingProfile.images,
       videos: editingProfile.videos,
       is_ad: editingProfile.isAd,
+      is_verified: editingProfile.isVerified,
       ad_images: editingProfile.adImages,
     };
     let error;
@@ -348,6 +353,18 @@ const AdminPage = () => {
     const { error } = await supabase.from("profiles").update({ is_archived: !currentArchived } as any).eq("id", id);
     if (!error) {
       toast({ title: !currentArchived ? "Profile hidden from public" : "Profile restored to public" });
+      await fetchProfiles();
+      queryClient.invalidateQueries({ queryKey: ["all-profiles"] });
+    } else {
+      toast({ title: "Update failed", variant: "destructive" });
+    }
+  };
+
+  const toggleVerify = async (id: string, currentVerified: boolean) => {
+    // @ts-ignore
+    const { error } = await supabase.from("profiles").update({ is_verified: !currentVerified }).eq("id", id);
+    if (!error) {
+      toast({ title: !currentVerified ? "Profile Verified!" : "Verification Removed" });
       await fetchProfiles();
       queryClient.invalidateQueries({ queryKey: ["all-profiles"] });
     } else {
@@ -586,6 +603,17 @@ const AdminPage = () => {
             <Input value={editingProfile.services.join(", ")} onChange={(e) => setEditingProfile({ ...editingProfile, services: e.target.value.split(",").map(s => s.trim()).filter(Boolean) })} />
           </div>
 
+          <div className="flex items-center gap-2 py-2">
+            <input 
+              type="checkbox" 
+              id="isVerified" 
+              checked={editingProfile.isVerified} 
+              onChange={(e) => setEditingProfile({ ...editingProfile, isVerified: e.target.checked })}
+              className="w-4 h-4 accent-green-500"
+            />
+            <Label htmlFor="isVerified" className="text-green-500 font-bold">Verified Profile</Label>
+          </div>
+
           <Button onClick={handleSaveProfile} className="w-full" disabled={saving}>
             {saving ? "Saving..." : "Save Profile"}
           </Button>
@@ -689,6 +717,15 @@ const AdminPage = () => {
                     title="Pin to top"
                   >
                     <Star className={`w-3 h-3 ${p.is_pinned ? "fill-black" : ""}`} />
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant={p.is_verified ? "default" : "outline"} 
+                    className={p.is_verified ? "bg-green-600 hover:bg-green-700 text-white font-bold" : "text-green-500 border-green-500/50"} 
+                    onClick={() => toggleVerify(p.id, !!p.is_verified)}
+                    title="Verify Profile"
+                  >
+                    <span className="text-[10px]">V</span>
                   </Button>
                   <Button 
                     size="sm" 

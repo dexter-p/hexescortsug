@@ -12,15 +12,15 @@ import { AdCarousel } from "@/components/profiles/AdCarousel";
 const PAGE_SIZE = 12;
 
 const cities = [
-  { name: "Kampala", path: "/location/kampala" },
-  { name: "Entebbe", path: "/location/entebbe" },
-  { name: "Jinja", path: "/location/jinja" },
-  { name: "Mbarara", path: "/location/mbarara" },
-  { name: "Gulu", path: "/location/gulu" },
-  { name: "Mbale", path: "/location/mbale" },
-  { name: "Tororo", path: "/location/tororo" },
-  { name: "Fort Portal", path: "/location/fort-portal" },
-  { name: "Mukono", path: "/location/mukono" },
+  { name: "Kampala", path: "/escorts-in/kampala" },
+  { name: "Entebbe", path: "/escorts-in/entebbe" },
+  { name: "Jinja", path: "/escorts-in/jinja" },
+  { name: "Mbarara", path: "/escorts-in/mbarara" },
+  { name: "Gulu", path: "/escorts-in/gulu" },
+  { name: "Mbale", path: "/escorts-in/mbale" },
+  { name: "Tororo", path: "/escorts-in/tororo" },
+  { name: "Fort Portal", path: "/escorts-in/fort-portal" },
+  { name: "Mukono", path: "/escorts-in/mukono" },
 ];
 
 interface HomePageProps {
@@ -95,12 +95,31 @@ const HomePage = ({ initialProfiles = [], shuffleSeed }: HomePageProps) => {
         </div>
 
         {/* SEO Content Section */}
-        <div className="mt-16 text-center text-muted-foreground prose prose-invert mx-auto">
-          <h2 className="text-2xl font-bold text-primary">#1 Escort Directory in Uganda</h2>
-          <p>
-            Welcome to <strong>Escorts UG</strong> – the most trusted source for verified, real companions 
-            in Kampala, Entebbe, and Jinja. Every profile is manually checked to ensure a safe experience.
-          </p>
+        <div className="mt-16 text-center text-muted-foreground prose prose-invert mx-auto max-w-4xl border-t border-gray-800 pt-12 pb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-6">#1 Verified Escort Directory in Uganda</h2>
+          <div className="space-y-6 text-sm sm:text-base leading-relaxed text-gray-400">
+            <p>
+              Welcome to <strong>Escorts UG</strong> – Uganda's most trusted platform for finding high-class, verified companions. 
+              Whether you are looking for <strong>Kampala escorts</strong>, <strong>Entebbe call girls</strong>, or companions in 
+              <strong> Jinja</strong>, <strong>Mbarara</strong>, and <strong>Gulu</strong>, our directory offers a safe and discreet way to connect.
+            </p>
+            
+            <h3 className="text-xl font-semibold text-white">Why Choose Hex Escorts UG?</h3>
+            <p>
+              In a market filled with fake profiles, we stand out by ensuring that every <strong>Uganda escort</strong> listed on our site 
+              undergoes a strict manual verification process. We check photos, contact details, and reviews to provide you with a premium 
+              experience. Browse through <strong>sexy girls in Uganda</strong>, elite <strong>VIP companions</strong>, and independent 
+              ladies available for both incalls and outcalls.
+            </p>
+
+            <h3 className="text-xl font-semibold text-white">Safe & Discreet Hookups in Kampala</h3>
+            <p>
+              Our platform is designed for privacy. We understand the importance of discretion in the <strong>Ugandan escort industry</strong>. 
+              From <strong>thick escorts in Kampala</strong> to <strong>slim and curvy models</strong>, you can find the perfect match 
+              for your desires. Our location-based search allows you to find girls in your specific suburb, making it easier than ever 
+               to book a verified companion near you.
+            </p>
+          </div>
         </div>
       </div>
     </div>

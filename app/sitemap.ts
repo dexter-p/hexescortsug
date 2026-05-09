@@ -60,25 +60,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "makindye", "muyenga", "naalya", "naguru", "najjera", "nakasero", "ntinda"
   ]
 
-  const oldCityUrls: MetadataRoute.Sitemap = cities.map(city => ({
-    url: `${BASE_URL}/location/${city}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8, // Slightly lower priority than the new SEO routes
-  }))
-
   const newSeoUrls: MetadataRoute.Sitemap = cities.map(city => ({
     url: `${BASE_URL}/escorts-in/${city}`,
     lastModified: new Date(),
     changeFrequency: 'daily',
-    priority: 0.95, // High priority for these new landing pages
+    priority: 0.95, 
   }))
 
   const suburbUrls: MetadataRoute.Sitemap = kampalaSuburbs.map(suburb => ({
     url: `${BASE_URL}/escorts-in/kampala/${suburb}`,
     lastModified: new Date(),
     changeFrequency: 'daily',
-    priority: 0.9, // High priority for hyper-local dominance
+    priority: 0.9, 
   }))
 
   const topCategories = ['thick', 'slim', 'curvy', 'vip', 'massage'];
@@ -101,7 +94,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .eq('is_archived', false)
 
     if (!error && profiles) {
-      // Simple slugify function matching the app's logic
       const slugify = (text: string) => text.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
       
       dynamicUrls = profiles.map(p => ({
@@ -115,5 +107,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Sitemap generation error:', e)
   }
 
-  return [...staticPages, ...oldCityUrls, ...newSeoUrls, ...suburbUrls, ...categoryUrls, ...dynamicUrls]
+  return [...staticPages, ...newSeoUrls, ...suburbUrls, ...categoryUrls, ...dynamicUrls]
 }
