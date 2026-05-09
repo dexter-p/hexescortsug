@@ -1,6 +1,7 @@
 import LocationPageClient from "@/screens/LocationPage";
 import { fetchProfilesByLocation } from "@/data/allProfiles";
 import type { Metadata } from 'next';
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 // 3600 = 1 hour. This means Supabase is only hit ONCE per hour per location.
 // Vercel's Edge Network serves all other traffic for free!
@@ -81,18 +82,27 @@ export default async function EscortsInLocationPage({ params }: Props) {
     ]
   };
 
+  const breadcrumbItems = [
+    { label: "Escorts in Uganda", href: "/location" },
+    ...(city ? [{ label: city.charAt(0).toUpperCase() + city.slice(1), href: `/escorts-in/${city}` }] : []),
+    ...(suburb ? [{ label: suburb.charAt(0).toUpperCase() + suburb.slice(1), href: `/escorts-in/${city}/${suburb.replace(/\s+/g, '-')}`, current: true }] : (city ? [{ label: "All Areas", href: "#", current: true }] : []))
+  ];
+
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <LocationPageClient 
-        cityParam={city} 
-        suburbParam={suburb || undefined}
-        initialProfiles={locationProfiles} 
-        shuffleSeed={seed} 
-      />
-    </>
+    <main className="min-h-screen bg-black pt-4 pb-8">
+      <div className="container mx-auto px-4">
+        <Breadcrumbs items={breadcrumbItems} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <LocationPageClient 
+          cityParam={city} 
+          suburbParam={suburb || undefined}
+          initialProfiles={locationProfiles} 
+          shuffleSeed={seed} 
+        />
+      </div>
+    </main>
   );
 }

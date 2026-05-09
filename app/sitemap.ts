@@ -52,12 +52,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const cities = [
     'kampala', 'entebbe', 'jinja', 'mbarara', 'gulu', 'fort-portal', 'mbale', 'tororo', 'mukono', 
-    'masaka', 'arua', 'lira', 'kasese', 'hoima', 'soroti', 'busia', 'mubende', 'wakiso'
+    'masaka', 'arua', 'lira', 'kasese', 'hoima', 'soroti', 'busia', 'mubende', 'wakiso',
+    'lugazi', 'kanyanya', 'kasangati', 'mityana', 'bombo', 'kitgum', 'kotido', 'moroto'
   ]
   const kampalaSuburbs = [
     "bugolobi", "bukoto", "buziga", "kabalagala", "kamwokya", "kansanga",
     "kisaasi", "kololo", "kyaliwajjala", "kyanja", "lubaga", "luzira",
-    "makindye", "muyenga", "naalya", "naguru", "najjera", "nakasero", "ntinda"
+    "makindye", "muyenga", "naalya", "naguru", "najjera", "nakasero", "ntinda",
+    "bunga", "gaba", "munyonyo", "namuwongo", "kiwatule", "kungu", "buwaate",
+    "kiruddu", "salaama", "seguku", "namasuba", "lubowa", "najjanankumbi"
   ]
 
   const newSeoUrls: MetadataRoute.Sitemap = cities.map(city => ({

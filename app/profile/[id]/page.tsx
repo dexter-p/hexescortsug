@@ -3,6 +3,7 @@ import { fetchAllProfiles, fetchProfileById } from "@/data/allProfiles";
 import type { Metadata, ResolvingMetadata } from 'next';
 import { slugify } from "@/lib/utils";
 import { notFound, redirect } from "next/navigation";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const revalidate = 60; // Refresh profile data every 60 seconds to save Edge Requests
 export const dynamicParams = true;
@@ -90,15 +91,24 @@ export default async function Page({ params }: Props) {
     }
   };
 
+  const breadcrumbItems = [
+    { label: "Escorts in Uganda", href: "/location" },
+    { label: profile.location, href: `/escorts-in/${slugify(profile.location)}` },
+    { label: profile.name, href: `/profile/${profileSlug}`, current: true }
+  ];
+
   return (
-    <>
-      {jsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      )}
-      <ProfileDetailPageClient profileId={id} initialProfile={profile} />
-    </>
+    <main className="min-h-screen bg-black pt-4 pb-8">
+      <div className="container mx-auto px-4">
+        <Breadcrumbs items={breadcrumbItems} />
+        {jsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        )}
+        <ProfileDetailPageClient profileId={id} initialProfile={profile} />
+      </div>
+    </main>
   );
 }

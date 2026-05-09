@@ -35,6 +35,18 @@ const cityMeta: Record<string, { title: string; description: string; heading: st
     heading: "Escorts in Mbarara",
     body: "Mbarara is the fastest-growing city in Western Uganda, a bustling center of commerce, agriculture, and hospitality. As the city expands, so does the demand for premium, private companionship. Our definitive directory of Mbarara escorts provides residents and visiting businessmen with direct access to the most beautiful and verified companions in the western region. Avoid the stress of unreliable classifieds and browse a curated selection of genuine profiles. Whether you are attending a conference, managing regional business, or simply enjoying the local hospitality, an elegant companion can transform your downtime into an unforgettable experience. The companions featured on Escorts UG in Mbarara cater to a variety of sophisticated tastes, offering everything from standard discreet meetups to extensive weekend arrangements. Every escort undergoes our verification process, ensuring that their photos and descriptions are entirely accurate. Explore our Mbarara listings to find stunning local beauties who provide top-tier companionship, absolute discretion, and pure satisfaction in the heart of Western Uganda.",
   },
+  gulu: {
+    title: "Gulu Escorts – Verified Profiles | Escorts UG",
+    description: "Find verified escorts in Gulu, northern Uganda. Browse authentic companion profiles in the northern hub.",
+    heading: "Escorts in Gulu",
+    body: "Gulu is the central hub of Northern Uganda, a city with a unique character and a rapidly developing social scene. For those visiting Gulu on business, NGO work, or leisure, finding reliable and verified companionship is now easier than ever. Our Gulu escort directory features stunning local beauties who offer professional and discreet services. Each profile is vetted to ensure that your experience is safe and authentic. From quiet evenings to more adventurous encounters, our Gulu companions are the best in the region.",
+  },
+  mukono: {
+    title: "Mukono Escorts – Verified Profiles | Escorts UG",
+    description: "Find verified escorts in Mukono. Browse authentic companion profiles near UCU and the Kampala-Jinja highway.",
+    heading: "Escorts in Mukono",
+    body: "Mukono is a bustling town strategically located between Kampala and Jinja. Known for its academic institutions and industrial growth, it attracts a diverse range of people. Our Mukono escorts offer high-quality, discreet companionship for students, professionals, and travelers alike. Whether you are staying in Mukono or just passing through, our verified profiles ensure you find the perfect companion for any occasion.",
+  },
 };
 
 interface LocationPageProps {
@@ -208,10 +220,24 @@ const LocationPage = ({ cityParam, suburbParam, categoryParam, initialProfiles, 
             )}
             
             {meta && (
-              <div className="mt-12 text-muted-foreground prose prose-invert">
-                <p>{meta.body}</p>
+              <div className="mt-12 p-6 bg-gray-900/50 rounded-xl border border-gray-800 text-muted-foreground prose prose-invert max-w-none">
+                <h2 className="text-xl font-bold text-white mb-4">About {meta.heading}</h2>
+                <div className="text-sm leading-relaxed space-y-4">
+                  {meta.body.split('\n').map((para, i) => <p key={i}>{para}</p>)}
+                </div>
               </div>
             )}
+
+            <div className="mt-16 pt-8 border-t border-gray-800">
+              <h3 className="text-lg font-bold text-white mb-6">Popular Locations in Uganda</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-sm">
+                {["Kampala", "Entebbe", "Jinja", "Mbarara", "Gulu", "Mukono", "Mbale", "Masaka", "Fort Portal", "Arua", "Lira", "Kasese"].map((loc) => (
+                  <Link key={loc} href={`/escorts-in/${loc.toLowerCase()}`} className="text-gray-400 hover:text-primary transition-colors">
+                    Escorts in {loc}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
