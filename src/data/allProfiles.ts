@@ -90,6 +90,7 @@ function mapDbProfile(p: any): ProfileType {
     isVip: p.is_vip || false,
     isPremium: p.is_premium || false,
     isAd: p.is_ad || false,
+    isVerified: p.is_verified || false,
     adImages: (p.ad_images || []).map(transformUrl),
   };
 }
@@ -180,7 +181,7 @@ export const fetchProfilesByLocation = unstable_cache(
       const { data, error } = await (supabase as any)
         .from("profiles")
         // CRITICAL: Only select lightweight columns to save egress! No descriptions or large arrays.
-        .select("id, name, location, profile_image, rating, is_pinned, is_vip, is_premium")
+        .select("id, name, location, profile_image, rating, is_pinned, is_vip, is_premium, is_verified")
         .eq("is_archived", false)
         // CRITICAL: Filter in the DB so we only download profiles for this location
         .ilike("location", `%${location}%`) 
