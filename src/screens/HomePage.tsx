@@ -99,17 +99,17 @@ const HomePage = ({ initialProfiles = [], shuffleSeed }: HomePageProps) => {
           <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-6">#1 Verified Escort Directory in Uganda</h2>
           <div className="space-y-6 text-sm sm:text-base leading-relaxed text-gray-400">
             <p>
-              Welcome to <strong>Escorts UG</strong> – Uganda's most trusted platform for finding high-class, verified companions. 
-              Whether you are looking for <strong>Kampala escorts</strong>, <strong>Entebbe call girls</strong>, or companions in 
-              <strong> Jinja</strong>, <strong>Mbarara</strong>, and <strong>Gulu</strong>, our directory offers a safe and discreet way to connect.
+              Welcome to <strong>Escorts UG</strong> – Uganda's most trusted platform for finding <strong>discreet, high-class, verified companions</strong> with <strong>real photos</strong>. 
+              Whether you are looking for <strong>Kampala escorts</strong>, <strong>Entebbe call girls</strong>, or <strong>direct WhatsApp contacts</strong> for companions in 
+              <strong> Jinja</strong>, <strong>Mbarara</strong>, and <strong>Gulu</strong>, our directory offers a safe and discreet way to connect countrywide.
             </p>
             
             <h3 className="text-xl font-semibold text-white">Why Choose Hex Escorts UG?</h3>
             <p>
-              In a market filled with fake profiles, we stand out by ensuring that every <strong>Uganda escort</strong> listed on our site 
-              undergoes a strict manual verification process. We check photos, contact details, and reviews to provide you with a premium 
-              experience. Browse through <strong>sexy girls in Uganda</strong>, elite <strong>VIP companions</strong>, and independent 
-              ladies available for both incalls and outcalls.
+              In a market filled with fake profiles, we stand out by ensuring that every <strong>discreet Uganda escort</strong> listed on our site 
+              undergoes a strict manual verification process with <strong>real photos</strong>. We provide <strong>direct contacts</strong> and verified 
+              social links to ensure a premium experience. Browse through <strong>sexy girls in Uganda</strong>, elite <strong>VIP companions</strong>, and independent 
+              ladies available for both incalls and outcalls across all major towns.
             </p>
 
             <h3 className="text-xl font-semibold text-white">Safe & Discreet Hookups in Kampala</h3>
