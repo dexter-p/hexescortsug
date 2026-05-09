@@ -39,7 +39,7 @@ build_output.txt
 new_build_output.txt
 
 # Backup and Migration
-backup/
+# backup/
 backup_project.mjs
 restore_data.mjs
 verify_new_project.mjs
