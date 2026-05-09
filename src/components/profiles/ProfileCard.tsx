@@ -47,13 +47,17 @@ export function ProfileCard({ profile, featured = false, priority = false, anima
     e.stopPropagation();
     handlePhoneClick(phoneNumber);
   };
+  const animationProps: any = animate ? {
+    initial: { opacity: 0, y: 60 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
+    transition: { duration: 0.8, ease: "easeOut" }
+  } : {};
+
   return (
     <motion.div 
       className="w-full h-full"
-      initial={animate ? { opacity: 0, y: 60 } : false}
-      whileInView={animate ? { opacity: 1, y: 0 } : false}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      {...animationProps}
     >
       <div className="flex flex-col h-full">
         <Card className={cn(
