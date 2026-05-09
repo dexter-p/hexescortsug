@@ -9,14 +9,16 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { usePhoneHandler } from "@/hooks/use-phone-handler";
+import { motion } from "framer-motion";
 
 interface ProfileCardProps {
   profile: ProfileType;
   featured?: boolean;
   priority?: boolean;
+  animate?: boolean;
 }
 
-export function ProfileCard({ profile, featured = false, priority = false }: ProfileCardProps) {
+export function ProfileCard({ profile, featured = false, priority = false, animate = true }: ProfileCardProps) {
   const [showContact, setShowContact] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const isMobile = useIsMobile();
@@ -45,9 +47,14 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
     e.stopPropagation();
     handlePhoneClick(phoneNumber);
   };
-
   return (
-    <div className="w-full h-full">
+    <motion.div 
+      className="w-full h-full"
+      initial={animate ? { opacity: 0, y: 30 } : false}
+      whileInView={animate ? { opacity: 1, y: 0 } : false}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <div className="flex flex-col h-full">
         <Card className={cn(
           "overflow-hidden border-gray-800 h-full relative group",
@@ -58,7 +65,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
             {/* Golden Crown Corner Sash - Elite Royal Design */}
             {profile.isPinned && (
               <div className="absolute top-0 left-0 z-20 overflow-hidden w-24 h-24 pointer-events-none select-none">
-                <div className="absolute top-0 left-0 bg-gradient-to-br from-[#ffd700] via-[#fff1a8] to-[#b8860b] text-black w-32 py-1 text-center font-black text-[10px] tracking-[0.2em] transform -rotate-45 -translate-x-10 translate-y-4 shadow-[0_2px_10px_rgba(0,0,0,0.5)] border-b border-yellow-200/50 flex items-center justify-center gap-1.5 uppercase">
+                <div className="absolute top-0 left-0 bg-gradient-to-br from-[#ffd700] via-[#fff1a8] to-[#b8860b] text-black w-32 py-1 text-center font-black text-[10px] tracking-[0.2em] transform -rotate-45 -translate-x-10 translate-y-4 shadow-[0_2px_10_rgba(0,0,0,0.5)] border-b border-yellow-200/50 flex items-center justify-center gap-1.5 uppercase">
                    {/* Shine Sweep Animation */}
                    <div className="absolute inset-0 w-full h-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full" />
                    
@@ -80,7 +87,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
             {/* VERIFIED Badge */}
             {profile.isVerified && (
               <div className="absolute top-2 right-2 z-30">
-                <div className="bg-green-500/90 backdrop-blur-sm text-white text-[7px] sm:text-[9px] font-bold py-0.5 px-2 rounded-full shadow-[0_2px_10px_rgba(34,197,94,0.4)] flex items-center gap-1 border border-white/20">
+                <div className="bg-green-500/90 backdrop-blur-sm text-white text-[7px] sm:text-[9px] font-bold py-0.5 px-2 rounded-full shadow-[0_2px_10_rgba(34,197,94,0.4)] flex items-center gap-1 border border-white/20">
                   <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-white rounded-full animate-pulse" />
                   VERIFIED
                 </div>
@@ -130,7 +137,7 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
             </span>
           </Button>
           <a 
-            href={`whatsapp://send?phone=${waNumber}&text=${encodeURIComponent("Hi, i got your contact from https://www.hexescortsug.xyz")}`}
+            href={`whatsapp://send?phone=${waNumber}&text=${encodeURIComponent("Hi, i got your contact from https://www.hexescortsug.com")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-none flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-5 h-5 sm:w-7 sm:h-7 transition-colors shadow-sm overflow-hidden shrink-0"
@@ -147,6 +154,6 @@ export function ProfileCard({ profile, featured = false, priority = false }: Pro
           </a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

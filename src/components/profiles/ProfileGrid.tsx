@@ -8,6 +8,7 @@ interface ProfileGridProps {
   title?: string;
   featuredIds?: string[];
   loading?: boolean;
+  animate?: boolean;
 }
 
 function SkeletonCard() {
@@ -22,7 +23,7 @@ function SkeletonCard() {
   );
 }
 
-export function ProfileGrid({ profiles, title, featuredIds = [], loading = false }: ProfileGridProps) {
+export function ProfileGrid({ profiles, title, featuredIds = [], loading = false, animate = true }: ProfileGridProps) {
   const showSkeletons = loading;
 
   return (
@@ -44,6 +45,7 @@ export function ProfileGrid({ profiles, title, featuredIds = [], loading = false
                   profile={profile} 
                   featured={featuredIds.includes(profile.id)}
                   priority={index < 2}
+                  animate={animate}
                 />
               </div>
             ))
