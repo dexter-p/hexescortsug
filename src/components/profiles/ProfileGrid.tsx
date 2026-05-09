@@ -46,6 +46,7 @@ export function ProfileGrid({ profiles, title, featuredIds = [], loading = false
                   featured={featuredIds.includes(profile.id)}
                   priority={index < 2}
                   animate={animate}
+                  index={index}
                 />
               </div>
             ))

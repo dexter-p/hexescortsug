@@ -16,9 +16,10 @@ interface ProfileCardProps {
   featured?: boolean;
   priority?: boolean;
   animate?: boolean;
+  index?: number;
 }
 
-export function ProfileCard({ profile, featured = false, priority = false, animate = true }: ProfileCardProps) {
+export function ProfileCard({ profile, featured = false, priority = false, animate = true, index = 0 }: ProfileCardProps) {
   const [showContact, setShowContact] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const isMobile = useIsMobile();
@@ -51,7 +52,11 @@ export function ProfileCard({ profile, featured = false, priority = false, anima
     initial: { opacity: 0, y: 60 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-100px" },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { 
+      duration: 0.8, 
+      ease: "easeOut",
+      delay: Math.min((index % 6) * 0.1, 0.5) // Stagger cards in groups of 6, max 0.5s delay
+    }
   } : {};
 
   return (

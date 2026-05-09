@@ -85,9 +85,10 @@ const HomePage = ({ initialProfiles = [], shuffleSeed }: HomePageProps) => {
                 <motion.h2 
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  className="text-2xl sm:text-3xl lg:text-4xl font-black italic uppercase tracking-tighter bg-gradient-to-r from-yellow-400 via-white to-yellow-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] animate-pulse"
+                  className="text-2xl sm:text-3xl lg:text-5xl font-black italic uppercase tracking-tighter bg-gradient-to-r from-yellow-400 via-white to-yellow-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] animate-pulse flex items-center gap-3"
                 >
-                  👑 Elite VIP Escorts
+                  <span className="text-3xl sm:text-4xl lg:text-6xl drop-shadow-[0_0_10px_rgba(255,215,0,0.8)]">👑</span>
+                  Elite VIP Escorts
                 </motion.h2>
                 <div className="h-1 w-32 bg-gradient-to-r from-yellow-500 to-transparent mt-1" />
               </div>
@@ -99,11 +100,11 @@ const HomePage = ({ initialProfiles = [], shuffleSeed }: HomePageProps) => {
             </div>
           )}
 
-          {/* ORDINARY SECTION */}
+          {/* OTHER SECTION */}
           <div className="space-y-6">
             <div className="flex flex-col items-center sm:items-start">
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white/90 tracking-tight">
-                Ordinary Escorts
+                Other Escorts
               </h2>
               <div className="h-0.5 w-24 bg-gray-700 mt-1" />
             </div>
