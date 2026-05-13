@@ -30,7 +30,7 @@ export default function NotFound() {
           </Button>
           
           <Button variant="ghost" asChild className="w-full sm:w-auto text-gray-300 hover:text-white hover:bg-gray-800">
-            <Link href="/location/kampala">
+            <Link href="/escorts-in/kampala">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Browse Kampala
             </Link>

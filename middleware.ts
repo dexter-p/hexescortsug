@@ -3,6 +3,27 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const host = request.headers.get('host') || '';
+  const url = request.nextUrl.clone();
+
+  // 1. Domain Migration: Force redirect from ANY .xyz variant to .com
+  if (host.includes('hexescortsug.xyz')) {
+    const newUrl = new URL(pathname, 'https://www.hexescortsug.com');
+    // Keep search params (like ?ref=...)
+    request.nextUrl.searchParams.forEach((value, key) => {
+      newUrl.searchParams.set(key, value);
+    });
+    return NextResponse.redirect(newUrl, 301);
+  }
+
+  // 2. WWW Enforcement: Redirect hexescortsug.com to www.hexescortsug.com
+  if (host === 'hexescortsug.com') {
+    const newUrl = new URL(pathname, 'https://www.hexescortsug.com');
+    request.nextUrl.searchParams.forEach((value, key) => {
+      newUrl.searchParams.set(key, value);
+    });
+    return NextResponse.redirect(newUrl, 301);
+  }
 
   // Protect the admin route — redirect to home if not authenticated via Supabase session cookie
   if (pathname.startsWith('/admin-panel')) {
@@ -33,3 +54,4 @@ export const config = {
     '/:path*' // Match all to enable the rewrite
   ], 
 };
+

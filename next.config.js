@@ -5,6 +5,18 @@ const nextConfig = {
     unoptimized: true,
     domains: ['zdiosdkoxcimlovewroz.supabase.co', 'images.unsplash.com'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/location/:path*',
+        destination: '/escorts-in/:path*',
+        permanent: true,
+      },
+    ]
+  },
+  // Force trailing slash for consistency (better for SEO consolidation)
+  trailingSlash: false,
 }
 
 export default nextConfig;
+
