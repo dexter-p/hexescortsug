@@ -158,41 +158,68 @@ const HomePage = ({ initialProfiles = [], shuffleSeed }: HomePageProps) => {
               <h4 className="text-primary font-bold">Where can I find independent escorts in Jinja or Mbarara?</h4>
               <p className="text-sm text-gray-400">We have a growing directory of independent companions in Jinja, Mbarara, and Gulu. Simply filter by location to find the best call girls available in your specific city.</p>
             </div>
+            <div className="space-y-2">
+              <h4 className="text-primary font-bold">What types of sexy girls in Uganda are available?</h4>
+              <p className="text-sm text-gray-400">Our directory features a diverse range of **sexy escorts**, including **ebony** beauties, slim models, and curvy **Ugandan escorts**. Whether you want a college girl or a mature companion, we have the best **sexy girls** in the country.</p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="text-primary font-bold">How do I book a hookup with Uganda escorts?</h4>
+              <p className="text-sm text-gray-400">You can book **escorts in Uganda** by contacting them directly via the WhatsApp numbers provided on their profiles. We make it easy to find **uganda escorts** for quick hookups or overnight stays.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Popular Searches Bar */}
+        <div className="mt-12 py-6 border-y border-gray-800/50">
+          <p className="text-[10px] text-center text-gray-500 uppercase tracking-[0.3em] mb-4">Trending Searches</p>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-[11px] sm:text-xs font-medium text-gray-400">
+            {["uganda escorts", "ugandan escorts", "sexy escorts", "sexy girls", "escorts in uganda", "ebony", "fuck girls", "kampala hookups", "entebbe call girls", "jinja escorts", "mbarara girls", "gulu hookups"].map((term) => (
+              <span key={term} className="hover:text-primary cursor-default transition-colors">#{term.replace(/\s+/g, '')}</span>
+            ))}
           </div>
         </div>
 
         {/* SEO Content Section */}
-        <div className="mt-24 text-center text-muted-foreground prose prose-invert mx-auto max-w-4xl border-t border-gray-800 pt-16 pb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-6">#1 Verified Escort Directory in Uganda - Elite Hookups & Call Girls</h2>
+        <div className="mt-16 text-center text-muted-foreground prose prose-invert mx-auto max-w-4xl pt-8 pb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-6">Verified Uganda Escorts - Premium Sexy Girls & Ugandan Escorts</h2>
           <div className="space-y-6 text-sm sm:text-base leading-relaxed text-gray-400">
             <p>
-              Welcome to <strong>Escorts UG</strong> – Uganda's most trusted platform for finding <strong>discreet, high-class, verified companions</strong> with <strong>real photos</strong>. 
-              Whether you are looking for <strong>Kampala escorts</strong>, <strong>Entebbe call girls</strong>, or <strong>direct WhatsApp contacts</strong> for companions in 
-              <strong> Jinja</strong>, <strong>Mbarara</strong>, and <strong>Gulu</strong>, our directory offers a safe and discreet way to connect countrywide.
+              Welcome to <strong>Escorts UG</strong> – the premier destination for <strong>uganda escorts</strong> and <strong>sexy escorts</strong> with 100% verified photos. 
+              We connect you with the most beautiful <strong>sexy girls</strong> and <strong>ugandan escorts</strong> across the country. 
+              If you are looking for <strong>escorts in uganda</strong> who are discreet and professional, you are in the right place.
             </p>
             <p>
-              Our mission is to provide the most reliable <strong>Uganda escort services</strong> by eliminating fake profiles. If you are searching for a <strong>hookup in Kampala</strong>, 
-              a <strong>college girl hookup</strong>, or a professional <strong>erotic companion</strong>, our platform connects you instantly with the best <strong>sexy girls in Uganda</strong>.
+              Our platform features the hottest <strong>ebony</strong> companions and independent <strong>sexy girls in uganda</strong>. 
+              Whether you are looking for a quick <strong>fuck girls</strong> encounter or a long-term companion, our directory of 
+              <strong> uganda escorts</strong> is the most comprehensive in the industry.
             </p>
             
-            <h3 className="text-xl font-semibold text-white">Why Choose Hex Escorts UG for Your Next Hookup?</h3>
+            <h3 className="text-xl font-semibold text-white">Find Your Perfect Sexy Escort Today</h3>
             <p>
-              In a market filled with fake profiles, we stand out by ensuring that every <strong>discreet Uganda escort</strong> listed on our site 
-              undergoes a strict manual verification process with <strong>real photos</strong>. We provide <strong>direct contacts</strong> and verified 
-              social links to ensure a premium experience. Browse through <strong>sexy girls in Uganda</strong>, elite <strong>VIP companions</strong>, and independent 
-              ladies available for both incalls and outcalls across all major towns including <strong>Ntinda, Kololo, Muyenga, and Bugolobi</strong>.
+              In a market filled with fake profiles, we stand out by ensuring that every <strong>ugandan escort</strong> listed on our site 
+              undergoes a strict manual verification process. We provide direct contacts for <strong>sexy girls</strong> in every major city. 
+              Browse our listings for <strong>ebony</strong> models, elite <strong>sexy escorts</strong>, and the most reliable <strong>escorts in uganda</strong>.
             </p>
 
-            <h3 className="text-xl font-semibold text-white">Safe & Discreet Hookups in Kampala & Entebbe</h3>
+            <h3 className="text-xl font-semibold text-white">Discreet Hookups with Ugandan Escorts</h3>
             <p>
-              Our platform is designed for privacy. We understand the importance of discretion in the <strong>Ugandan escort industry</strong>. 
-              From <strong>thick escorts in Kampala</strong> to <strong>slim and curvy models</strong>, you can find the perfect match 
-              for your desires. Our location-based search allows you to find <strong>call girls in Kampala</strong> in your specific suburb, making it easier than ever 
-               to book a <strong>verified hookup</strong> near you.
+              From <strong>ebony</strong> beauties to curvy <strong>sexy girls</strong>, find the perfect <strong>uganda escorts</strong> for your specific desires. 
+              Our site is the top choice for anyone searching for <strong>escorts in uganda</strong> or <strong>sexy escorts</strong> with genuine contacts. 
+              Book your next <strong>fuck girls</strong> hookup with confidence.
             </p>
-            <p className="text-xs opacity-50">
-              Keywords: Escorts Uganda, Kampala Call Girls, Entebbe Hookups, Jinja Escorts, Mbarara Call Girls, Gulu Hookups, Mukono Escorts, Mbale Hookups, Masaka Escorts, Verified Escorts, Real Photos, Direct WhatsApp Contacts, Discreet Companions, High Class Call Girls, Sexy Girls Uganda.
-            </p>
+            <div className="text-[10px] opacity-30 mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {[...Array(10)].map((_, i) => (
+                <div key={i} className="flex flex-col">
+                  <span>uganda escorts</span>
+                  <span>ugandan escorts</span>
+                  <span>sexy escorts</span>
+                  <span>sexy girls</span>
+                  <span>escorts in uganda</span>
+                  <span>ebony</span>
+                  <span>fuck girls</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
