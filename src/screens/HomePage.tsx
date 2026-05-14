@@ -130,30 +130,68 @@ const HomePage = ({ initialProfiles = [], shuffleSeed }: HomePageProps) => {
           </div>
         </div>
 
+        {/* FAQ Section for SEO Keywords */}
+        <div className="mt-20 border-t border-gray-800 pt-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="space-y-2">
+              <h4 className="text-primary font-bold">How do I find verified escorts in Kampala?</h4>
+              <p className="text-sm text-gray-400">Finding verified escorts in Kampala is easy on our platform. Every companion listed as a "Kampala call girl" has been manually vetted to ensure they are real and professional hookups.</p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="text-primary font-bold">Are the photos of Ugandan call girls 100% real?</h4>
+              <p className="text-sm text-gray-400">Yes. We pride ourselves on being the only Uganda escort directory that enforces strict photo verification. When you book a sexy girl in Uganda from our site, you meet who you see.</p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="text-primary font-bold">Can I get direct WhatsApp contacts for hookups?</h4>
+              <p className="text-sm text-gray-400">Absolutely. We provide direct WhatsApp links for every Kampala hookup and Entebbe escort listed. There are no middlemen, just direct contact between you and the companion.</p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="text-primary font-bold">Do you have VIP companions for high-end events?</h4>
+              <p className="text-sm text-gray-400">Yes, our VIP section features elite Ugandan companions and high-class call girls perfect for corporate dinners, travel companionship, and exclusive private encounters.</p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="text-primary font-bold">Is it discreet to book a hookup in Uganda?</h4>
+              <p className="text-sm text-gray-400">Privacy is our #1 priority. Whether you are looking for an escort in Ntinda, Kololo, or Munyonyo, our platform ensures your search for hookups in Uganda remains 100% confidential.</p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="text-primary font-bold">Where can I find independent escorts in Jinja or Mbarara?</h4>
+              <p className="text-sm text-gray-400">We have a growing directory of independent companions in Jinja, Mbarara, and Gulu. Simply filter by location to find the best call girls available in your specific city.</p>
+            </div>
+          </div>
+        </div>
+
         {/* SEO Content Section */}
         <div className="mt-24 text-center text-muted-foreground prose prose-invert mx-auto max-w-4xl border-t border-gray-800 pt-16 pb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-6">#1 Verified Escort Directory in Uganda</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-6">#1 Verified Escort Directory in Uganda - Elite Hookups & Call Girls</h2>
           <div className="space-y-6 text-sm sm:text-base leading-relaxed text-gray-400">
             <p>
               Welcome to <strong>Escorts UG</strong> – Uganda's most trusted platform for finding <strong>discreet, high-class, verified companions</strong> with <strong>real photos</strong>. 
               Whether you are looking for <strong>Kampala escorts</strong>, <strong>Entebbe call girls</strong>, or <strong>direct WhatsApp contacts</strong> for companions in 
               <strong> Jinja</strong>, <strong>Mbarara</strong>, and <strong>Gulu</strong>, our directory offers a safe and discreet way to connect countrywide.
             </p>
+            <p>
+              Our mission is to provide the most reliable <strong>Uganda escort services</strong> by eliminating fake profiles. If you are searching for a <strong>hookup in Kampala</strong>, 
+              a <strong>college girl hookup</strong>, or a professional <strong>erotic companion</strong>, our platform connects you instantly with the best <strong>sexy girls in Uganda</strong>.
+            </p>
             
-            <h3 className="text-xl font-semibold text-white">Why Choose Hex Escorts UG?</h3>
+            <h3 className="text-xl font-semibold text-white">Why Choose Hex Escorts UG for Your Next Hookup?</h3>
             <p>
               In a market filled with fake profiles, we stand out by ensuring that every <strong>discreet Uganda escort</strong> listed on our site 
               undergoes a strict manual verification process with <strong>real photos</strong>. We provide <strong>direct contacts</strong> and verified 
               social links to ensure a premium experience. Browse through <strong>sexy girls in Uganda</strong>, elite <strong>VIP companions</strong>, and independent 
-              ladies available for both incalls and outcalls across all major towns.
+              ladies available for both incalls and outcalls across all major towns including <strong>Ntinda, Kololo, Muyenga, and Bugolobi</strong>.
             </p>
 
-            <h3 className="text-xl font-semibold text-white">Safe & Discreet Hookups in Kampala</h3>
+            <h3 className="text-xl font-semibold text-white">Safe & Discreet Hookups in Kampala & Entebbe</h3>
             <p>
               Our platform is designed for privacy. We understand the importance of discretion in the <strong>Ugandan escort industry</strong>. 
               From <strong>thick escorts in Kampala</strong> to <strong>slim and curvy models</strong>, you can find the perfect match 
-              for your desires. Our location-based search allows you to find girls in your specific suburb, making it easier than ever 
-               to book a verified companion near you.
+              for your desires. Our location-based search allows you to find <strong>call girls in Kampala</strong> in your specific suburb, making it easier than ever 
+               to book a <strong>verified hookup</strong> near you.
+            </p>
+            <p className="text-xs opacity-50">
+              Keywords: Escorts Uganda, Kampala Call Girls, Entebbe Hookups, Jinja Escorts, Mbarara Call Girls, Gulu Hookups, Mukono Escorts, Mbale Hookups, Masaka Escorts, Verified Escorts, Real Photos, Direct WhatsApp Contacts, Discreet Companions, High Class Call Girls, Sexy Girls Uganda.
             </p>
           </div>
         </div>

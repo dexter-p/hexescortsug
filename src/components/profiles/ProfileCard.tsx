@@ -124,9 +124,14 @@ export function ProfileCard({ profile, featured = false, priority = false, anima
           
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-1 pb-1 pt-3 text-white">
               <h3 className="font-bold text-[10px] sm:text-xs text-center truncate leading-tight">{profile.name}</h3>
-              <div className="flex items-center justify-center text-[8px] sm:text-[9px] text-gray-300 mt-0.5">
-                <MapPin className="h-1.5 w-1.5 mr-0.5 shrink-0" />
-                <span className="truncate">{profile.location}</span>
+              <div className="flex flex-col items-center justify-center mt-0.5 space-y-0.5">
+                <div className="flex items-center text-[8px] sm:text-[9px] text-gray-300">
+                  <MapPin className="h-1.5 w-1.5 mr-0.5 shrink-0" />
+                  <span className="truncate">{profile.location}</span>
+                </div>
+                <p className="text-[7px] sm:text-[8px] text-pink-500/80 font-bold uppercase tracking-widest">
+                  {profile.isPinned ? "VIP Call Girl" : "Verified Hookup"}
+                </p>
               </div>
             </div>
           </div>
