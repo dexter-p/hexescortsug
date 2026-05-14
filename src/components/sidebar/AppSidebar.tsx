@@ -35,21 +35,21 @@ const kampalaAreas = [
 ];
 
 const locations = [
-  { name: "Kampala", path: "/location/kampala", hasSubmenu: true, submenu: kampalaAreas },
-  { name: "Entebbe", path: "/location/entebbe" },
-  { name: "Jinja", path: "/location/jinja" },
-  { name: "Mbarara", path: "/location/mbarara" },
-  { name: "Gulu", path: "/location/gulu" },
-  { name: "Fort Portal", path: "/location/fort-portal" },
-  { name: "Mbale", path: "/location/mbale" },
-  { name: "Tororo", path: "/location/tororo" },
-  { name: "Mukono", path: "/location/mukono" },
+  { name: "Kampala", path: "/escorts-in/kampala", hasSubmenu: true, submenu: kampalaAreas },
+  { name: "Entebbe", path: "/escorts-in/entebbe" },
+  { name: "Jinja", path: "/escorts-in/jinja" },
+  { name: "Mbarara", path: "/escorts-in/mbarara" },
+  { name: "Gulu", path: "/escorts-in/gulu" },
+  { name: "Fort Portal", path: "/escorts-in/fort-portal" },
+  { name: "Mbale", path: "/escorts-in/mbale" },
+  { name: "Tororo", path: "/escorts-in/tororo" },
+  { name: "Mukono", path: "/escorts-in/mukono" },
 ];
 
 const mainItems = [
   { title: "Home", path: "/", icon: Home },
   { title: "VIP Escorts", path: "/vip", icon: Star },
-  { title: "Locations", path: "/location", icon: MapPin, children: locations },
+  { title: "Locations", path: "/escorts-in", icon: MapPin, children: locations },
   { title: "About", path: "/about", icon: Info },
   { title: "FAQ", path: "/faq", icon: HelpCircle },
   { title: "Become an escort", path: "/become-escort", icon: UserPlus },
@@ -135,7 +135,7 @@ export function AppSidebar() {
                                   {child.submenu.map((area) => (
                                     <Link 
                                       key={area} 
-                                      href={`/location/kampala/${area.toLowerCase().replace(/ /g, '-')}`}
+                                      href={`/escorts-in/kampala/${area.toLowerCase().replace(/ /g, '-')}`}
                                       className="block text-xs py-1 hover:text-primary"
                                     >
                                       {area}
@@ -229,7 +229,7 @@ export function AppSidebar() {
                                         {city.submenu.map((area) => (
                                           <Link
                                             key={area}
-                                            href={`/location/kampala/${area.toLowerCase().replace(/ /g, '-')}`}
+                                            href={`/escorts-in/kampala/${area.toLowerCase().replace(/ /g, '-')}`}
                                             className="block p-1 text-sm hover:text-primary"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                           >

@@ -190,7 +190,7 @@ const LocationPage = ({ cityParam, suburbParam, categoryParam, initialProfiles, 
               {["Kampala", "Entebbe", "Jinja", "Mbarara", "Gulu"].map((location) => (
                 <li key={location}>
                   <Link 
-                    href={`/location/${location.toLowerCase()}`}
+                    href={`/escorts-in/${location.toLowerCase()}`}
                     className={`hover:text-red-400 ${city?.toLowerCase() === location.toLowerCase() ? "text-red-500 font-bold" : ""}`}
                   >
                     {location}
