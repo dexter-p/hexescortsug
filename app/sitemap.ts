@@ -52,13 +52,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }));
 
-  // 3. Category Pages
+  // 3. Category Pages (Expanded to all cities for maximum coverage)
   const categoryUrls: MetadataRoute.Sitemap = topCategories.flatMap(category => 
-    ['kampala', 'entebbe', 'jinja'].map(city => ({
+    cities.map(city => ({
       url: `${BASE_URL}/${category}-escorts-in/${city}`,
       lastModified: new Date(),
       changeFrequency: 'daily',
-      priority: 0.85,
+      priority: 0.8,
     }))
   );
 

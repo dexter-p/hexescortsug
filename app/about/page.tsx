@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords:
     "about escorts Uganda, escort directory Uganda, verified companions Uganda, Kampala escorts about, UG escorts",
   alternates: {
-    canonical: "https://www.hexescortsug.xyz/about",
+    canonical: "https://www.hexescortsug.com/about",
   },
 };
 

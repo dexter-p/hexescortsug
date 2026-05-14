@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords:
     "escorts Uganda FAQ, how to book escort Uganda, escort questions Uganda, call girls Uganda FAQ, Kampala escorts FAQ",
   alternates: {
-    canonical: "https://www.hexescortsug.xyz/faq",
+    canonical: "https://www.hexescortsug.com/faq",
   },
 };
 

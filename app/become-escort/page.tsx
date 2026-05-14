@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords:
     "become escort Uganda, list escort profile Uganda, join escort directory Uganda, escort jobs Uganda, Kampala escort registration",
   alternates: {
-    canonical: "https://www.hexescortsug.xyz/become-escort",
+    canonical: "https://www.hexescortsug.com/become-escort",
   },
 };
 

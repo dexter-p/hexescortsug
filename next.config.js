@@ -12,6 +12,11 @@ const nextConfig = {
         destination: '/escorts-in/:path*',
         permanent: true,
       },
+      {
+        source: '/sitemap.txt',
+        destination: '/sitemap.xml',
+        permanent: true,
+      },
     ]
   },
   // Force trailing slash for consistency (better for SEO consolidation)
