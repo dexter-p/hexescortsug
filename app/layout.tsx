@@ -8,7 +8,7 @@ import PostHogPageview from "./posthog-pageview";
 export const metadata: Metadata = {
   title: "Escorts UG – #1 Verified Hookup Call Girls & Discreet Escorts in Uganda",
   description:
-    "Find discreet, verified escorts in Uganda with real photos. Browse elite Kampala call girls, Entebbe companions, and hookups in Ntinda, Kololo, Munyonyo, Jinja, and countrywide. Direct WhatsApp contacts.",
+    "Best Uganda escorts & sexy girls in Kampala. Find discreet hookups, ebony call girls, and verified companions in Entebbe, Jinja, Mbarara and countrywide. Direct WhatsApp contacts for real sexy girls in Uganda. #1 Ugandan escort directory.",
   keywords: [
     "discreet escorts Uganda",
     "real photos escorts",
@@ -53,11 +53,11 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Escorts UG – #1 Verified Hookup Call Girls & Discreet Escorts in Uganda",
+    title: "Hex Escorts UG – #1 Verified Hookup Call Girls & Discreet Escorts in Uganda",
     description:
       "Find discreet, verified escorts in Uganda with real photos and direct WhatsApp contacts. Real profiles from Kampala, Entebbe, Jinja, Mbarara and countrywide.",
     url: "https://www.hexescortsug.com",
-    siteName: "Escorts UG",
+    siteName: "Hex Escorts UG",
     type: "website",
     locale: "en_UG",
   },
@@ -87,26 +87,35 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "Escorts UG",
-              "url": "https://www.hexescortsug.com",
-              "description": "Uganda's #1 verified escort directory. Find escorts in Kampala, Entebbe, Jinja, Mbarara and all major Uganda cities.",
-              "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "UG",
-                "addressLocality": "Kampala"
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Hex Escorts UG",
+                "alternateName": ["Escorts UG", "Hex Escorts"],
+                "url": "https://www.hexescortsug.com"
               },
-              "areaServed": {
-                "@type": "Country",
-                "name": "Uganda"
-              },
-              "sameAs": [
-                "https://x.com/vickywiz60",
-                "https://t.me/+1R927eT3ccg5N2Zk"
-              ]
-            })
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Hex Escorts UG",
+                "url": "https://www.hexescortsug.com",
+                "description": "Uganda's #1 verified escort directory. Find sexy girls and escorts in Kampala, Entebbe, Jinja, Mbarara and all major Uganda cities.",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressCountry": "UG",
+                  "addressLocality": "Kampala"
+                },
+                "areaServed": {
+                  "@type": "Country",
+                  "name": "Uganda"
+                },
+                "sameAs": [
+                  "https://x.com/vickywiz60",
+                  "https://t.me/+1R927eT3ccg5N2Zk"
+                ]
+              }
+            ])
           }}
         />
       </head>
