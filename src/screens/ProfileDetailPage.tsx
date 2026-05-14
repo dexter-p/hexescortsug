@@ -136,7 +136,7 @@ const ProfileDetailPage = ({ profileId, initialProfile }: ProfileDetailPageProps
           </div>
           <div className="mt-6 text-center">
             <Button variant="outline" asChild size="sm">
-              <Link href={`/location/${profile.location.toLowerCase()}`}>
+              <Link href={`/escorts-in/${profile.location.toLowerCase()}`}>
                 See all {profile.location} Escorts
               </Link>
             </Button>

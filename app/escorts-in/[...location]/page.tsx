@@ -83,7 +83,7 @@ export default async function EscortsInLocationPage({ params }: Props) {
   };
 
   const breadcrumbItems = [
-    { label: "Escorts in Uganda", href: "/location" },
+    { label: "Escorts in Uganda", href: "/escorts-in" },
     ...(city ? [{ label: city.charAt(0).toUpperCase() + city.slice(1), href: `/escorts-in/${city}` }] : []),
     ...(suburb ? [{ label: suburb.charAt(0).toUpperCase() + suburb.slice(1), href: `/escorts-in/${city}/${suburb.replace(/\s+/g, '-')}`, current: true }] : (city ? [{ label: "All Areas", href: "#", current: true }] : []))
   ];

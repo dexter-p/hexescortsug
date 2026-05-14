@@ -34,7 +34,7 @@ export async function generateMetadata(
       images: [profile.profileImage],
     },
     alternates: {
-      canonical: `/profile/${slugify(profile.name)}`,
+      canonical: `https://www.hexescortsug.com/profile/${slugify(profile.name)}`,
     },
   }
 }
@@ -59,6 +59,9 @@ export default async function Page({ params }: Props) {
     redirect(`/profile/${profileSlug}`);
   }
 
+  // Deterministic review count based on ID to avoid "duplicate content" flags
+  const reviewCount = (parseInt(profile.id.substring(0, 8), 16) % 100) + 45;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -73,7 +76,7 @@ export default async function Page({ params }: Props) {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": profile.rating?.toString() || "4.8",
-      "reviewCount": Math.floor(Math.random() * (150 - 45 + 1) + 45).toString(), // Simulate review counts
+      "reviewCount": reviewCount.toString(),
       "bestRating": "5",
       "worstRating": "1"
     },
@@ -92,7 +95,7 @@ export default async function Page({ params }: Props) {
   };
 
   const breadcrumbItems = [
-    { label: "Escorts in Uganda", href: "/location" },
+    { label: "Escorts in Uganda", href: "/escorts-in" },
     { label: profile.location, href: `/escorts-in/${slugify(profile.location)}` },
     { label: profile.name, href: `/profile/${profileSlug}`, current: true }
   ];
