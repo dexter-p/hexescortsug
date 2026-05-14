@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
 
+import LocationHub from "./LocationHub";
+
 const Footer = () => {
   return (
     <footer className="bg-black text-white py-12 border-t border-gray-800">
@@ -63,6 +65,9 @@ const Footer = () => {
           </div>
           
         </div>
+
+        {/* SEO Hub - Hidden but crawlable for massive internal linking authority */}
+        <LocationHub />
       </div>
     </footer>
   );

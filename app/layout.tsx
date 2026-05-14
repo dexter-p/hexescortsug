@@ -6,9 +6,9 @@ import React, { Suspense } from "react";
 import PostHogPageview from "./posthog-pageview";
 
 export const metadata: Metadata = {
-  title: "Escorts UG – #1 Discreet & Verified Escorts in Uganda | Kampala Girls",
+  title: "Escorts UG – #1 Verified Hookup Call Girls & Discreet Escorts in Uganda",
   description:
-    "Find discreet, verified escorts in Uganda with real photos and direct WhatsApp contacts. Browse elite Kampala call girls, Entebbe companions, and escort services in Jinja, Mbarara, and countrywide.",
+    "Find discreet, verified escorts in Uganda with real photos. Browse elite Kampala call girls, Entebbe companions, and hookups in Ntinda, Kololo, Munyonyo, Jinja, and countrywide. Direct WhatsApp contacts.",
   keywords: [
     "discreet escorts Uganda",
     "real photos escorts",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Escorts UG – #1 Discreet & Verified Escorts in Uganda",
+    title: "Escorts UG – #1 Verified Hookup Call Girls & Discreet Escorts in Uganda",
     description:
       "Find discreet, verified escorts in Uganda with real photos and direct WhatsApp contacts. Real profiles from Kampala, Entebbe, Jinja, Mbarara and countrywide.",
     url: "https://www.hexescortsug.com",

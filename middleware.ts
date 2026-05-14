@@ -36,14 +36,6 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(newPath, request.url), 301);
   }
 
-  // SEO Rewrite: /thick-escorts-in/kampala -> /category/thick/kampala
-  const categoryMatch = pathname.match(/^\/([a-z0-9-]+)-escorts-in\/(.+)$/i);
-  if (categoryMatch) {
-    const category = categoryMatch[1];
-    const location = categoryMatch[2];
-    return NextResponse.rewrite(new URL(`/category/${category}/${location}`, request.url));
-  }
-
   return NextResponse.next();
 }
 

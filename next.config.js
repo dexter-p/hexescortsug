@@ -19,6 +19,14 @@ const nextConfig = {
       },
     ]
   },
+  async rewrites() {
+    return [
+      {
+        source: '/:category(thick|slim|curvy|vip|massage)-escorts-in/:location*',
+        destination: '/category/:category/:location*',
+      },
+    ]
+  },
   // Force trailing slash for consistency (better for SEO consolidation)
   trailingSlash: false,
 }
